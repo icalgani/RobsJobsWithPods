@@ -1,42 +1,36 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  RobsJobs
 //
-//  Created by MacBook on 3/31/17.
+//  Created by MacBook on 4/3/17.
 //  Copyright © 2017 MacBook. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
-    
-    @IBOutlet weak var CreateAccountButton: ButtonCustom!
-    @IBOutlet weak var FacebookButton: ButtonCustom!
-    @IBOutlet weak var LoginButton: UIButton!
-    @IBOutlet weak var UsernameTextfield: UITextField!
+class LoginViewController: UIViewController,UITextFieldDelegate {
+
+    @IBOutlet weak var EmailPhoneNumberTextfield: UITextField!
     @IBOutlet weak var PasswordTextfield: UITextField!
+    @IBOutlet weak var CreateAccountButton: ButtonCustom!
     
     let Utility = UIUtility()
-    var userDefaults = UserDefaults.standard
-
+    let userDefaults = UserDefaults.standard
     
-    @IBAction func backToStartingPoint(segue: UIStoryboardSegue) {
-    }
-
-    @IBAction func registerUser(segue: UIStoryboardSegue) {
-    }
     
-    @IBAction func DoLogin(_ sender: UIButton) {
-        //check if email and pass is null
+    @IBOutlet weak var LoginButton: ButtonCustom!
+    
+    @IBAction func doLogin(_ sender: UIButton) {
         
-        if (UsernameTextfield.text == ""){
+        //check if email and pass is null
+        if (EmailPhoneNumberTextfield.text == ""){
             
             //create alert if email is empty
             let alertController = UIAlertController(title: "Alert", message:
                 "Email must be filled in", preferredStyle: UIAlertControllerStyle.alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
             self.present(alertController, animated: true, completion: nil)
-            
+        
         }else if(PasswordTextfield.text == ""){
             
             //create alert if password is empty
@@ -44,17 +38,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 "Password must be filled in", preferredStyle: UIAlertControllerStyle.alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
             self.present(alertController, animated: true, completion: nil)
-            
+        
         }else{
             
             //close keypad
             view.endEditing(true)
-            print("else")
+            
             var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/user/login")!)
             
             //check login
             request.httpMethod = "POST"
-            let postString = "email=\((UsernameTextfield.text)!)&password=\((PasswordTextfield.text)!)"
+            let postString = "email=\((EmailPhoneNumberTextfield.text)!)&password=\((PasswordTextfield.text)!)"
             request.httpBody = postString.data(using: .utf8)
             print("post string: \(postString)")
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -79,11 +73,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                             self.present(alertController, animated: true, completion: nil)
                         }else{
                             let jsonData = json["data"] as! [String:Any]
-                            
+                            print("get ID")
                             DispatchQueue.main.async {
-                                print("user id = \(jsonData["id"])")
-
+                                print("getuserdatafromserver")
                                 self.getUserDataFromServer(userID: String(describing: jsonData["id"]!))
+                                
                             }
                         } // if else
                     } //if json
@@ -96,32 +90,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        UsernameTextfield.delegate=self
-        PasswordTextfield.delegate=self
-        
-        //set background image
-//        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-//        backgroundImage.image = UIImage(named: "bg_landing")
-//        self.view.insertSubview(backgroundImage, at: 0)
-        
-        //set status bar color
-        setNeedsStatusBarAppearanceUpdate()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func getUserDataFromServer(userID: String){
         var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/user/profile/\(userID)")!)
         
         //check login
         request.httpMethod = "GET"
+        print("get user data")
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
                 print("error=\(String(describing: error))")
@@ -140,87 +114,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
                             print("theres user default")
                             self.userDefaults.removeObject(forKey: "userDictionary")
                         }
-                        
+                        print("theres no user default")
                         let jsonData = (json["data"]) as! [String:Any]
+                        print("value of jsondata[city] == nil is \(jsonData["city"] == nil) and != nil is \(jsonData["city"] != nil)")
                         if jsonData["city"] == nil{
-                            print("userID buat di kirim = \(jsonData["id"])")
-                           
                             let userDictionary: [String:Any] = ["userID": jsonData["id"],"email": jsonData["email"], "userName": jsonData["name"], "mobile_number": jsonData["mobile_number"]]
                             self.userDefaults.set(userDictionary, forKey: "userDictionary")
                         }else{
-                            print("inside else city != nil")
-
-                            //  set data to UserDefault
-                            var userDictionary:[String: Any] = ["userID": jsonData["id"], "birthdate": jsonData["birthdate"], "curr_employment_sector": jsonData["curr_employment_sector"], "city": jsonData["city"], "province": jsonData["province"], "edu_level":jsonData["edu_level"], "employment_type": jsonData["employment_type"], "sectors": jsonData["sectors"]]
+//                        set data to UserDefault
+                        let userDictionary:[String: Any] = ["userID": jsonData["id"], "birthdate": jsonData["birthdate"], "is_employed": jsonData["is_employed"], "curr_employment_sector": jsonData["curr_employment_sector"], "city": jsonData["city"], "province": jsonData["province"], "edu_level":jsonData["edu_level"], "interests": jsonData["interests"], "employment_type": jsonData["employment_type"], "sectors": jsonData["sectors"], "has_portofolio": jsonData["has_portofolio"], "has_work_experience": jsonData["has_work_experience"], "skills": jsonData["skills"], "bio": jsonData["bio"], "portofolio": jsonData["portofolio"], "email": jsonData["email"], "userName": jsonData["name"], "mobile_number": jsonData["mobile_number"], "image": jsonData["image"]]
+                        self.userDefaults.set(userDictionary, forKey: "userDictionary")
                             
-                            self.userDefaults.set(userDictionary, forKey: "userDictionary")
-
-                            if let image = jsonData["image"]{
-                                userDictionary["image"] = String(describing: image)
-                            }
-                            self.userDefaults.set(userDictionary, forKey: "userDictionary")
-
-                            if let skills = jsonData["skills"]{
-                                userDictionary["skills"] = skills
-                            }
-                            self.userDefaults.set(userDictionary, forKey: "userDictionary")
-
-                            if let bio = jsonData["bio"]{
-                                userDictionary["bio"] = bio
-                            }
-                            self.userDefaults.set(userDictionary, forKey: "userDictionary")
-
-                            if let portofolio = jsonData["portofolio"]{
-                                userDictionary["portofolio"] = portofolio
-                            }
-                            self.userDefaults.set(userDictionary, forKey: "userDictionary")
-
-                            if let email = jsonData["email"]{
-                                userDictionary["email"] = email
-                            }
-                            self.userDefaults.set(userDictionary, forKey: "userDictionary")
-
-                            if let userName = jsonData["name"]{
-                                userDictionary["userName"] = userName
-                            }
-                            self.userDefaults.set(userDictionary, forKey: "userDictionary")
-
-                            if let mobile_number = jsonData["mobile_number"]{
-                                userDictionary["mobile_number"] = String(describing: mobile_number)
-                            }
-                            self.userDefaults.set(userDictionary, forKey: "userDictionary")
+                            // Check if data exists
+                            let userData = self.userDefaults.value(forKey: "userDictionary") as? [String: Any]
                             
-                            if let salary = jsonData["salary"] {
-                                userDictionary["salary"] = String(describing: salary)
-                            }
-                            
-                            if let salarymin = jsonData["salarymin"] {
-                                userDictionary["salarymin"] = String(describing: salarymin)
-                            }
-                            self.userDefaults.set(userDictionary, forKey: "userDictionary")
-
-                            if let salarymax = jsonData["salarymax"]{
-                                userDictionary["salarymax"] = String(describing: salarymax)
-                            }
-                            self.userDefaults.set(userDictionary, forKey: "userDictionary")
-
-                            if let distance = jsonData["distance"]{
-                                userDictionary["distance"] = distance
-                            }
-                            
-                            self.userDefaults.set(userDictionary, forKey: "userDictionary")
+                            print(userData?["city"])
+                            print("jason data email = \((jsonData["email"])!)")
                         }
                         DispatchQueue.main.async {
-                            let userDefaults = UserDefaults.standard
-                            let userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
-                            print("value of dict[city] = \(userDictionary?["city"])")
-                            if(userDictionary?["city"] != nil){
+                            let dict = self.userDefaults.object(forKey: "userDictionary") as? [String: String] ?? [String: String]()
+                            
+                            print("value dict[city] = \(dict["city"])")
+                            if(dict["city"] != nil){
+                                print("got dict[city] != null")
                                 //go to FirstTimeLogin Storyboard
                                 self.goToNextView(storyboardName: "Core", identifier: "SwipingScene")
                             }else{
+                                print("goto else")
                                 //go to FirstTimeLogin Storyboard
                                 self.goToNextView(storyboardName: "FirstTimeLogin", identifier: "SetUpProfile")
-                                
                             }
                         }
                     }
@@ -237,7 +159,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func goToNextView(storyboardName: String, identifier: String){
         let storyBoard : UIStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
+
         if(storyboardName == "Core"){
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: identifier) as! UITabBarController
             appDelegate.window?.rootViewController = nextViewController
@@ -245,6 +167,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: identifier) as UIViewController
             appDelegate.window?.rootViewController = nextViewController
         }
+
+    }
+    
+    @IBAction func goToLogin(segue: UIStoryboardSegue) {
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        EmailPhoneNumberTextfield.delegate=self
+        PasswordTextfield.delegate=self
+        
+        CreateAccountButton.whiteBorder()
+        LoginButton.roundingButton()
+        
+        //create background
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "bg_login")
+        self.view.insertSubview(backgroundImage, at: 0)
+        
+        //change status bar color
+        Utility.setStatusBarBackgroundColor(color: Utility.hexStringToUIColor(hex: "#d3d3d3"))
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     //press next to change to next tab
@@ -264,5 +213,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-}
+    
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
