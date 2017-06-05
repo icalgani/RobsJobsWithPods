@@ -23,35 +23,41 @@ class UploadDocViewController: UIViewController, UIImagePickerControllerDelegate
     
     let imagePicker = UIImagePickerController()
     var docPickedTag = 0
-    var path : URL!
-    var documentID: [String] = []
-    var documentType: [String] = []
-    var documentPath: [String] = []
+    var documentID: [String] = ["","",""]
+    var documentType: [String] = ["","",""]
+    var documentPath: [String] = ["","",""]
+    var documentURL: [URL?] = [URL(string: ""),URL(string: ""),URL(string: "")]
     var documentIsPicked: [Bool] = [false,false,false]
-
+    
     let documentData = DocumentData()
     
     @IBAction func DoneButtonPressed(_ sender: UIButton) {
         
         documentData.uploadPictureRequest(userImage: self.UserPhotoIcon.image!)
+        
+        for index in 0...(self.documentIsPicked.count - 1){
+            if (documentIsPicked[index] && documentID[index] == ""){
+                documentData.uploadDocumentRequest(documentURL: documentURL[index]!, documentType: documentType[index])
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
         
-        let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.pickUserImage(sender:)))
+        let gesture = UITapGestureRecognizer(target: self, action: #selector (self.pickUserImage(sender:)))
         UserPicture.addGestureRecognizer(gesture)
         
-        let gesture1 = UITapGestureRecognizer(target: self, action:  #selector (self.pickUserImage1(sender:)))
+        let gesture1 = UITapGestureRecognizer(target: self, action: #selector (self.pickUserImage1(sender:)))
         Certificate1.isUserInteractionEnabled = true
         Certificate1.addGestureRecognizer(gesture1)
 
-        let gesture2 = UITapGestureRecognizer(target: self, action:  #selector (self.pickUserImage2(sender:)))
+        let gesture2 = UITapGestureRecognizer(target: self, action: #selector (self.pickUserImage2(sender:)))
         Certificate2.isUserInteractionEnabled = true
         Certificate2.addGestureRecognizer(gesture2)
         
-        let gesture3 = UITapGestureRecognizer(target: self, action:  #selector (self.pickUserImage3(sender:)))
+        let gesture3 = UITapGestureRecognizer(target: self, action: #selector (self.pickUserImage3(sender:)))
         Certificate3.isUserInteractionEnabled = true
         Certificate3.addGestureRecognizer(gesture3)
         
@@ -61,46 +67,52 @@ class UploadDocViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     func loadDocument(){
+        print("loadDocument function")
+
         documentID = documentData.documentIDToSend
         documentType = documentData.documentTypeToSend
         documentPath = documentData.documentPathToSend
         documentIsPicked = documentData.documentIsPickedToSend
+        
+        self.updateDocumentView()
     }
     
     func pickUserImage(sender : UITapGestureRecognizer) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
-        
-
         present(imagePicker, animated: true, completion: nil)
     }
     
     func pickUserImage1(sender : UITapGestureRecognizer) {
-        let documentPickerController = UIDocumentPickerViewController(documentTypes: [String(kUTTypePDF), String(kUTTypeImage), String(kUTTypeMovie), String(kUTTypeVideo), String(kUTTypePlainText), String(kUTTypeMP3)], in: .import)
-        documentPickerController.delegate = self
-
         docPickedTag = 0
-
-        present(documentPickerController, animated: true, completion: nil)
-
+        
+        checkIsDocumentPicked()
     }
     
     func pickUserImage2(sender : UITapGestureRecognizer) {
-        let documentPickerController = UIDocumentPickerViewController(documentTypes: [String(kUTTypePDF), String(kUTTypeImage), String(kUTTypeMovie), String(kUTTypeVideo), String(kUTTypePlainText), String(kUTTypeMP3)], in: .import)
-        documentPickerController.delegate = self
-
         docPickedTag = 1
         
-        present(documentPickerController, animated: true, completion: nil)
-
+        checkIsDocumentPicked()
     }
     
     func pickUserImage3(sender : UITapGestureRecognizer) {
+        docPickedTag = 2
+        
+        checkIsDocumentPicked()
+    }
+    
+    func checkIsDocumentPicked(){
+        
+        if(documentIsPicked[docPickedTag]){
+            showDeletePopup()
+        }else{
+            showDocumentTypePopup()
+        }
+    }
+    
+    func startDocumentPicker(){
         let documentPickerController = UIDocumentPickerViewController(documentTypes: [String(kUTTypePDF), String(kUTTypeImage), String(kUTTypeMovie), String(kUTTypeVideo), String(kUTTypePlainText), String(kUTTypeMP3)], in: .import)
         documentPickerController.delegate = self
-        
-        docPickedTag = 2
-
         present(documentPickerController, animated: true, completion: nil)
     }
     
@@ -161,16 +173,116 @@ class UploadDocViewController: UIViewController, UIImagePickerControllerDelegate
         // Dispose of any resources that can be recreated.
     }
     
+    func updateDocumentView(){
+        for index in 0...2 {
+            if (documentIsPicked[index]){
+                switch index {
+                case 0:
+                    self.Certificate1.image = UIImage(named: "rj_attach_icon")
+                case 1:
+                    self.Certificate2.image = UIImage(named: "rj_attach_icon")
+                case 2:
+                    self.Certificate3.image = UIImage(named: "rj_attach_icon")
+
+                default:
+                    return
+                }
+            }else{
+                switch index {
+                case 0:
+                    self.Certificate1.image = UIImage(named: "RJ_addfile_icon")
+                case 1:
+                    self.Certificate2.image = UIImage(named: "RJ_addfile_icon")
+                case 2:
+                    self.Certificate3.image = UIImage(named: "RJ_addfile_icon")
+                    
+                default:
+                    return
+                }
+            }
+        }
+    }
+    
+    func showDeletePopup(){
+        // Create the alert controller
+        let alertController = UIAlertController(title: "Delete Document", message: "Are you sure you want to delete this document?", preferredStyle: .alert)
+        
+        // Create the actions
+        // delete action
+        let okAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            
+            if (self.documentID[self.docPickedTag] != ""){
+                self.documentData.deleteDocumentFromServer(docIdToDelete: self.documentID[self.docPickedTag])
+            }
+            self.documentIsPicked[self.docPickedTag] = false
+            self.documentURL[self.docPickedTag] = URL(string: "")
+            self.documentID[self.docPickedTag] = ""
+            self.documentPath[self.docPickedTag] = ""
+            self.updateDocumentView()
+        }
+        //cancel action
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
+            UIAlertAction in
+            NSLog("Cancel Pressed")
+        }
+        
+        // Add the actions
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        // Present the controller
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //show Document picker popup
+    func showDocumentTypePopup(){
+        // Create the alert controller
+        let documentTypeAlertController = UIAlertController(title: "Document Type", message: "Pick Document Type", preferredStyle: .alert)
+        
+        // Create the actions
+        // pick certificate action
+        let certificateAction = UIAlertAction(title: "Certificate", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            self.documentType[self.docPickedTag] = "1"
+            self.startDocumentPicker()
+
+        }
+        
+        //pick document action
+        let documentAction = UIAlertAction(title: "Document", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            print("documentType in \(self.docPickedTag) is \(self.documentType)")
+            self.documentType[self.docPickedTag] = "2"
+            self.startDocumentPicker()
+        }
+        
+        // Add the actions
+        documentTypeAlertController.addAction(certificateAction)
+        documentTypeAlertController.addAction(documentAction)
+        
+        // Present the controller
+        self.present(documentTypeAlertController, animated: true, completion: nil)
+    }
 }
 
 
 extension UploadDocViewController: UIDocumentPickerDelegate {
     
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-     documentData.uploadDocumentRequest(documentURL: url)
+       print(docPickedTag)
+        documentIsPicked[docPickedTag] = true
+        documentURL[docPickedTag] = url
+        documentPath[docPickedTag] = url.absoluteString
+        updateDocumentView()
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         print("this is documentpicker")
+        documentIsPicked[docPickedTag] = false
+        
+        documentURL[docPickedTag] = URL(string: "")
+        documentPath[docPickedTag] = ""
+        updateDocumentView()
     }
 }

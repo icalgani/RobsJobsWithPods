@@ -15,10 +15,10 @@ class DocumentData{
     
     let API_URL: String = "http://api.robsjobs.co/api/v1"
     
-    var documentIDToSend: [String] = []
-    var documentTypeToSend: [String] = []
-    var documentPathToSend: [String] = []
-    var documentIsPickedToSend: [Bool] = [false,false,false]
+    var documentIDToSend: [String] = ["","",""]
+    var documentTypeToSend: [String] = ["","",""]
+    var documentPathToSend: [String] = ["","",""]
+    var documentIsPickedToSend: [Bool] = [false, false, false]
     
     let userDefaults = UserDefaults.standard
     
@@ -61,7 +61,7 @@ class DocumentData{
         )
     }
     
-    func uploadDocumentRequest(documentURL: URL){
+    func uploadDocumentRequest(documentURL: URL, documentType: String){
         var userDictionary = self.userDefaults.value(forKey: "userDictionary") as? [String: Any]
         
         print("The Url is : \(documentURL)")
@@ -78,9 +78,8 @@ class DocumentData{
         Alamofire.upload(
             multipartFormData: { multipartFormData in
                 multipartFormData.append("\(String(describing: (userDictionary?["userID"])!))".data(using: .utf8)!, withName: "userid")
-                multipartFormData.append("1".data(using: .utf8)!, withName: "doctype")
+                multipartFormData.append("\(documentType)".data(using: .utf8)!, withName: "doctype")
                 multipartFormData.append(file_data, withName: "docfile", fileName: "doc1", mimeType: file_mime)
-                
         },
             to: "\(API_URL)/user/uploaddoc",
             method: .post,
@@ -104,10 +103,11 @@ class DocumentData{
         
         let userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
         
-        var request = URLRequest(url: URL(string: "\(API_URL)/user/docs/\(String(describing: userDictionary?["userID"]))")!)
+        var request = URLRequest(url: URL(string: "\(API_URL)/user/docs/\(String(describing: (userDictionary?["userID"])!))")!)
+        
+        print("request = \(request)")
         
         //create the session object
-        print("data to get = \(String(describing: userDictionary?["userID"]))")
         request.httpMethod = "GET"
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -139,14 +139,16 @@ class DocumentData{
                             for index in 0...(jsonData.count)-1 {
                                                                 
                                 let aObject:[String:Any] = (jsonData[index])
-                                self.documentIDToSend.append(String(describing: aObject["id"]!))
-                                self.documentTypeToSend.append(String(describing: aObject["doc_type"]!))
-                                self.documentPathToSend.append(aObject["doc_path"] as! String)
-                                self.documentIsPickedToSend.append(true)
+                                self.documentIDToSend[index] = String(describing: aObject["id"]!)
+                                self.documentTypeToSend[index] = String(describing: aObject["doc_type"]!)
+                                self.documentPathToSend[index] = aObject["doc_path"] as! String
+                                self.documentIsPickedToSend[index] = true
+                                
                                 
                             }// end for
                             
                             DispatchQueue.main.async {
+                                print("loadDocument Dispatchqueue")
                                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadDocument"), object: nil)
                             }
                         }
@@ -158,6 +160,42 @@ class DocumentData{
             }
             
         }
+        task.resume()
+    }
+    
+    func deleteDocumentFromServer(docIdToDelete: String){
+        
+        let userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
+
+        var request = URLRequest(url: URL(string: "\(API_URL)/user/deletedoc")!)
+        //check login
+        request.httpMethod = "POST"
+        let postString = "userid=\(String(describing: (userDictionary?["userID"])!))&docid=\((docIdToDelete))"
+        request.httpBody = postString.data(using: .utf8)
+        print("post string delete document: \(postString)")
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error=\(String(describing: error))")
+                return
+            }
+            
+            //handling json
+            do {
+                //create json object from data
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                        //if status code is not 200
+                        let errorMessage = json["error"] as! [String:Any]
+                        let currentErrorMessage = errorMessage["message"] as! String
+                        print("delete status code: \(httpStatus.statusCode)")
+                    }else{
+                    } // if else
+                } //if json
+            } catch let error {
+                print(error.localizedDescription)
+            } // end do
+            
+        } //end task
         task.resume()
     }
     
