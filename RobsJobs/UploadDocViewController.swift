@@ -22,6 +22,8 @@ class UploadDocViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var PortfolioTextfield: UITextField!
     
     let imagePicker = UIImagePickerController()
+    let userDefaults = UserDefaults.standard
+
     var docPickedTag = 0
     var documentID: [String] = ["","",""]
     var documentType: [String] = ["","",""]
@@ -33,6 +35,7 @@ class UploadDocViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBAction func DoneButtonPressed(_ sender: UIButton) {
         
+        var userDictionary = self.userDefaults.value(forKey: "userDictionary") as? [String: Any]
         documentData.uploadPictureRequest(userImage: self.UserPhotoIcon.image!)
         
         for index in 0...(self.documentIsPicked.count - 1){
@@ -40,6 +43,23 @@ class UploadDocViewController: UIViewController, UIImagePickerControllerDelegate
                 documentData.uploadDocumentRequest(documentURL: documentURL[index]!, documentType: documentType[index])
             }
         }
+        
+        if(PortfolioTextfield.text != "" || PortfolioTextfield.text != nil){
+            userDictionary?["portofolio"] = PortfolioTextfield.text!
+            print("portfolio = \(userDictionary?["portofolio"]! as! String)")
+            
+            userDefaults.set(userDictionary, forKey: "userDictionary")
+            
+            let sendJson = SendJsonSetupProfile()
+            sendJson.sendDataToAPI(userDictionary: userDictionary!)
+        }
+        // go to core scene
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Core", bundle: nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SwipingScene") as! UITabBarController
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = nextViewController
+        
     }
     
     override func viewDidLoad() {
@@ -60,6 +80,18 @@ class UploadDocViewController: UIViewController, UIImagePickerControllerDelegate
         let gesture3 = UITapGestureRecognizer(target: self, action: #selector (self.pickUserImage3(sender:)))
         Certificate3.isUserInteractionEnabled = true
         Certificate3.addGestureRecognizer(gesture3)
+        
+        var userDictionary = self.userDefaults.value(forKey: "userDictionary") as? [String: Any]
+        
+        if(userDictionary?["portofolio"] != nil){
+            PortfolioTextfield.text = userDictionary?["portofolio"] as? String
+        }
+        
+        if let imageData = userDictionary?["image"] {
+            print("user dictionary image = \(userDictionary?["image"] as! String)")
+            let checkedUrl = URL(string: imageData as! String)
+            downloadImage(url: checkedUrl!)
+        }
         
         documentData.getDocumentDataFromServer()
         
@@ -263,6 +295,55 @@ class UploadDocViewController: UIViewController, UIImagePickerControllerDelegate
         
         // Present the controller
         self.present(documentTypeAlertController, animated: true, completion: nil)
+    }
+    
+    func downloadImage(url: URL) {
+        getDataFromUrl(url: url) { (data, response, error)  in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async() { () -> Void in
+                self.UserPhotoIcon.image = UIImage(data: data)
+                self.UserPhotoIcon.translatesAutoresizingMaskIntoConstraints = false
+                
+                NSLayoutConstraint(item: self.UserPhotoIcon,
+                                   attribute: .top,
+                                   relatedBy: .equal,
+                                   toItem: self.UserPicture,
+                                   attribute: .top,
+                                   multiplier: 1.0,
+                                   constant: 0).isActive = true
+                
+                NSLayoutConstraint(item: self.UserPhotoIcon,
+                                   attribute: .bottom,
+                                   relatedBy: .equal,
+                                   toItem: self.UserPicture,
+                                   attribute: .bottom,
+                                   multiplier: 1.0,
+                                   constant: 0).isActive = true
+                
+                NSLayoutConstraint(item: self.UserPhotoIcon,
+                                   attribute: .leading,
+                                   relatedBy: .equal,
+                                   toItem: self.UserPicture,
+                                   attribute: .leading,
+                                   multiplier: 1.0,
+                                   constant: 0).isActive = true
+                
+                NSLayoutConstraint(item: self.UserPhotoIcon,
+                                   attribute: .trailing,
+                                   relatedBy: .equal,
+                                   toItem: self.UserPicture,
+                                   attribute: .trailing,
+                                   multiplier: 1.0,
+                                   constant: 0).isActive = true
+            }
+        }
+    }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            completion(data, response, error)
+            }.resume()
     }
 }
 

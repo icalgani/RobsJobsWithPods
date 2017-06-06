@@ -11,10 +11,12 @@ import UIKit
 
 class SendJsonSetupProfile{
     
+    let API_URL = "http://apidev.robsjobs.co/api/v1"
+    
     func sendDataToAPI(userDictionary: Dictionary<String, Any>){
         
         //check login
-        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/user/profile")!)
+        var request = URLRequest(url: URL(string: "\(API_URL)/user/profile")!)
         request.httpMethod = "POST"
         
         var postString = ""
@@ -63,7 +65,7 @@ class SendJsonSetupProfile{
             postString += "&edulevel="
         }
         
-        if let emp_status = userDictionary["emp_status"] as? String{
+        if let emp_status = userDictionary["employmentStatus"] as? String{
             postString += "&emp_status=\(emp_status)"
         } else{
             postString += "&emp_status="
@@ -86,14 +88,23 @@ class SendJsonSetupProfile{
         if let distance = userDictionary["distance"] as? String{
             postString += "&distance=\(distance)"
         } else{
-            postString += "&distance="
+            postString += "&distance=50"
         }
+        print("distance string = \(userDictionary["distance"] as? String)")
+
         
         if let bio = userDictionary["bio"] as? String{
             postString += "&bio=\(bio)"
         } else{
             postString += "&bio="
         }
+        
+        if let experience = userDictionary["experience"] as? String{
+            postString += "&experience=\(experience)"
+        } else{
+            postString += "&experience="
+        }
+        
         postString += "&skill=" //deprecated
         postString += "&isemployed=" //deprecated
         postString += "&currentsector=" //deprecated
@@ -104,7 +115,7 @@ class SendJsonSetupProfile{
         } else{
             postString += "&portofolio="
         }
-        
+        print("post String = \(postString)")
         request.httpBody = postString.data(using: .utf8)
         print(postString)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in

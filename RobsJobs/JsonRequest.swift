@@ -21,8 +21,10 @@ class JsonRequest{
     var skillToSend: [String] = []
     var employmentStatusToSend: [String] = []
 
+    let API_URL = "http://apidev.robsjobs.co/api/v1"
+    
     func getDataFromServer(dataToGet: String){
-        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/init/\(dataToGet)")!)
+        var request = URLRequest(url: URL(string: "\(API_URL)/init/\(dataToGet)")!)
         //create the session object
         
         request.httpMethod = "GET"
@@ -55,8 +57,8 @@ class JsonRequest{
                                 switch dataToGet{
                                     case "salary":
                                         self.salaryToSend.append(aObject["label"] as! String)
-                                        self.salaryMaxToSend.append(String(describing: aObject["salary_max"]))
-                                        self.salaryMinToSend.append(String(describing: aObject["salary_min"]))
+                                        self.salaryMaxToSend.append(String(describing: aObject["salary_max"]!))
+                                        self.salaryMinToSend.append(String(describing: aObject["salary_min"]!))
                                         break
                             
                                     case "province":
@@ -113,7 +115,7 @@ class JsonRequest{
     
     func getProvinceFromServer() -> Array<String>{
         var arrayToPass: [String]=["province"]
-        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/init/province")!)
+        var request = URLRequest(url: URL(string: "\(API_URL)/init/province")!)
         //create the session object
         
         request.httpMethod = "GET"

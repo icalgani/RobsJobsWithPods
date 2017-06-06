@@ -52,6 +52,7 @@ class ProfileViewController: UIViewController {
         let userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
         
         if let imageData = userDictionary?["image"] {
+            print("user dictionary image = \(userDictionary?["image"] as! String)")
             let checkedUrl = URL(string: imageData as! String)
             downloadImage(url: checkedUrl!)
         }
@@ -98,10 +99,14 @@ class ProfileViewController: UIViewController {
             UserDescriptionLabel.text = userDictionary?["bio"] as? String
             ProfessionLabel.text = userDictionary?["sectors"] as? String
             CityLabel.text = userDictionary?["city"] as? String
+            
+            
             //download image from url
             if let imageData = userDictionary?["image"] {
                 let checkedUrl = URL(string: imageData as! String)
-                downloadImage(url: checkedUrl!)
+                if(checkedUrl != nil){
+                    downloadImage(url: checkedUrl!)
+                }
             }
         }
     }

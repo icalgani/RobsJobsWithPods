@@ -13,6 +13,8 @@ class ChatData{
     var userTypeToSend: [String] = []
     var tsToSend: [String] = []
     
+    let API_URL = "http://apidev.robsjobs.co/api/v1"
+    
     //GET MESSAGE DATA
     func getDataFromServer(dataToGet: String){
         messageToSend.removeAll()
@@ -20,7 +22,7 @@ class ChatData{
         tsToSend.removeAll()
         
         print("getting data from server")
-        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/chat/detail/\(dataToGet)")!)
+        var request = URLRequest(url: URL(string: "\(API_URL)/chat/detail/\(dataToGet)")!)
         //create the session object
         
         request.httpMethod = "GET"
@@ -74,7 +76,7 @@ class ChatData{
         let userDefaults = UserDefaults.standard
         var userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
 
-        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/chat")!)
+        var request = URLRequest(url: URL(string: "\(API_URL)/chat")!)
         
         //check login
         request.httpMethod = "POST"

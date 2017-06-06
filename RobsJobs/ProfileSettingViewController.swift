@@ -45,6 +45,8 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func backToProfileSettingSegue(segue: UIStoryboardSegue) {
+        let userDefaults = UserDefaults.standard
+        var userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
         
         //if segue from Salary picker
         if(segue.source.isKind(of: SalaryPickerTableViewController.self)){
@@ -54,6 +56,14 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
                 passedSalaryValue = SalaryView.salaryToPass
                 passedSalaryMaxValue = SalaryView.salaryMaxToPass
                 passedSalaryMinValue = SalaryView.salaryMinToPass
+                
+                userDictionary?["salarymin"] = passedSalaryMinValue!
+                print("salarymin = \(String(describing: userDictionary?["salarymin"]!))")
+                
+                userDictionary?["salarymax"] = passedSalaryMaxValue!
+                print("salarymax = \(String(describing: userDictionary?["salarymax"]!))")
+                
+                userDefaults.set(userDictionary, forKey: "userDictionary")
                 SalaryTextfield.text = passedSalaryValue
             }
         }
@@ -118,11 +128,12 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
         let userDefaults = UserDefaults.standard
         var userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
         
-        if let sectors = userDictionary?["sectors"]{
+        if (userDictionary?["sectors"]) != nil{
             SectorTextfield.text = (userDictionary?["sectors"] as? String)
         }
         print(userDictionary?["salary"])
-        if let salary = userDictionary?["salary"]{
+        
+        if (userDictionary?["salary"]) != nil{
             SalaryTextfield.text = (userDictionary?["salary"] as? String)
         }
         if (userDictionary?["employment_type"]) != nil{
@@ -167,12 +178,20 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
             var userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
             
             userDictionary?["sectors"] = SectorTextfield.text
+            print("sectors = \(String(describing: userDictionary?["sectors"]!))")
+            
             userDictionary?["salary"] = SalaryTextfield.text
+            print("salary = \(String(describing: userDictionary?["salary"]!))")
+            
             userDictionary?["employment_type"] = WorkTimeTextfield.text
+            print("employment_type = \(userDictionary?["employment_type"]! as! String)")
+            
             userDictionary?["distance"] = DistanceSlider.value
-            userDictionary?["salarymin"] = passedSalaryMinValue
-            userDictionary?["salarymax"] = passedSalaryMaxValue
-            userDictionary?["employmentStatus"] = passedWorkTypeValue
+            print("distance = \(String(describing: userDictionary?["distance"]!))")
+            
+            userDictionary?["employmentStatus"] = WorkTypeTextfield.text!
+            print("employmentstatus = \(userDictionary?["employmentStatus"]! as! String)")
+            
             userDefaults.set(userDictionary, forKey: "userDictionary")
             
             let sendJson = SendJsonSetupProfile()

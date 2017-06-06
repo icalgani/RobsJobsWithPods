@@ -24,6 +24,8 @@ class SwipeCardData{
     var jobsScoreToSend: [String] = []
     var companyNameToSend: [String] = []
     
+    let API_URL = "http://apidev.robsjobs.co/api/v1"
+    
     func resetAllData(){
         idToSend.removeAll()
         employerIDToSend.removeAll()
@@ -42,7 +44,7 @@ class SwipeCardData{
     
     func getDataFromServer(dataToGet: String){
         resetAllData()
-        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/match/\(dataToGet)")!)
+        var request = URLRequest(url: URL(string: "\(API_URL)/match/\(dataToGet)")!)
         //create the session object
         print("data to get = \(dataToGet)")
         request.httpMethod = "GET"

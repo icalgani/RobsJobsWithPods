@@ -49,11 +49,12 @@ class DocumentData{
                             if let image = json_data["photo"]{
                                 userDictionary?["image"] = image
                                 print("image in dictionary= \(image)")
-                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshUserImage"), object: nil)
                                 self.userDefaults.set(userDictionary, forKey: "userDictionary")
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshUserImage"), object: nil)
                             }
                         }
                     }
+                    
                 case .failure(let encodingError):
                     print(encodingError)
                 }

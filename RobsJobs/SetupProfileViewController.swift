@@ -61,6 +61,7 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
             userDictionary?["city"] = CityInput.text
             userDictionary?["bio"] = DescribeYourselfInput.text
             userDictionary?["edu_level"] = EducationInput.text
+            userDictionary?["experience"]  = WorkExperienceInput.text
             
             userDefaults.set(userDictionary, forKey: "userDictionary")
 
@@ -79,8 +80,8 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
             }else{
                 
             //go to tutorial page
-            let storyBoard : UIStoryboard = UIStoryboard(name: "TutorialPage", bundle: nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "TutorialTestPageViewController") as UIViewController
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Core", bundle: nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "profileSetting") as UIViewController
                 
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = nextViewController
@@ -97,11 +98,9 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
         } else{
             return true
         }
-        return false
     }
     
     func showAlert(alertMessage: String){
-        //show alert if there is empty field
         let alertController = UIAlertController(title: "Alert", message:
             alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
@@ -200,26 +199,15 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
         EducationInput.delegate = self
         WorkExperienceInput.delegate = self
         DescribeYourselfInput.delegate = self
-//        EmploymentInput.delegate = self
-//        DesiredSectorInput.delegate = self
-//        CurrentSectorInput.delegate = self
-        
-//        //set work experience radio button
-//        workExperienceRadioController = SSRadioButtonsController(buttons: workExperienceYesButton, workExperienceNoButton)
-//        workExperienceRadioController!.delegate = self
-//        
-//        //set currently employed radio button
-//        currentlyEmployedRadioController = SSRadioButtonsController(buttons: currentyEmployedYesButton, currentyEmployedNoButton)
-//        currentlyEmployedRadioController!.delegate = self
         
         //set keyboard
-        NameInput.setLeftPaddingPoints(30)
-        BirthdateInput.setLeftPaddingPoints(30)
-        ProvinceInput.setLeftPaddingPoints(30)
-        CityInput.setLeftPaddingPoints(30)
-        EducationInput.setLeftPaddingPoints(30)
-        WorkExperienceInput.setLeftPaddingPoints(30)
-        DescribeYourselfInput.setLeftPaddingPoints(30)
+        NameInput.setLeftPaddingPoints(20)
+        BirthdateInput.setLeftPaddingPoints(20)
+        ProvinceInput.setLeftPaddingPoints(20)
+        CityInput.setLeftPaddingPoints(20)
+        EducationInput.setLeftPaddingPoints(20)
+        WorkExperienceInput.setLeftPaddingPoints(20)
+        DescribeYourselfInput.setLeftPaddingPoints(20)
         NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillShow(notification:)),name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)),name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -230,26 +218,31 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
         let userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
         
         if let username = userDictionary?["userName"]{
-            NameInput.text = username as! String
+            NameInput.text = username as? String
         }
         
         if let birthdate = userDictionary?["birthdate"]{
-            BirthdateInput.text = birthdate as! String
+            BirthdateInput.text = birthdate as? String
         }
         
         if let province = userDictionary?["province"] {
-            ProvinceInput.text = province as! String
+            ProvinceInput.text = province as? String
         }
         
         if let city = userDictionary?["city"]{
-            CityInput.text = city as! String
+            CityInput.text = city as? String
         }
         
         if let edu_level = userDictionary?["edu_level"]{
-            EducationInput.text = edu_level as! String
+            EducationInput.text = edu_level as? String
         }
+        
         if let bio = userDictionary?["bio"]{
-            DescribeYourselfInput.text = bio as! String
+            DescribeYourselfInput.text = bio as? String
+        }
+        
+        if let workExperience = userDictionary?["experience"]{
+            WorkExperienceInput.text = workExperience as? String
         }
     }
     
@@ -358,8 +351,6 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
-
     
     // MARK: - Navigation
 

@@ -10,6 +10,12 @@
 		11565C90C661A47432ED8F6C /* Pods_RobsJobsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E59E7A3D18C2E9D7CF837EF3 /* Pods_RobsJobsUITests.framework */; };
 		4FC601822457CE4A2C33335F /* Pods_RobsJobs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A067393BFB652F69F9BB4DA /* Pods_RobsJobs.framework */; };
 		D60DC0F3CB6D79151FD7789D /* Pods_RobsJobsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0918C541B07E15C2613053C2 /* Pods_RobsJobsTests.framework */; };
+		FA2F4B1B1EE6498D002ABDB2 /* FacebookCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2F4B1A1EE6498D002ABDB2 /* FacebookCore.framework */; };
+		FA2F4B1D1EE64994002ABDB2 /* FacebookLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2F4B1C1EE64994002ABDB2 /* FacebookLogin.framework */; };
+		FA2F4B1F1EE6499D002ABDB2 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2F4B1E1EE6499D002ABDB2 /* Alamofire.framework */; };
+		FA2F4B211EE649A6002ABDB2 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2F4B201EE649A6002ABDB2 /* FBSDKCoreKit.framework */; };
+		FA2F4B231EE649B0002ABDB2 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2F4B221EE649B0002ABDB2 /* FBSDKLoginKit.framework */; };
+		FA2F4B251EE64DB3002ABDB2 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F4B241EE64DB3002ABDB2 /* LoginData.swift */; };
 		FA4C063A1EE12D5D009CD648 /* RobsJobs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA4C06381EE12D5D009CD648 /* RobsJobs.xcdatamodeld */; };
 		FA4C064A1EE12D5D009CD648 /* RobsJobsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C06491EE12D5D009CD648 /* RobsJobsTests.swift */; };
 		FA4C06551EE12D5D009CD648 /* RobsJobsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C06541EE12D5D009CD648 /* RobsJobsUITests.swift */; };
@@ -119,6 +125,12 @@
 		B1892ABA69DB170E763AD108 /* Pods-RobsJobsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RobsJobsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RobsJobsTests/Pods-RobsJobsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC2B9249C1FD8175469B4B82 /* Pods-RobsJobs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RobsJobs.release.xcconfig"; path = "Pods/Target Support Files/Pods-RobsJobs/Pods-RobsJobs.release.xcconfig"; sourceTree = "<group>"; };
 		E59E7A3D18C2E9D7CF837EF3 /* Pods_RobsJobsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RobsJobsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA2F4B1A1EE6498D002ABDB2 /* FacebookCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookCore.framework; path = "../../../Library/Developer/Xcode/DerivedData/RobsJobs-cnjrdueokhanyqayqseqwvjtjeex/Build/Products/Debug-iphonesimulator/FacebookCore/FacebookCore.framework"; sourceTree = "<group>"; };
+		FA2F4B1C1EE64994002ABDB2 /* FacebookLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookLogin.framework; path = "../../../Library/Developer/Xcode/DerivedData/RobsJobs-cnjrdueokhanyqayqseqwvjtjeex/Build/Products/Debug-iphonesimulator/FacebookLogin/FacebookLogin.framework"; sourceTree = "<group>"; };
+		FA2F4B1E1EE6499D002ABDB2 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/RobsJobs-cnjrdueokhanyqayqseqwvjtjeex/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		FA2F4B201EE649A6002ABDB2 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		FA2F4B221EE649B0002ABDB2 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		FA2F4B241EE64DB3002ABDB2 /* LoginData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		FA4C062E1EE12D5D009CD648 /* RobsJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RobsJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA4C06391EE12D5D009CD648 /* RobsJobs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RobsJobs.xcdatamodel; sourceTree = "<group>"; };
 		FA4C06401EE12D5D009CD648 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -214,6 +226,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA2F4B231EE649B0002ABDB2 /* FBSDKLoginKit.framework in Frameworks */,
+				FA2F4B211EE649A6002ABDB2 /* FBSDKCoreKit.framework in Frameworks */,
+				FA2F4B1F1EE6499D002ABDB2 /* Alamofire.framework in Frameworks */,
+				FA2F4B1D1EE64994002ABDB2 /* FacebookLogin.framework in Frameworks */,
+				FA2F4B1B1EE6498D002ABDB2 /* FacebookCore.framework in Frameworks */,
 				FA4C09571EE13CB2009CD648 /* Photos.framework in Frameworks */,
 				FA4C08EB1EE1316B009CD648 /* MapKit.framework in Frameworks */,
 				4FC601822457CE4A2C33335F /* Pods_RobsJobs.framework in Frameworks */,
@@ -363,6 +380,11 @@
 		FA4C08E91EE1316B009CD648 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA2F4B221EE649B0002ABDB2 /* FBSDKLoginKit.framework */,
+				FA2F4B201EE649A6002ABDB2 /* FBSDKCoreKit.framework */,
+				FA2F4B1E1EE6499D002ABDB2 /* Alamofire.framework */,
+				FA2F4B1C1EE64994002ABDB2 /* FacebookLogin.framework */,
+				FA2F4B1A1EE6498D002ABDB2 /* FacebookCore.framework */,
 				FA4C09561EE13CB2009CD648 /* Photos.framework */,
 				FA4C08EA1EE1316B009CD648 /* MapKit.framework */,
 				2A067393BFB652F69F9BB4DA /* Pods_RobsJobs.framework */,
@@ -377,7 +399,6 @@
 			children = (
 				FA4C08F51EE1381B009CD648 /* FirstTimeLogin.storyboard */,
 				FA4C08F61EE1381B009CD648 /* WorkExperiencePickerTableViewController.swift */,
-				FA4C08F71EE1381B009CD648 /* SendJsonSetupProfile.swift */,
 				FA4C08F81EE1381B009CD648 /* EducationPickerTableViewController.swift */,
 				FA4C08F91EE1381B009CD648 /* DesiredSectorTableViewController.swift */,
 				FA4C08FA1EE1381B009CD648 /* CityPickerTableViewController.swift */,
@@ -462,10 +483,12 @@
 			children = (
 				FA4C094A1EE138CD009CD648 /* JsonRequest.swift */,
 				FA4C094B1EE138CD009CD648 /* EmployerData.swift */,
+				FA2F4B241EE64DB3002ABDB2 /* LoginData.swift */,
 				FA4C094C1EE138CD009CD648 /* ChatGroupData.swift */,
 				FA4C094D1EE138CD009CD648 /* SwipeCardData.swift */,
 				FA4C094E1EE138CD009CD648 /* ChatData.swift */,
 				FA4C09581EE4FD11009CD648 /* DocumentData.swift */,
+				FA4C08F71EE1381B009CD648 /* SendJsonSetupProfile.swift */,
 			);
 			name = "Data Source";
 			sourceTree = "<group>";
@@ -821,6 +844,7 @@
 				FA4C09061EE1381B009CD648 /* SkillsPickerTableViewController.swift in Sources */,
 				FA4C08E41EE13132009CD648 /* LabelUtility.swift in Sources */,
 				FA4C09431EE138B7009CD648 /* DraggableView.swift in Sources */,
+				FA2F4B251EE64DB3002ABDB2 /* LoginData.swift in Sources */,
 				FA4C08C91EE1309C009CD648 /* ResetPasswordViewController.swift in Sources */,
 				FA4C08E21EE13132009CD648 /* SSRadioButtonsController.swift in Sources */,
 				FA4C09151EE13839009CD648 /* Page4ViewController.swift in Sources */,
@@ -975,6 +999,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = RobsJobs/RobsJobs.entitlements;
 				DEVELOPMENT_TEAM = 7G9SJJ9MKF;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKCoreKit",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKLoginKit",
+				);
 				INFOPLIST_FILE = RobsJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = RobsJobs.RobsJobs;
@@ -993,6 +1022,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = RobsJobs/RobsJobs.entitlements;
 				DEVELOPMENT_TEAM = 7G9SJJ9MKF;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKCoreKit",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FBSDKLoginKit",
+				);
 				INFOPLIST_FILE = RobsJobs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = RobsJobs.RobsJobs;
