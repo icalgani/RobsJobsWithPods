@@ -77,6 +77,14 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
+        if(segue.source.isKind(of: EmploymentStatusTableViewController.self)){
+            let View:EmploymentStatusTableViewController = segue.source as! EmploymentStatusTableViewController
+            
+            if(View.employmentStatusToPass != ""){
+                passedWorkTypeValue = View.employmentStatusToPass
+                WorkTypeTextfield.text = passedWorkTypeValue
+            }
+        }
         
     }
     
@@ -100,10 +108,10 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
         WorkTimeTextfield.delegate = self
         WorkTypeTextfield.delegate = self
         
-        SectorTextfield.setLeftPaddingPoints(30)
-        SalaryTextfield.setLeftPaddingPoints(30)
-        WorkTimeTextfield.setLeftPaddingPoints(30)
-        WorkTypeTextfield.setLeftPaddingPoints(30)
+        SectorTextfield.setLeftPaddingPoints(20)
+        SalaryTextfield.setLeftPaddingPoints(20)
+        WorkTimeTextfield.setLeftPaddingPoints(20)
+        WorkTypeTextfield.setLeftPaddingPoints(20)
     }
     
     func setField(){
@@ -117,11 +125,15 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
         if let salary = userDictionary?["salary"]{
             SalaryTextfield.text = (userDictionary?["salary"] as? String)
         }
-        if let employment_type = userDictionary?["employment_type"]{
+        if (userDictionary?["employment_type"]) != nil{
             WorkTimeTextfield.text = (userDictionary?["employment_type"] as! String)
         }
-        if let distance = userDictionary?["distance"]{
+        if (userDictionary?["distance"]) != nil{
             DistanceSlider.value = (userDictionary?["distance"] as! Float)
+        }
+        
+        if (userDictionary?["employmentStatus"]) != nil{
+            WorkTypeTextfield.text = userDictionary?["employmentStatus"] as? String
         }
     }
     
@@ -136,10 +148,10 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
             return false
         }
         
-//        if(textField == self.WorkTypeTextfield){
-//            performSegue(withIdentifier: "showEducationPicker", sender: self)
-//            return false
-//        }
+        if(textField == self.WorkTypeTextfield){
+            performSegue(withIdentifier: "showEmploymentStatusPicker", sender: self)
+            return false
+        }
         
         if(textField == self.WorkTimeTextfield){
             performSegue(withIdentifier: "showWorkTImePicker", sender: self)
@@ -160,6 +172,7 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
             userDictionary?["distance"] = DistanceSlider.value
             userDictionary?["salarymin"] = passedSalaryMinValue
             userDictionary?["salarymax"] = passedSalaryMaxValue
+            userDictionary?["employmentStatus"] = passedWorkTypeValue
             userDefaults.set(userDictionary, forKey: "userDictionary")
             
             let sendJson = SendJsonSetupProfile()

@@ -42,7 +42,7 @@ class SwipeCardData{
     
     func getDataFromServer(dataToGet: String){
         resetAllData()
-        var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/match/\(dataToGet)")!)
+        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/match/\(dataToGet)")!)
         //create the session object
         print("data to get = \(dataToGet)")
         request.httpMethod = "GET"

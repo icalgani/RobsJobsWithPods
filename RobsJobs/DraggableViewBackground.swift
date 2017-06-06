@@ -343,7 +343,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
     }
     
     func cardIsSwiped(requestType: String, indexToSend: Int, jobScoreToSend: String){
-        var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/job/\(requestType)")!)
+        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/job/\(requestType)")!)
         let userDefaults = UserDefaults.standard
         let userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
         

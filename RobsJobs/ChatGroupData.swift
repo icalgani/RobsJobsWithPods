@@ -16,7 +16,7 @@ class ChatGroupData{
     var chatGroupIDToPass: [String] = []
     
     func getDataFromServer(dataToGet: String){
-        var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/chat/group/\(dataToGet)")!)
+        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/chat/group/\(dataToGet)")!)
         //create the session object
         
         request.httpMethod = "GET"

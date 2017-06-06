@@ -53,7 +53,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         }else{
             
             //check login
-            var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/user/signup")!)
+            var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/user/signup")!)
             request.httpMethod = "POST"
             let postString = "email=\((EmailTextfield.text)!)&password=\((PasswordTextfield.text)!)&name=\((NameTextfield.text)!) \((LastNameTextfield.text)!)&mobile_no=\((PhoneNumberTextfield.text)!)"
             request.httpBody = postString.data(using: .utf8)

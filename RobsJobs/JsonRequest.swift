@@ -19,9 +19,10 @@ class JsonRequest{
     var desiredEmploymentToSend: [String] = []
     var employmentSectorToSend: [String] = []
     var skillToSend: [String] = []
+    var employmentStatusToSend: [String] = []
 
     func getDataFromServer(dataToGet: String){
-        var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/init/\(dataToGet)")!)
+        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/init/\(dataToGet)")!)
         //create the session object
         
         request.httpMethod = "GET"
@@ -81,6 +82,10 @@ class JsonRequest{
                                         self.skillToSend.append(aObject["skill"] as! String) //skill id is NOT sorted
                                         break
                                     
+                                    case "empstatus":
+                                        self.employmentStatusToSend.append(aObject["emp_status"] as! String) //skill id is NOT sorted
+                                        break
+                                    
                                     default:
                                         print("switch default")
                                         break
@@ -108,7 +113,7 @@ class JsonRequest{
     
     func getProvinceFromServer() -> Array<String>{
         var arrayToPass: [String]=["province"]
-        var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/init/province")!)
+        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/init/province")!)
         //create the session object
         
         request.httpMethod = "GET"

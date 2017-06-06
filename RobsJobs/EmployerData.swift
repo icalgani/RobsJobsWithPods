@@ -16,7 +16,7 @@ class EmployerData{
     var companyNameToSend: [String] = []
     
     func getDataFromServer(dataToGet: String){
-        var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/job/\(dataToGet)")!)
+        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/job/\(dataToGet)")!)
         //create the session object
         
         request.httpMethod = "GET"

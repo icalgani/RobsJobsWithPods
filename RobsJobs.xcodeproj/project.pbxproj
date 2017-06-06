@@ -88,6 +88,8 @@
 		FA4C09551EE138DE009CD648 /* bandung.gpx in Resources */ = {isa = PBXBuildFile; fileRef = FA4C09541EE138DE009CD648 /* bandung.gpx */; };
 		FA4C09571EE13CB2009CD648 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4C09561EE13CB2009CD648 /* Photos.framework */; };
 		FA4C09591EE4FD11009CD648 /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C09581EE4FD11009CD648 /* DocumentData.swift */; };
+		FA4C095B1EE56CCD009CD648 /* EmploymentStatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C095A1EE56CCD009CD648 /* EmploymentStatusTableViewController.swift */; };
+		FA4C095D1EE60F5D009CD648 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C095C1EE60F5D009CD648 /* ContainerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,6 +205,8 @@
 		FA4C09541EE138DE009CD648 /* bandung.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = bandung.gpx; sourceTree = "<group>"; };
 		FA4C09561EE13CB2009CD648 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		FA4C09581EE4FD11009CD648 /* DocumentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentData.swift; sourceTree = "<group>"; };
+		FA4C095A1EE56CCD009CD648 /* EmploymentStatusTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmploymentStatusTableViewController.swift; sourceTree = "<group>"; };
+		FA4C095C1EE60F5D009CD648 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,6 +397,7 @@
 				FA4C090C1EE13839009CD648 /* Page2ViewController.swift */,
 				FA4C090D1EE13839009CD648 /* Page3ViewController.swift */,
 				FA4C090E1EE13839009CD648 /* Page4ViewController.swift */,
+				FA4C095C1EE60F5D009CD648 /* ContainerViewController.swift */,
 				FA4C090F1EE13839009CD648 /* TutorialPage.storyboard */,
 				FA4C09101EE13839009CD648 /* TutorialTestPageViewController.swift */,
 			);
@@ -434,6 +439,7 @@
 				FA4C09351EE1388C009CD648 /* SalaryPickerTableViewController.swift */,
 				FA4C09361EE1388C009CD648 /* CurrentSectorTableViewController.swift */,
 				FA4C09371EE1388C009CD648 /* EmploymentPickerTableViewController.swift */,
+				FA4C095A1EE56CCD009CD648 /* EmploymentStatusTableViewController.swift */,
 			);
 			name = "Profile Setting Controller";
 			sourceTree = "<group>";
@@ -801,6 +807,7 @@
 				FA4C06911EE12F11009CD648 /* AppDelegate.swift in Sources */,
 				FA4C09011EE1381B009CD648 /* SendJsonSetupProfile.swift in Sources */,
 				FA4C08DC1EE13132009CD648 /* FloatLabelWithBlackUnderline.swift in Sources */,
+				FA4C095D1EE60F5D009CD648 /* ContainerViewController.swift in Sources */,
 				FA4C09451EE138B7009CD648 /* DraggableViewBackground.swift in Sources */,
 				FA4C09051EE1381B009CD648 /* ProvincePickerTableViewController.swift in Sources */,
 				FA4C08E51EE13132009CD648 /* StraightLine.swift in Sources */,
@@ -817,6 +824,7 @@
 				FA4C08C91EE1309C009CD648 /* ResetPasswordViewController.swift in Sources */,
 				FA4C08E21EE13132009CD648 /* SSRadioButtonsController.swift in Sources */,
 				FA4C09151EE13839009CD648 /* Page4ViewController.swift in Sources */,
+				FA4C095B1EE56CCD009CD648 /* EmploymentStatusTableViewController.swift in Sources */,
 				FA4C08BC1EE12F76009CD648 /* BoldTextExtension.swift in Sources */,
 				FA4C09261EE13851009CD648 /* UploadDocViewController.swift in Sources */,
 				FA4C09511EE138CD009CD648 /* ChatGroupData.swift in Sources */,

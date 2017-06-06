@@ -14,20 +14,10 @@ class SendJsonSetupProfile{
     func sendDataToAPI(userDictionary: Dictionary<String, Any>){
         
         //check login
-        var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/user/profile")!)
+        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/user/profile")!)
         request.httpMethod = "POST"
         
         var postString = ""
-//        var postString = "userid=\(userDictionary["userID"] as? String)&name=\(userDictionary["userName"]! as? String)&birthdate=\(userDictionary["birthdate"]! as? String)&city=\(userDictionary["city"]! as? String)&province=\(userDictionary["province"] as? String)"
-        
-//        print("nilai userID sebelum masuk postString == \(userDictionary["userID"] as! String)")
-//        if let userid = userDictionary["userID"] as? String{
-//            print("userid == \(userid)")
-//            postString += "userid=\(userid)"
-//        } else{
-//            print("userid == nil")
-//            postString += "userid=542"
-//        }
         
         postString += "userid=\(userDictionary["userID"]!)"
 
@@ -71,6 +61,12 @@ class SendJsonSetupProfile{
             postString += "&edulevel=\(edulevel)"
         } else{
             postString += "&edulevel="
+        }
+        
+        if let emp_status = userDictionary["emp_status"] as? String{
+            postString += "&emp_status=\(emp_status)"
+        } else{
+            postString += "&emp_status="
         }
         
         postString += "&interest=" //deprecated

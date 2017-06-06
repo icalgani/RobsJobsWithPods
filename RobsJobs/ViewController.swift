@@ -50,7 +50,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             //close keypad
             view.endEditing(true)
             print("else")
-            var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/user/login")!)
+            var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/user/login")!)
             
             //check login
             request.httpMethod = "POST"
@@ -118,7 +118,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func getUserDataFromServer(userID: String){
-        var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/user/profile/\(userID)")!)
+        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/user/profile/\(userID)")!)
         
         //check login
         request.httpMethod = "GET"
