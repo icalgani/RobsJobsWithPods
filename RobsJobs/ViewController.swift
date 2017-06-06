@@ -128,8 +128,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
-    
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
