@@ -112,7 +112,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     func getData(){
         messageArray.removeAll()
         userTypeArray.removeAll()
-        chatData.getDataFromServer(dataToGet:"\(passedChatGroupID)/0/10")
+        chatData.getDataFromServer(dataToGet:"\(passedChatGroupID)/0/9")
     }
     
     func loadChatData(){
@@ -126,7 +126,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         print("adjust inset for keyboard show")
         guard let value = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue else { return }
         let keyboardFrame = value.cgRectValue
-        let adjustmentHeight = (keyboardFrame.height + 20) * (show ? 1 : -1)
+        let adjustmentHeight = (keyboardFrame.height) * (show ? 1 : -1)
         print("adjustment keyboard height = \(adjustmentHeight)")
         MessageScrollView.contentInset.bottom = adjustmentHeight
         MessageScrollView.scrollIndicatorInsets.bottom = adjustmentHeight

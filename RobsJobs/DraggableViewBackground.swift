@@ -78,6 +78,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         
         if let locValue:CLLocationCoordinate2D = locationManager.location?.coordinate {
             if let userid = userDictionary?["userID"]{
+                print("jobswiping view, getting data from server")
                 swipeCardData.getDataFromServer(dataToGet: "\(String(describing: (userDictionary?["userID"])!))/1/\(cardsSum)/\(locValue.latitude)/\(locValue.longitude)")
             } else{
                 print("cant get userid")
