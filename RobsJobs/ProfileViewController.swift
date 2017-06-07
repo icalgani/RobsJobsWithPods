@@ -68,9 +68,9 @@ class ProfileViewController: UIViewController {
         self.UserAgeView.layer.cornerRadius = self.UserAgeView.frame.size.width / 2
         self.UserAgeView.clipsToBounds = true
         
-        self.ProfessionView.layer.addBorderToSide(edge: UIRectEdge.top, color: UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0), thickness: 1.5)
-        self.CityView.layer.addBorderToSide(edge: UIRectEdge.top, color: UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0), thickness: 1.5)
-        self.CityView.layer.addBorderToSide(edge: UIRectEdge.left, color: UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0), thickness: 1.5)
+        self.ProfessionView.layer.addBorderToSide(edge: UIRectEdge.top, color: UIColor(red:0.87, green:0.87, blue:0.87, alpha:1.0), thickness: 1)
+        self.CityView.layer.addBorderToSide(edge: UIRectEdge.top, color: UIColor(red:0.87, green:0.87, blue:0.87, alpha:1.0), thickness: 1)
+        self.CityView.layer.addBorderToSide(edge: UIRectEdge.left, color: UIColor(red:0.87, green:0.87, blue:0.87, alpha:1.0), thickness: 1)
         }
     
     override func didReceiveMemoryWarning() {

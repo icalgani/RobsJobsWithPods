@@ -13,7 +13,7 @@ import MobileCoreServices
 
 class DocumentData{
     
-    let API_URL: String = "http://apidev.robsjobs.co/api/v1"
+    let API_URL: String = "http://api.robsjobs.co/api/v1"
     
     var documentIDToSend: [String] = ["","",""]
     var documentTypeToSend: [String] = ["","",""]

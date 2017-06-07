@@ -48,6 +48,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var ContentView: UIView!
     @IBOutlet weak var TestCell: UITableViewCell!
     
+    @IBOutlet weak var ChatBoxView: UIView!
     @IBOutlet weak var CompanyImageView: UIImageView!
     @IBOutlet weak var CompanyNameLabel: UILabel!
     
@@ -93,11 +94,13 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         CompanyImageView.image = passedCompanyImage
         CompanyImageView.layer.cornerRadius = CompanyImageView.frame.size.width / 2
         CompanyImageView.clipsToBounds = true
-
+        ChatBoxView.layer.shadowRadius = 2
+        ChatBoxView.layer.shadowOpacity = 0.6
+        ChatBoxView.layer.shadowOffset = CGSize(width: 1,height:1)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.loadChatData), name:NSNotification.Name(rawValue: "loadChatData"), object: nil)
-        NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillShow(notification:)),name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)),name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self,selector: #selector(keyboardMessageWillShow(notification:)),name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardMessageWillHide(notification:)),name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         timer = Timer.scheduledTimer(timeInterval: 3,
                              target: self,
@@ -109,7 +112,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     func getData(){
         messageArray.removeAll()
         userTypeArray.removeAll()
-        chatData.getDataFromServer(dataToGet:"\(passedChatGroupID)/0/5")
+        chatData.getDataFromServer(dataToGet:"\(passedChatGroupID)/0/10")
     }
     
     func loadChatData(){
@@ -120,9 +123,11 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //adjust keyboard so you can see what you fill in
     func adjustInsetForKeyboardShow(show: Bool, notification: Notification) {
+        print("adjust inset for keyboard show")
         guard let value = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue else { return }
         let keyboardFrame = value.cgRectValue
         let adjustmentHeight = (keyboardFrame.height + 20) * (show ? 1 : -1)
+        print("adjustment keyboard height = \(adjustmentHeight)")
         MessageScrollView.contentInset.bottom = adjustmentHeight
         MessageScrollView.scrollIndicatorInsets.bottom = adjustmentHeight
     }
@@ -131,11 +136,11 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         // Dispose of any resources that can be recreated.
     }
     
-    func keyboardWillShow(notification: Notification) {
+    func keyboardMessageWillShow(notification: Notification) {
         adjustInsetForKeyboardShow(show: true, notification: notification)
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    func keyboardMessageWillHide(notification: NSNotification) {
         adjustInsetForKeyboardShow(show: false, notification: notification as Notification)
     }
     
@@ -148,6 +153,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        print(messageArray.count)
         return messageArray.count
     }
     

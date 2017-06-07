@@ -267,7 +267,7 @@
                                 <rect key="frame" x="16" y="64" width="343" height="603"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="cDD-HO-lmn">
-                                        <rect key="frame" x="8" y="60" width="327" height="350"/>
+                                        <rect key="frame" x="8" y="0.0" width="327" height="350"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvJ-pF-BTR">
                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="45"/>
@@ -321,9 +321,6 @@
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rHE-h1-nW2">
                                                 <rect key="frame" x="0.0" y="305" width="327" height="45"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="vcH-Xm-tLa"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                             </textField>
@@ -333,7 +330,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJj-Zm-8Ir">
-                                        <rect key="frame" x="185" y="460" width="150" height="45"/>
+                                        <rect key="frame" x="185" y="380" width="150" height="45"/>
                                         <color key="backgroundColor" red="0.1529411765" green="0.57254901960000004" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="Q4o-rh-3Qn"/>
@@ -349,8 +346,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="cDD-HO-lmn" firstAttribute="centerX" secondItem="vYK-ty-h3T" secondAttribute="centerX" id="CSx-Od-otT"/>
-                                    <constraint firstItem="cDD-HO-lmn" firstAttribute="top" secondItem="vYK-ty-h3T" secondAttribute="top" constant="60" id="PY4-WA-qkL"/>
-                                    <constraint firstItem="uJj-Zm-8Ir" firstAttribute="top" secondItem="rHE-h1-nW2" secondAttribute="bottom" constant="50" id="a8h-8w-VDR"/>
+                                    <constraint firstItem="cDD-HO-lmn" firstAttribute="top" secondItem="vYK-ty-h3T" secondAttribute="top" id="PY4-WA-qkL"/>
+                                    <constraint firstItem="uJj-Zm-8Ir" firstAttribute="top" secondItem="rHE-h1-nW2" secondAttribute="bottom" constant="30" id="a8h-8w-VDR"/>
                                     <constraint firstAttribute="trailing" secondItem="cDD-HO-lmn" secondAttribute="trailing" id="ck2-De-ypF"/>
                                     <constraint firstItem="cDD-HO-lmn" firstAttribute="leading" secondItem="vYK-ty-h3T" secondAttribute="leadingMargin" id="kZa-Nv-vo9"/>
                                     <constraint firstAttribute="trailing" secondItem="uJj-Zm-8Ir" secondAttribute="trailing" id="w9g-yO-IyA"/>

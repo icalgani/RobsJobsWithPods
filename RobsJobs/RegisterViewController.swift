@@ -24,6 +24,8 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var StackName: UIStackView!
     let Utility = UIUtility()
     
+    var heightAdjustment: Int = 0
+    
     
     @IBAction func RegisterUser(_ sender: UIButton) {
         
@@ -106,6 +108,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         NameTextfield.delegate=self
         EmailTextfield.delegate=self
         RetypeEmailTextfield.delegate=self
@@ -163,18 +166,23 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     //adjust keyboard so you can see what you fill in
     func adjustInsetForKeyboardShow(show: Bool, notification: Notification) {
-        guard let value = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue else { return }
+        print("adjust inset for keyboard")
+        guard let value = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue else {
+            return }
         let keyboardFrame = value.cgRectValue
-        let adjustmentHeight = (keyboardFrame.height + 20) * (show ? 1 : -1)
+        let adjustmentHeight = (keyboardFrame.height + 100) * (show ? 1 : -1)
+        print("adjustment height = \(adjustmentHeight)")
         ScrollView.contentInset.bottom = adjustmentHeight
         ScrollView.scrollIndicatorInsets.bottom = adjustmentHeight
     }
     
     func keyboardWillShow(notification: Notification) {
+        print("keyboard will show")
         adjustInsetForKeyboardShow(show: true, notification: notification)
     }
     
     func keyboardWillHide(notification: NSNotification) {
+        print("keyboard will hide")
         adjustInsetForKeyboardShow(show: false, notification: notification as Notification)
     }
     

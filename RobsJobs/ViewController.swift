@@ -56,6 +56,42 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func loginButtonClicked() {
+        let loginManager = LoginManager()
+        loginManager.logIn([ .publicProfile, .email ], viewController: self) { loginResult in
+            switch loginResult {
+            case .failed(let error):
+                print(error)
+            case .cancelled:
+                print("User cancelled login.")
+            case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+                print("Logged in!")
+                let req = GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
+                req.start({(connection, result) -> Void in
+                    
+                    switch result {
+                    case .failed(let error):
+                        print("error in graph request:", error)
+                        break
+                    case .success(let graphResponse):
+                        if let responseDictionary = graphResponse.dictionaryValue {
+                            print(responseDictionary)
+                            
+                            print(responseDictionary["name"]!)
+                            print(responseDictionary["id"]!)
+                            print(responseDictionary["email"]!)
+                            print("access token = \(accessToken.authenticationToken)")
+                            
+                            self.loginData.userLoginWithFacebookRequest(userName: responseDictionary["name"]! as! String, userEmail: responseDictionary["email"]! as! String, userFbId: responseDictionary["id"]! as! String, userFbToken: accessToken.authenticationToken as String)
+                        }
+                    }
+//                    print("result \(result)")
+//                    print("user token = \(String(describing: AccessToken.current?.authenticationToken))")
+                })
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,21 +102,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setNeedsStatusBarAppearanceUpdate()
         // Do any additional setup after loading the view, typically from a nib.
         NotificationCenter.default.addObserver(self, selector: #selector(self.pickNextView), name:NSNotification.Name(rawValue: "pickNextView"), object: nil)
+        
+        FacebookButton.addTarget(self, action: #selector(self.loginButtonClicked), for: .touchUpInside)
     }
-    
-//    @objc func loginButtonClicked() {
-//        let loginManager = LoginManager()
-//        loginManager.logIn([ .PublicProfile ], viewController: self) { loginResult in
-//            switch loginResult {
-//            case .Failed(let error):
-//                print(error)
-//            case .Cancelled:
-//                print("User cancelled login.")
-//            case .Success(let grantedPermissions, let declinedPermissions, let accessToken):
-//                print("Logged in!")
-//            }
-//        }
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

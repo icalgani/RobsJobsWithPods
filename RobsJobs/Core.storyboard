@@ -33,7 +33,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ENc-C0-Izh">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ENc-C0-Izh">
                                                     <rect key="frame" x="10" y="-4" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="RXO-5v-ISE"/>
@@ -120,8 +120,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjf-9z-fLb" userLabel="Header">
                                 <rect key="frame" x="0.0" y="20" width="375" height="70"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mochamad Fahrizal" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="UVA-Dn-Ual">
-                                        <rect key="frame" x="30" y="25" width="315" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Info Given" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="UVA-Dn-Ual">
+                                        <rect key="frame" x="30" y="25" width="305" height="20.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20.5" id="e7a-3H-D8G"/>
                                         </constraints>
@@ -130,7 +130,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rnd-Ah-gDz" userLabel="More Option">
-                                        <rect key="frame" x="345" y="0.0" width="30" height="70"/>
+                                        <rect key="frame" x="335" y="0.0" width="30" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="gTI-nS-jCE"/>
                                         </constraints>
@@ -146,7 +146,7 @@
                                     <constraint firstItem="Rnd-Ah-gDz" firstAttribute="top" secondItem="kjf-9z-fLb" secondAttribute="top" id="F6U-kP-kiP"/>
                                     <constraint firstItem="UVA-Dn-Ual" firstAttribute="centerY" secondItem="kjf-9z-fLb" secondAttribute="centerY" id="G1Z-em-R6i"/>
                                     <constraint firstAttribute="bottom" secondItem="Rnd-Ah-gDz" secondAttribute="bottom" id="G6x-aP-fVc"/>
-                                    <constraint firstAttribute="trailing" secondItem="Rnd-Ah-gDz" secondAttribute="trailing" id="cTi-Lg-FQG"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rnd-Ah-gDz" secondAttribute="trailing" constant="10" id="cTi-Lg-FQG"/>
                                     <constraint firstAttribute="height" constant="70" id="dHn-ww-xyc"/>
                                     <constraint firstItem="UVA-Dn-Ual" firstAttribute="leading" secondItem="kjf-9z-fLb" secondAttribute="leading" constant="30" id="ejQ-rd-x8P"/>
                                 </constraints>
@@ -461,7 +461,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="SettingProfile" id="Y5C-jk-vcr" customClass="SettingTableViewController" customModule="RobsJobs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="EWE-xp-iuf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -1006,7 +1006,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="" image="RJ_login_user_icon" selectedImage="RJ_login_user_icon" id="AVh-LW-Ihq">
+                    <tabBarItem key="tabBarItem" title="" image="RJ_profile_icon_off" selectedImage="RJ_profile_icon_on" id="AVh-LW-Ihq">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <connections>
@@ -1825,7 +1825,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n6A-OJ-h8h" userLabel="Company View">
                                         <rect key="frame" x="87" y="0.0" width="200" height="80"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CMH-vO-Rwk">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CMH-vO-Rwk">
                                                 <rect key="frame" x="0.0" y="15" width="50" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="wMD-H4-0k0"/>
@@ -1878,7 +1878,7 @@
                                     <constraint firstItem="n6A-OJ-h8h" firstAttribute="centerX" secondItem="QFu-Zt-X8v" secondAttribute="centerX" id="xJv-kG-1wb"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwV-Zd-U0G">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwV-Zd-U0G">
                                 <rect key="frame" x="0.0" y="100" width="375" height="567"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="60a-0H-aIF">
@@ -1933,39 +1933,51 @@
                                                     <outlet property="delegate" destination="Im4-tB-CXI" id="hEW-0s-cEl"/>
                                                 </connections>
                                             </tableView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wjp-n2-JTx">
-                                                <rect key="frame" x="10" y="522" width="315" height="35"/>
-                                                <color key="backgroundColor" red="0.87635219099999995" green="0.94934886689999998" blue="0.94969731570000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GIv-67-RHC">
+                                                <rect key="frame" x="0.0" y="527" width="375" height="40"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Send a message ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wjp-n2-JTx">
+                                                        <rect key="frame" x="20" y="2" width="307" height="35"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="avp-rp-zlO"/>
+                                                        </constraints>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRe-by-Zsp">
+                                                        <rect key="frame" x="332" y="0.0" width="40" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="Ffx-3T-bb5"/>
+                                                            <constraint firstAttribute="width" constant="40" id="vYg-27-GX7"/>
+                                                        </constraints>
+                                                        <state key="normal" image="RJ_send_msg_icon"/>
+                                                        <connections>
+                                                            <action selector="SendButtonPressed:" destination="Im4-tB-CXI" eventType="touchUpInside" id="iws-iZ-ySk"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="avp-rp-zlO"/>
+                                                    <constraint firstItem="wjp-n2-JTx" firstAttribute="leading" secondItem="GIv-67-RHC" secondAttribute="leading" constant="20" id="3Se-gu-pY0"/>
+                                                    <constraint firstAttribute="bottom" secondItem="wjp-n2-JTx" secondAttribute="bottom" constant="3" id="HDs-Em-AL3"/>
+                                                    <constraint firstAttribute="bottom" secondItem="pRe-by-Zsp" secondAttribute="bottom" id="Tep-re-APZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="pRe-by-Zsp" secondAttribute="trailing" constant="3" id="aje-RP-0xm"/>
+                                                    <constraint firstAttribute="height" constant="40" id="dqH-8P-Svq"/>
+                                                    <constraint firstItem="pRe-by-Zsp" firstAttribute="leading" secondItem="wjp-n2-JTx" secondAttribute="trailing" constant="5" id="oeA-sZ-t3v"/>
                                                 </constraints>
-                                                <color key="textColor" red="0.0" green="0.59215686270000001" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRe-by-Zsp">
-                                                <rect key="frame" x="330" y="522" width="45" height="45"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="Ffx-3T-bb5"/>
-                                                    <constraint firstAttribute="width" constant="45" id="vYg-27-GX7"/>
-                                                </constraints>
-                                                <state key="normal" image="RJ_send_msg_icon"/>
-                                                <connections>
-                                                    <action selector="SendButtonPressed:" destination="Im4-tB-CXI" eventType="touchUpInside" id="iws-iZ-ySk"/>
-                                                </connections>
-                                            </button>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="pRe-by-Zsp" secondAttribute="trailing" id="8E7-3D-P6v"/>
                                             <constraint firstItem="CFL-NW-KOs" firstAttribute="leading" secondItem="60a-0H-aIF" secondAttribute="leading" id="IC2-tV-lCa"/>
-                                            <constraint firstAttribute="bottom" secondItem="wjp-n2-JTx" secondAttribute="bottom" constant="10" id="IqV-Us-S6C"/>
+                                            <constraint firstAttribute="bottom" secondItem="GIv-67-RHC" secondAttribute="bottom" id="KGx-qc-Prm"/>
+                                            <constraint firstItem="GIv-67-RHC" firstAttribute="leading" secondItem="60a-0H-aIF" secondAttribute="leading" id="VR0-61-Cyk"/>
                                             <constraint firstItem="CFL-NW-KOs" firstAttribute="top" secondItem="60a-0H-aIF" secondAttribute="top" id="VUP-lO-lCD"/>
                                             <constraint firstAttribute="trailing" secondItem="CFL-NW-KOs" secondAttribute="trailing" id="Xbs-iv-f4V"/>
-                                            <constraint firstItem="pRe-by-Zsp" firstAttribute="leading" secondItem="wjp-n2-JTx" secondAttribute="trailing" constant="5" id="au7-u9-ipr"/>
-                                            <constraint firstItem="wjp-n2-JTx" firstAttribute="top" secondItem="CFL-NW-KOs" secondAttribute="bottom" id="i8I-hH-x81"/>
-                                            <constraint firstItem="wjp-n2-JTx" firstAttribute="leading" secondItem="60a-0H-aIF" secondAttribute="leading" constant="10" id="mwa-5D-NWo"/>
-                                            <constraint firstAttribute="bottom" secondItem="pRe-by-Zsp" secondAttribute="bottom" id="yBO-HD-rNL"/>
+                                            <constraint firstItem="GIv-67-RHC" firstAttribute="top" secondItem="CFL-NW-KOs" secondAttribute="bottom" constant="5" id="Yxx-A1-xvP"/>
+                                            <constraint firstAttribute="trailing" secondItem="GIv-67-RHC" secondAttribute="trailing" id="b7c-ga-W7z"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1990,6 +2002,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ChatBoxView" destination="GIv-67-RHC" id="SeE-dZ-GRN"/>
                         <outlet property="CompanyImageView" destination="CMH-vO-Rwk" id="gAp-YZ-ZIv"/>
                         <outlet property="CompanyNameLabel" destination="Mrb-mc-QzZ" id="qLo-Ob-Ijy"/>
                         <outlet property="MessageScrollView" destination="lwV-Zd-U0G" id="lgK-Pb-1GV"/>
@@ -2032,12 +2045,13 @@
         <image name="RJ_jobs_icon_on" width="20" height="20"/>
         <image name="RJ_jobs_match_icon" width="51" height="51"/>
         <image name="RJ_location_icon" width="16" height="16"/>
-        <image name="RJ_login_user_icon" width="16" height="16"/>
         <image name="RJ_match_company_def" width="100" height="100"/>
         <image name="RJ_match_profile_def" width="100" height="100"/>
         <image name="RJ_more_option" width="24" height="24"/>
         <image name="RJ_pass_icon_blk" width="21" height="21"/>
         <image name="RJ_photo_icon" width="32" height="32"/>
+        <image name="RJ_profile_icon_off" width="20" height="20"/>
+        <image name="RJ_profile_icon_on" width="20" height="20"/>
         <image name="RJ_profile_location_icon" width="16" height="16"/>
         <image name="RJ_profile_proffesion_icon" width="16" height="16"/>
         <image name="RJ_sallary_icon" width="16" height="16"/>
@@ -2052,6 +2066,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="BZK-3U-tQ7"/>
         <segue reference="Stb-bH-f0A"/>
-        <segue reference="Xwk-qZ-ioh"/>
+        <segue reference="nLV-Zn-hap"/>
     </inferredMetricsTieBreakers>
 </document>

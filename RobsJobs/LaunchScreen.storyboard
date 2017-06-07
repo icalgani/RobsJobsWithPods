@@ -4,8 +4,8 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,8 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="j0z-uC-A9Z">
-                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RJ_login_logo" translatesAutoresizingMaskIntoConstraints="NO" id="j0z-uC-A9Z">
+                                <rect key="frame" x="102" y="310" width="171" height="47"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.94891661405563354" green="0.94907897710800171" blue="0.94890636205673218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -30,10 +30,8 @@
                             <accessibilityTraits key="traits" image="YES"/>
                         </accessibility>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="j0z-uC-A9Z" secondAttribute="bottom" id="Rei-j9-bGw"/>
-                            <constraint firstItem="j0z-uC-A9Z" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="m05-iQ-Gve"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="j0z-uC-A9Z" secondAttribute="trailing" id="mlR-mv-7lP"/>
-                            <constraint firstItem="j0z-uC-A9Z" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="olU-fN-CjG"/>
+                            <constraint firstItem="j0z-uC-A9Z" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="RMc-Bi-z5f"/>
+                            <constraint firstItem="j0z-uC-A9Z" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="RU9-M7-jKe"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -43,6 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="splash" width="480" height="640"/>
+        <image name="RJ_login_logo" width="171" height="47"/>
     </resources>
 </document>
