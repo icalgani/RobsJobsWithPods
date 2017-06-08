@@ -57,6 +57,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     var timer : Timer?
     
     var messageArray: [String] = []
+    var tempMessageArray: [String] = []
     var userTypeArray: [String] = []
     
     var passedCompanyName: String = "No Info"
@@ -78,7 +79,13 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         chatData.postMessageData(jobAppId: passedChatGroupID, message: MessageTextfield.text!)
 
         MessageTextfield.text = ""
-        }
+        
+        let bottomIndexPath = IndexPath(row: self.messageArray.count - 1, section: 0)
+        TableViewOutlet.scrollToRow(at: bottomIndexPath, at: .bottom,
+                                    animated: true)
+        
+        MessageTextfield.resignFirstResponder()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,23 +109,42 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         NotificationCenter.default.addObserver(self,selector: #selector(keyboardMessageWillShow(notification:)),name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardMessageWillHide(notification:)),name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        timer = Timer.scheduledTimer(timeInterval: 3,
+        timer = Timer.scheduledTimer(timeInterval: 5,
                              target: self,
                              selector: #selector(self.getData),
                              userInfo: nil,
                              repeats: true)
+        
     }
     
     func getData(){
-        messageArray.removeAll()
-        userTypeArray.removeAll()
         chatData.getDataFromServer(dataToGet:"\(passedChatGroupID)/0/9")
     }
     
     func loadChatData(){
+        if(tempMessageArray.count == 0){        //if this is the first time loading the data
+            showChatData()
+        }else{
+            if(tempMessageArray == chatData.messageToSend.reversed()){      //if the data refreshed is the same as previous data
+                
+                
+            }else{
+                showChatData()
+            }
+        }
+        
+    }
+    
+    func showChatData(){
+        messageArray.removeAll()
+        userTypeArray.removeAll()
         messageArray = chatData.messageToSend.reversed()
         userTypeArray = chatData.userTypeToSend.reversed()
+        tempMessageArray = messageArray
         self.TableViewOutlet.reloadData()
+        let bottomIndexPath = IndexPath(row: self.messageArray.count - 1, section: 0)
+        TableViewOutlet.scrollToRow(at: bottomIndexPath, at: .bottom,
+                                    animated: true)
     }
     
     //adjust keyboard so you can see what you fill in

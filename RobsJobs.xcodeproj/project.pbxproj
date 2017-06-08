@@ -16,6 +16,7 @@
 		FA2F4B211EE649A6002ABDB2 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2F4B201EE649A6002ABDB2 /* FBSDKCoreKit.framework */; };
 		FA2F4B231EE649B0002ABDB2 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2F4B221EE649B0002ABDB2 /* FBSDKLoginKit.framework */; };
 		FA2F4B251EE64DB3002ABDB2 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F4B241EE64DB3002ABDB2 /* LoginData.swift */; };
+		FA2F4B271EE93FBF002ABDB2 /* FontSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F4B261EE93FBF002ABDB2 /* FontSetExtension.swift */; };
 		FA4C063A1EE12D5D009CD648 /* RobsJobs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA4C06381EE12D5D009CD648 /* RobsJobs.xcdatamodeld */; };
 		FA4C064A1EE12D5D009CD648 /* RobsJobsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C06491EE12D5D009CD648 /* RobsJobsTests.swift */; };
 		FA4C06551EE12D5D009CD648 /* RobsJobsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C06541EE12D5D009CD648 /* RobsJobsUITests.swift */; };
@@ -23,7 +24,7 @@
 		FA4C06911EE12F11009CD648 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C06901EE12F11009CD648 /* AppDelegate.swift */; };
 		FA4C08B91EE12F76009CD648 /* TextfieldPaddingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C08B41EE12F76009CD648 /* TextfieldPaddingExtension.swift */; };
 		FA4C08BA1EE12F76009CD648 /* ImageViewRounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C08B51EE12F76009CD648 /* ImageViewRounding.swift */; };
-		FA4C08BB1EE12F76009CD648 /* UIViewRounding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C08B61EE12F76009CD648 /* UIViewRounding.swift */; };
+		FA4C08BB1EE12F76009CD648 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C08B61EE12F76009CD648 /* UIViewExtension.swift */; };
 		FA4C08BC1EE12F76009CD648 /* BoldTextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C08B71EE12F76009CD648 /* BoldTextExtension.swift */; };
 		FA4C08BD1EE12F76009CD648 /* CALayerBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C08B81EE12F76009CD648 /* CALayerBorder.swift */; };
 		FA4C08C61EE1309C009CD648 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA4C08C01EE1309C009CD648 /* Main.storyboard */; };
@@ -131,6 +132,7 @@
 		FA2F4B201EE649A6002ABDB2 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		FA2F4B221EE649B0002ABDB2 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		FA2F4B241EE64DB3002ABDB2 /* LoginData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
+		FA2F4B261EE93FBF002ABDB2 /* FontSetExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontSetExtension.swift; sourceTree = "<group>"; };
 		FA4C062E1EE12D5D009CD648 /* RobsJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RobsJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA4C06391EE12D5D009CD648 /* RobsJobs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RobsJobs.xcdatamodel; sourceTree = "<group>"; };
 		FA4C06401EE12D5D009CD648 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -145,7 +147,7 @@
 		FA4C06901EE12F11009CD648 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "../../../../Desktop/Rob'sJobs/Rob'sJobs/AppDelegate.swift"; sourceTree = "<group>"; };
 		FA4C08B41EE12F76009CD648 /* TextfieldPaddingExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldPaddingExtension.swift; sourceTree = "<group>"; };
 		FA4C08B51EE12F76009CD648 /* ImageViewRounding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewRounding.swift; sourceTree = "<group>"; };
-		FA4C08B61EE12F76009CD648 /* UIViewRounding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewRounding.swift; sourceTree = "<group>"; };
+		FA4C08B61EE12F76009CD648 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		FA4C08B71EE12F76009CD648 /* BoldTextExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoldTextExtension.swift; sourceTree = "<group>"; };
 		FA4C08B81EE12F76009CD648 /* CALayerBorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerBorder.swift; sourceTree = "<group>"; };
 		FA4C08C01EE1309C009CD648 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -370,7 +372,8 @@
 			children = (
 				FA4C08B41EE12F76009CD648 /* TextfieldPaddingExtension.swift */,
 				FA4C08B51EE12F76009CD648 /* ImageViewRounding.swift */,
-				FA4C08B61EE12F76009CD648 /* UIViewRounding.swift */,
+				FA2F4B261EE93FBF002ABDB2 /* FontSetExtension.swift */,
+				FA4C08B61EE12F76009CD648 /* UIViewExtension.swift */,
 				FA4C08B71EE12F76009CD648 /* BoldTextExtension.swift */,
 				FA4C08B81EE12F76009CD648 /* CALayerBorder.swift */,
 			);
@@ -811,7 +814,7 @@
 				FA4C09171EE13839009CD648 /* TutorialTestPageViewController.swift in Sources */,
 				FA4C09501EE138CD009CD648 /* EmployerData.swift in Sources */,
 				FA4C08E01EE13132009CD648 /* Checkbox.swift in Sources */,
-				FA4C08BB1EE12F76009CD648 /* UIViewRounding.swift in Sources */,
+				FA4C08BB1EE12F76009CD648 /* UIViewExtension.swift in Sources */,
 				FA4C08C71EE1309C009CD648 /* LaunchScreenViewController.swift in Sources */,
 				FA4C09001EE1381B009CD648 /* WorkExperiencePickerTableViewController.swift in Sources */,
 				FA4C09141EE13839009CD648 /* Page3ViewController.swift in Sources */,
@@ -838,6 +841,7 @@
 				FA4C09271EE13851009CD648 /* ChatGroupViewController.swift in Sources */,
 				FA4C08E31EE13132009CD648 /* InputButton.swift in Sources */,
 				FA4C092D1EE13851009CD648 /* ProfileViewController.swift in Sources */,
+				FA2F4B271EE93FBF002ABDB2 /* FontSetExtension.swift in Sources */,
 				FA4C063A1EE12D5D009CD648 /* RobsJobs.xcdatamodeld in Sources */,
 				FA4C09031EE1381B009CD648 /* DesiredSectorTableViewController.swift in Sources */,
 				FA4C09081EE1381B009CD648 /* SetupProfileViewController.swift in Sources */,

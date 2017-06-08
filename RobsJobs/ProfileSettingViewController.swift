@@ -16,6 +16,14 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var WorkTimeTextfield: UITextField!
     @IBOutlet weak var DistanceSlider: UISlider!
     
+    @IBOutlet weak var SectorView: UIView!
+    @IBOutlet weak var JobTimeView: UIView!
+    @IBOutlet weak var WorkTypeView: UIView!
+    @IBOutlet weak var SalaryView: UIView!
+    @IBOutlet weak var SearchDistanceView: UIView!
+    @IBOutlet weak var DistanceLabel: UILabel!
+    @IBOutlet weak var SectorLabel: UILabel!
+    
     var passedSalaryValue: String?
     var passedSalaryMinValue: String?
     var passedSalaryMaxValue: String?
@@ -106,6 +114,7 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
         let step: Float = 25.0
         let roundedValue = round(sender.value / step) * step
         sender.value = roundedValue
+        DistanceLabel.text = "\(String(describing: Int(roundedValue)))Km."
     }
     
     override func viewDidLoad() {
@@ -122,6 +131,12 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
         SalaryTextfield.setLeftPaddingPoints(20)
         WorkTimeTextfield.setLeftPaddingPoints(20)
         WorkTypeTextfield.setLeftPaddingPoints(20)
+        
+        SectorView.setSettingBoxView()
+        JobTimeView.setSettingBoxView()
+        WorkTypeView.setSettingBoxView()
+        SalaryView.setSettingBoxView()
+        SearchDistanceView.setSettingBoxView()
     }
     
     func setField(){
