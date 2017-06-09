@@ -269,35 +269,12 @@
                                     <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="cDD-HO-lmn">
                                         <rect key="frame" x="8" y="0.0" width="327" height="350"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvJ-pF-BTR">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dF2-eh-1gm">
                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="45"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Kdo-d6-Npo">
-                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="45"/>
-                                                        <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dF2-eh-1gm">
-                                                                <rect key="frame" x="0.0" y="0.0" width="163.5" height="45"/>
-                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                                            </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QAO-Cx-ezb">
-                                                                <rect key="frame" x="163.5" y="0.0" width="163.5" height="45"/>
-                                                                <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <textInputTraits key="textInputTraits"/>
-                                                            </textField>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="Kdo-d6-Npo" secondAttribute="trailing" id="DFc-4s-w6J"/>
-                                                    <constraint firstItem="Kdo-d6-Npo" firstAttribute="leading" secondItem="dvJ-pF-BTR" secondAttribute="leading" id="IIy-TI-xh0"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Kdo-d6-Npo" secondAttribute="bottom" id="ejl-AK-k9m"/>
-                                                    <constraint firstItem="Kdo-d6-Npo" firstAttribute="top" secondItem="dvJ-pF-BTR" secondAttribute="top" id="ruq-SM-Nki"/>
-                                                </constraints>
-                                            </view>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                            </textField>
                                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EHU-kZ-g6n">
                                                 <rect key="frame" x="0.0" y="61" width="327" height="45"/>
                                                 <nil key="textColor"/>
@@ -371,16 +348,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="EmailTextfield" destination="EHU-kZ-g6n" id="t7I-SC-B3Z"/>
-                        <outlet property="LastNameTextfield" destination="QAO-Cx-ezb" id="JTu-4J-Xhd"/>
                         <outlet property="NameTextfield" destination="dF2-eh-1gm" id="QFl-ej-SfL"/>
-                        <outlet property="NameView" destination="dvJ-pF-BTR" id="cUB-o0-cah"/>
                         <outlet property="PasswordTextfield" destination="ak2-07-QYe" id="OdZ-7i-8pr"/>
                         <outlet property="PhoneNumberTextfield" destination="XbG-oI-yhG" id="T33-Ho-xeT"/>
                         <outlet property="RetypeEmailTextfield" destination="geR-r5-y3h" id="jXp-8A-YdO"/>
                         <outlet property="RetypePasswordTextfield" destination="rHE-h1-nW2" id="hzp-DC-lCS"/>
                         <outlet property="ScrollView" destination="vYK-ty-h3T" id="b4m-VW-LKB"/>
                         <outlet property="SignUpButton" destination="uJj-Zm-8Ir" id="mvc-My-Hlq"/>
-                        <outlet property="StackName" destination="Kdo-d6-Npo" id="ujv-4W-Xg2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C7r-g8-thb" userLabel="First Responder" sceneMemberID="firstResponder"/>

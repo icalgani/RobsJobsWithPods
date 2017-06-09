@@ -23,6 +23,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var StackName: UIStackView!
     let Utility = UIUtility()
+    let userRegisterData = UserRegisterData()
     
     var heightAdjustment: Int = 0
     
@@ -55,54 +56,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         }else{
             
             //check login
-            var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/user/signup")!)
-            request.httpMethod = "POST"
-            let postString = "email=\((EmailTextfield.text)!)&password=\((PasswordTextfield.text)!)&name=\((NameTextfield.text)!) \((LastNameTextfield.text)!)&mobile_no=\((PhoneNumberTextfield.text)!)"
-            request.httpBody = postString.data(using: .utf8)
-            print(postString)
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {                                                 // check for fundamental networking error
-                    print("error=\(String(describing: error))")
-                    return
-                }
-                
-                //handling json
-                do {
-                    //create json object from data
-                    if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                            //if status code is not 200
-                            let errorMessage = json["error"] as! [String:Any]
-                            let currentErrorMessage = errorMessage["message"] as! String
-                            DispatchQueue.main.async {
-                            //set alert if email or password is wrong
-                            let alertController = UIAlertController(title: "Alert", message:
-                                currentErrorMessage, preferredStyle: UIAlertControllerStyle.alert)
-                            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
-                            self.present(alertController, animated: true, completion: nil)
-                            }
-                        }else{
-                            DispatchQueue.main.async {
-                            //tell user that register is success
-                            let alertController = UIAlertController(title: "Alert", message:
-                                "Registration Success", preferredStyle: UIAlertControllerStyle.alert)
-                            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
-                            self.present(alertController, animated: true, completion: nil)
-                            
-                            //go to FirstTimeLogin Storyboard
-                            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "StartingPoint") as! ViewController
-                            self.present(nextViewController, animated:true, completion:nil)
-                            }
-                        }
-                    }
-                    
-                } catch let error {
-                    print(error.localizedDescription)
-                } // end do
-                
-            }//end request
-            task.resume()
+            userRegisterData.doRegisterUserToServer(targetViewController: self, userEmail: EmailTextfield.text!, userPassword: PasswordTextfield.text!, userName: NameTextfield.text!, userMobileNo: PhoneNumberTextfield.text!)
         }
     }
     
@@ -150,13 +104,9 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         RetypePasswordTextfield.setGrayBorderWithpadding(20)
         
         //set name view borderColor
-        NameView.layer.borderWidth = 1
-        NameView.layer.borderColor = UIColor.gray.cgColor
         
         NameTextfield.setLeftPaddingPoints(20)
-        LastNameTextfield.setLeftPaddingPoints(20)
         
-        LastNameTextfield.setLineSeparator(5, lineWidth: 1.5)
     }
 
     override func didReceiveMemoryWarning() {

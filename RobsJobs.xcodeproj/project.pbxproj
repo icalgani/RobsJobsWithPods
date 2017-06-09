@@ -17,6 +17,7 @@
 		FA2F4B231EE649B0002ABDB2 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2F4B221EE649B0002ABDB2 /* FBSDKLoginKit.framework */; };
 		FA2F4B251EE64DB3002ABDB2 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F4B241EE64DB3002ABDB2 /* LoginData.swift */; };
 		FA2F4B271EE93FBF002ABDB2 /* FontSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F4B261EE93FBF002ABDB2 /* FontSetExtension.swift */; };
+		FA2F4B291EE97EA9002ABDB2 /* UserRegisterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F4B281EE97EA9002ABDB2 /* UserRegisterData.swift */; };
 		FA4C063A1EE12D5D009CD648 /* RobsJobs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA4C06381EE12D5D009CD648 /* RobsJobs.xcdatamodeld */; };
 		FA4C064A1EE12D5D009CD648 /* RobsJobsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C06491EE12D5D009CD648 /* RobsJobsTests.swift */; };
 		FA4C06551EE12D5D009CD648 /* RobsJobsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C06541EE12D5D009CD648 /* RobsJobsUITests.swift */; };
@@ -31,7 +32,6 @@
 		FA4C08C71EE1309C009CD648 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C08C11EE1309C009CD648 /* LaunchScreenViewController.swift */; };
 		FA4C08C81EE1309C009CD648 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C08C21EE1309C009CD648 /* ViewController.swift */; };
 		FA4C08C91EE1309C009CD648 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C08C31EE1309C009CD648 /* ResetPasswordViewController.swift */; };
-		FA4C08CA1EE1309C009CD648 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C08C41EE1309C009CD648 /* LoginViewController.swift */; };
 		FA4C08CB1EE1309C009CD648 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C08C51EE1309C009CD648 /* RegisterViewController.swift */; };
 		FA4C08D91EE13132009CD648 /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C08CC1EE13132009CD648 /* FloatLabelTextField.swift */; };
 		FA4C08DA1EE13132009CD648 /* FloatLabelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C08CD1EE13132009CD648 /* FloatLabelTextView.swift */; };
@@ -133,6 +133,7 @@
 		FA2F4B221EE649B0002ABDB2 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		FA2F4B241EE64DB3002ABDB2 /* LoginData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		FA2F4B261EE93FBF002ABDB2 /* FontSetExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontSetExtension.swift; sourceTree = "<group>"; };
+		FA2F4B281EE97EA9002ABDB2 /* UserRegisterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRegisterData.swift; sourceTree = "<group>"; };
 		FA4C062E1EE12D5D009CD648 /* RobsJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RobsJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA4C06391EE12D5D009CD648 /* RobsJobs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RobsJobs.xcdatamodel; sourceTree = "<group>"; };
 		FA4C06401EE12D5D009CD648 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -154,7 +155,6 @@
 		FA4C08C11EE1309C009CD648 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		FA4C08C21EE1309C009CD648 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FA4C08C31EE1309C009CD648 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
-		FA4C08C41EE1309C009CD648 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FA4C08C51EE1309C009CD648 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		FA4C08CC1EE13132009CD648 /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextField.swift; sourceTree = "<group>"; };
 		FA4C08CD1EE13132009CD648 /* FloatLabelTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextView.swift; sourceTree = "<group>"; };
@@ -341,7 +341,6 @@
 				FA4C08C11EE1309C009CD648 /* LaunchScreenViewController.swift */,
 				FA4C08C21EE1309C009CD648 /* ViewController.swift */,
 				FA4C08C31EE1309C009CD648 /* ResetPasswordViewController.swift */,
-				FA4C08C41EE1309C009CD648 /* LoginViewController.swift */,
 				FA4C08C51EE1309C009CD648 /* RegisterViewController.swift */,
 			);
 			name = Main;
@@ -488,6 +487,7 @@
 				FA4C094B1EE138CD009CD648 /* EmployerData.swift */,
 				FA2F4B241EE64DB3002ABDB2 /* LoginData.swift */,
 				FA4C094C1EE138CD009CD648 /* ChatGroupData.swift */,
+				FA2F4B281EE97EA9002ABDB2 /* UserRegisterData.swift */,
 				FA4C094D1EE138CD009CD648 /* SwipeCardData.swift */,
 				FA4C094E1EE138CD009CD648 /* ChatData.swift */,
 				FA4C09581EE4FD11009CD648 /* DocumentData.swift */,
@@ -849,6 +849,7 @@
 				FA4C08E41EE13132009CD648 /* LabelUtility.swift in Sources */,
 				FA4C09431EE138B7009CD648 /* DraggableView.swift in Sources */,
 				FA2F4B251EE64DB3002ABDB2 /* LoginData.swift in Sources */,
+				FA2F4B291EE97EA9002ABDB2 /* UserRegisterData.swift in Sources */,
 				FA4C08C91EE1309C009CD648 /* ResetPasswordViewController.swift in Sources */,
 				FA4C08E21EE13132009CD648 /* SSRadioButtonsController.swift in Sources */,
 				FA4C09151EE13839009CD648 /* Page4ViewController.swift in Sources */,
@@ -864,7 +865,6 @@
 				FA4C09291EE13851009CD648 /* CustomTabbarViewController.swift in Sources */,
 				FA4C094F1EE138CD009CD648 /* JsonRequest.swift in Sources */,
 				FA4C09041EE1381B009CD648 /* CityPickerTableViewController.swift in Sources */,
-				FA4C08CA1EE1309C009CD648 /* LoginViewController.swift in Sources */,
 				FA4C093A1EE1388C009CD648 /* EmploymentPickerTableViewController.swift in Sources */,
 				FA4C09481EE138B7009CD648 /* JobRequirementDetail.swift in Sources */,
 			);

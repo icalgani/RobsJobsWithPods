@@ -9,26 +9,14 @@
 import Foundation
 import UIKit
 import CoreFoundation
-
-
-struct AppFontName {
-    static let regular = "CourierNewPSMT"
-    static let bold = "CourierNewPS-BoldMT"
-    static let italic = "CourierNewPS-ItalicMT"
-}
+import CoreData
 
 extension UIFont {
     
-    class func mySystemFont(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: AppFontName.regular, size: size)!
-    }
-    
-    class func myBoldSystemFont(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: AppFontName.bold, size: size)!
-    }
-    
-    class func myItalicSystemFont(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: AppFontName.italic, size: size)!
+    struct AppFontName {
+        static let regular = "roboto"
+        static let bold = "roboto-BoldMT"
+        static let italic = "roboto-ItalicMT"
     }
     
     convenience init(myCoder aDecoder: NSCoder) {
@@ -38,14 +26,17 @@ extension UIFont {
                 switch fontAttribute {
                 case "CTFontRegularUsage":
                     fontName = AppFontName.regular
-                case "CTFontEmphasizedUsage", "CTFontBoldUsage":
+                case "CTFontEmphasizedUsage", "CTFontBoldUsage", "CTFontHeavyUsage", "CTFontDemiUsage":
                     fontName = AppFontName.bold
                 case "CTFontObliqueUsage":
                     fontName = AppFontName.italic
                 default:
+                    print(fontAttribute)
                     fontName = AppFontName.regular
                 }
-                self.init(name: fontName, size: fontDescriptor.pointSize)!
+                
+                let descriptor = UIFontDescriptor(name: fontName, size: fontDescriptor.pointSize)
+                self.init(descriptor: descriptor, size: fontDescriptor.pointSize)
             }
             else {
                 self.init(myCoder: aDecoder)
@@ -54,6 +45,21 @@ extension UIFont {
         else {
             self.init(myCoder: aDecoder)
         }
+    }
+    
+    class func mySystemFont(ofSize size: CGFloat) -> UIFont {
+        let fontDescriptor = UIFontDescriptor(name: AppFontName.regular, size: size)
+        return UIFont(descriptor: fontDescriptor, size: size)
+    }
+    
+     class func myBoldSystemFont(ofSize size: CGFloat) -> UIFont {
+        let fontDescriptor = UIFontDescriptor(name: AppFontName.bold, size: size)
+        return UIFont(descriptor: fontDescriptor, size: size)
+    }
+    
+     class func myItalicSystemFont(ofSize size: CGFloat) -> UIFont {
+        let fontDescriptor = UIFontDescriptor(name: AppFontName.italic, size: size)
+        return UIFont(descriptor: fontDescriptor, size: size)
     }
     
     class func overrideInitialize() {

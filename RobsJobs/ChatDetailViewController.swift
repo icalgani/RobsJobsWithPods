@@ -11,31 +11,46 @@ class ChatDetailCell: UITableViewCell{
     
     @IBOutlet weak var MessageLabel: UILabel!
     @IBOutlet weak var MessageView: UIView!
+    var employerMessageConstraint: NSLayoutConstraint?
+    var userMessageConstraint: NSLayoutConstraint?
     
     func setConstraintEmployer(){
         MessageView.translatesAutoresizingMaskIntoConstraints = false
         MessageView.backgroundColor = UIColor.white
         MessageLabel.textAlignment = NSTextAlignment.left
 
-        NSLayoutConstraint(item: MessageView,
+        employerMessageConstraint = NSLayoutConstraint(item: MessageView,
                            attribute: .leading,
                            relatedBy: .equal,
                            toItem: self,
                            attribute: .leading,
                            multiplier: 1.0,
-                           constant: 10).isActive = true
+                           constant: 10)
+        employerMessageConstraint?.isActive = true
+        
+        if(userMessageConstraint != nil){
+            userMessageConstraint?.isActive = false
+        }
     }
     
     func setConstraintUser(){
         MessageView.translatesAutoresizingMaskIntoConstraints = false
+        MessageView.backgroundColor = UIColor(red:0.69, green:0.87, blue:0.86, alpha:1.0)
+        MessageLabel.textAlignment = NSTextAlignment.right
         
-        NSLayoutConstraint(item: MessageView,
+        userMessageConstraint = NSLayoutConstraint(item: MessageView,
                            attribute: .trailing,
                            relatedBy: .equal,
                            toItem: self,
                            attribute: .trailing,
                            multiplier: 1.0,
-                           constant: -10).isActive = true
+                           constant: -10)
+        
+        userMessageConstraint?.isActive = true
+        
+        if(employerMessageConstraint != nil){
+            employerMessageConstraint?.isActive = false
+        }
     }
 }
 
@@ -118,7 +133,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func getData(){
-        chatData.getDataFromServer(dataToGet:"\(passedChatGroupID)/0/9")
+        chatData.getDataFromServer(dataToGet:"\(passedChatGroupID)/0/15")
     }
     
     func loadChatData(){
@@ -189,6 +204,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "test", for: indexPath) as! ChatDetailCell
         
         cell.MessageLabel?.text = messageArray[indexPath.row]
+        print("message = \(messageArray[indexPath.row]) & usertype = \(userTypeArray[indexPath.row])")
         if(userTypeArray[indexPath.row] == "employer"){
             cell.setConstraintEmployer()
         }else{
