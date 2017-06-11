@@ -21,11 +21,4 @@ extension UIView{
         self.layer.shadowOpacity = 0.2
         self.layer.shadowOffset = CGSize(width: 0,height: 1)
     }
-    
-    func test(){
-        self.layer.cornerRadius = 16
-        self.layer.shadowRadius = 10
-        self.layer.shadowOpacity = 2
-        self.layer.shadowOffset = CGSize(width: 1,height: 1)
-    }
 }

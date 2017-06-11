@@ -25,7 +25,7 @@ class SwipeCardData{
     var companyNameToSend: [String] = []
     
     let API_URL = "http://api.robsjobs.co/api/v1"
-    
+//===================================== REMOVE ALL SWIPE CARD DATA ===============================================
     func resetAllData(){
         idToSend.removeAll()
         employerIDToSend.removeAll()
@@ -42,6 +42,7 @@ class SwipeCardData{
         companyNameToSend.removeAll()
     }
     
+//===================================== GET SWIPE CARD DATA FROM SERVER ===============================================
     func getDataFromServer(dataToGet: String){
         resetAllData()
         var request = URLRequest(url: URL(string: "\(API_URL)/match/\(dataToGet)")!)
@@ -122,6 +123,7 @@ class SwipeCardData{
         task.resume()
     }
     
+//===================================== CALCULATING END DATE ===============================================
     func calculateEndDate(endDate: String)->String{
         let calendar = NSCalendar.current
         let date = NSDate()

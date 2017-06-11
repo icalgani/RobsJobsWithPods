@@ -301,7 +301,7 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m4q-SR-hUv">
                                                 <rect key="frame" x="10" y="570" width="355" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="buZ-pj-6LD"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="buZ-pj-6LD"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

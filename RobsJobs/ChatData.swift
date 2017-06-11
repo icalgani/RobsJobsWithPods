@@ -15,7 +15,7 @@ class ChatData{
     
     let API_URL = "http://apidev.robsjobs.co/api/v1"
     
-    //GET MESSAGE DATA
+    //===================================== GET MESSAGE DATA =======================================================
     func getDataFromServer(dataToGet: String){
         messageToSend.removeAll()
         userTypeToSend.removeAll()
@@ -71,7 +71,7 @@ class ChatData{
         task.resume()
     }
     
-    //SEND MESSAGE DATA
+    //===================================== SEND MESSAGE DATA =======================================================
     func postMessageData(jobAppId: String, message: String){
         let userDefaults = UserDefaults.standard
         var userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]

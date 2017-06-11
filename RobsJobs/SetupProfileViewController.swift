@@ -273,11 +273,15 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
         
         //set constraint
         setHeightTopConstraint()
-        setInputToHide()
+//        setInputToHide()
 
         NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillShow(notification:)),name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)),name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setInputToHide()
     }
     
     func setInputToHide(){

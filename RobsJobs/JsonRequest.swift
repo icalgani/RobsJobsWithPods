@@ -25,6 +25,7 @@ class JsonRequest{
 
     let API_URL = "http://apidev.robsjobs.co/api/v1"
     
+    //==================================== GET DATA FROM SERVER =======================================================
     func getDataFromServer(dataToGet: String){
         var request = URLRequest(url: URL(string: "\(API_URL)/init/\(dataToGet)")!)
         //create the session object
@@ -113,10 +114,8 @@ class JsonRequest{
         task.resume()
     }
     
-    
-    
+    //================================ GET PROVINCE FROM SERVER =======================================================
 
-    
     func getProvinceFromServer() -> Array<String>{
         var arrayToPass: [String]=["province"]
         var request = URLRequest(url: URL(string: "\(API_URL)/init/province")!)

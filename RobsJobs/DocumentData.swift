@@ -22,6 +22,7 @@ class DocumentData{
     
     let userDefaults = UserDefaults.standard
     
+//===================================== SENDING USER PICTURE TO SERVER ===============================================
     func uploadPictureRequest(userImage: UIImage)
     {
         var userDictionary = self.userDefaults.value(forKey: "userDictionary") as? [String: Any]
@@ -62,6 +63,7 @@ class DocumentData{
         )
     }
     
+//===================================== SENDING USER DOCUMENT TO SERVER ===============================================
     func uploadDocumentRequest(documentURL: URL, documentType: String){
         var userDictionary = self.userDefaults.value(forKey: "userDictionary") as? [String: Any]
         
@@ -74,8 +76,8 @@ class DocumentData{
         }catch{
             print("file data 2 = \(file_data)")
         }
+        
         let file_mime = mimeTypeForPath(path: documentURL.absoluteString)
-        print("mime type = \(file_mime)")
         Alamofire.upload(
             multipartFormData: { multipartFormData in
                 multipartFormData.append("\(String(describing: (userDictionary?["userID"])!))".data(using: .utf8)!, withName: "userid")

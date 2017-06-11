@@ -13,6 +13,7 @@ class UserRegisterData{
     
     let API_URL = "http://api.robsjobs.co/api/v1"
     
+//===================================== SEND USER REGISTER TO SERVER ===============================================
     func doRegisterUserToServer(targetViewController: UIViewController, userEmail: String, userPassword: String, userName: String, userMobileNo: String){
         //check login
         var request = URLRequest(url: URL(string: "\(API_URL)/user/signup")!)
@@ -54,6 +55,7 @@ class UserRegisterData{
         task.resume()
     }
     
+//===================================== ALERT CONTROLLER IF REGISTER FAILED ==========================================
     func showRegisterFailed(targetVC: UIViewController, alertMessage: String){
         // Create the alert controller
         let alertController = UIAlertController(title: "Register", message: alertMessage, preferredStyle: .alert)
@@ -71,6 +73,7 @@ class UserRegisterData{
         targetVC.present(alertController, animated: true, completion: nil)
     }
     
+//===================================== ALERT CONTROLLER IF REGISTER SUCCEED ==========================================
     func showRegisterSucceed(targetVC: UIViewController){
         // Create the alert controller
         let alertController = UIAlertController(title: "Register", message: "Registration Succeed", preferredStyle: .alert)

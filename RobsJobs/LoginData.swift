@@ -15,6 +15,7 @@ class LoginData{
     let API_URL = "http://apidev.robsjobs.co/api/v1"
     var userDefaults = UserDefaults.standard
 
+//========================================== SEND LOGIN REQUEST =======================================================
     func userLoginRequest(username: String, password: String){
         var request = URLRequest(url: URL(string: "\(API_URL)/user/login")!)
         
@@ -63,7 +64,7 @@ class LoginData{
         } //end task
         task.resume()
     }
-    
+//=============================== GETTING USER DATA FROM SERVER =======================================================
     func getUserDataFromServer(userID: String){
         var request = URLRequest(url: URL(string: "\(API_URL)/user/profile/\(userID)")!)
         print("get user data from server")
@@ -194,6 +195,7 @@ class LoginData{
         task.resume()
     }
     
+//===================================== LOGIN WITH FACEBOOK =======================================================
     func userLoginWithFacebookRequest(userName: String, userEmail: String, userFbId: String, userFbToken: String){
         var request = URLRequest(url: URL(string: "\(API_URL)/user/loginfb")!)
         
@@ -237,6 +239,8 @@ class LoginData{
         task.resume()
     }
     
+    //===================================== TEST FACEBOOK LOGIN WITH ALAMOFIRE ========================================
+
     func facebookLoginWithAlamofire(userName: String, userEmail: String, userFbId: String, userFbToken: String){
         
         let headers = [
@@ -247,38 +251,5 @@ class LoginData{
             "client_id" : "1" as AnyObject,
             "access_token" : userFbToken as AnyObject
         ]
-        
-        
-//        Alamofire.request(.POST, "\(API_URL)user/loginfb", parameters: parameters, encoding: .JSON, headers: headers)
-//            .validate()
-//            .responseJSON { response in
-//                switch response.result {
-//                case .Success:
-//                    print("Validation Successful")
-//                    
-//                    guard let value = response.result.value else {
-//                        
-//                        completionHandler(response.result.error)
-//                        return
-//                    }
-//                    
-//                    let swiftyJsonVar = JSON(value)
-//                    
-//                    
-//                    print("This is the FaceBook response \(swiftyJsonVar)")
-//                    
-//                    completionHandler(nil)
-//                    
-//                case .Failure(let error):
-//                    
-//                    print("Sorry there was an error: \(error)")
-//                    
-//                    completionHandler(error)
-//                    
-//                    return
-//                }
-//                
-//        }
-//
     }
 }

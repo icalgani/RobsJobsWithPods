@@ -17,6 +17,7 @@ class ChatGroupData{
     
     let API_URL = "http://apidev.robsjobs.co/api/v1"
     
+//===================================== GET CHAT GROUP DATA FROM SERVER ===============================================
     func getDataFromServer(dataToGet: String){
         var request = URLRequest(url: URL(string: "\(API_URL)/chat/group/\(dataToGet)")!)
         //create the session object

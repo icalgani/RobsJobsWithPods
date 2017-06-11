@@ -17,6 +17,7 @@ class EmployerData{
     
     let API_URL = "http://apidev.robsjobs.co/api/v1"
     
+    //====================== GETTING EMPLOYER DATA FROM SERVER =======================================================
     func getDataFromServer(dataToGet: String){
         var request = URLRequest(url: URL(string: "\(API_URL)/job/\(dataToGet)")!)
         //create the session object
