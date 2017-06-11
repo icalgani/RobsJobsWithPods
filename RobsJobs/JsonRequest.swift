@@ -20,6 +20,8 @@ class JsonRequest{
     var employmentSectorToSend: [String] = []
     var skillToSend: [String] = []
     var employmentStatusToSend: [String] = []
+    var majorsToSend: [String] = []
+    var competenceToSend: [String] = []
 
     let API_URL = "http://apidev.robsjobs.co/api/v1"
     
@@ -28,7 +30,6 @@ class JsonRequest{
         //create the session object
         
         request.httpMethod = "GET"
-        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
                 print("error=\(String(describing: error))")
@@ -87,7 +88,10 @@ class JsonRequest{
                                     case "empstatus":
                                         self.employmentStatusToSend.append(aObject["emp_status"] as! String) //skill id is NOT sorted
                                         break
-                                    
+                                    case "jurusan":
+                                        self.majorsToSend.append(aObject["jurusan"] as! String)
+                                    case "kompetensi":
+                                        self.competenceToSend.append(aObject["kompetensi"] as! String)
                                     default:
                                         print("switch default")
                                         break

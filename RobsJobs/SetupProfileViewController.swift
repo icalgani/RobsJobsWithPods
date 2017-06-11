@@ -24,10 +24,30 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
     var passedCurrentSectorValue:String = ""
     var provinceID: String = ""
     var passedWorkExperienceValue: String = ""
+    var passedMajorsValue: String = ""
+    var passedCompetenceValue:[String] = []
     var prevControllerFrom = 0
     
+    var skillHeightConstraint: NSLayoutConstraint!
+    var skillTopConstraint: NSLayoutConstraint!
+    var skillHeightConstraintShow: NSLayoutConstraint!
+    var skillTopConstraintShow: NSLayoutConstraint!
+    
+    
+    var majorsHeightConstraint: NSLayoutConstraint!
+    var majorsTopConstraint: NSLayoutConstraint!
+    var majorsHeightConstraintShow: NSLayoutConstraint!
+    var majorsTopConstraintShow: NSLayoutConstraint!
+    
+    var competenceHeightConstraint: NSLayoutConstraint!
+    var competenceTopConstraint: NSLayoutConstraint!
+    var competenceHeightConstraintShow: NSLayoutConstraint!
+    var competenceTopConstraintShow: NSLayoutConstraint!
+    
+    @IBOutlet weak var TestTextfield: UITextField!
     
     @IBOutlet weak var Scrollview: UIScrollView!
+    @IBOutlet weak var ContainerView: UIView!
     
     @IBOutlet weak var WorkExperienceInput: UITextField!
     @IBOutlet weak var EducationInput: UITextField!
@@ -36,18 +56,12 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
     @IBOutlet weak var NameInput: UITextField!
     @IBOutlet weak var BirthdateInput: UITextField!
     @IBOutlet weak var CityInput: UITextField!
-    @IBOutlet weak var SalaryInput: UITextField!
-    @IBOutlet weak var SkillsInput: FloatLabelTextField!
-    @IBOutlet weak var EmploymentInput: FloatLabelTextField!
-    @IBOutlet weak var DesiredSectorInput: FloatLabelTextField!
     @IBOutlet weak var NextButton: UIButton!
-    @IBOutlet weak var CurrentSectorInput: FloatLabelTextField!
     @IBOutlet weak var DescribeYourselfInput: UITextField!
+    @IBOutlet weak var SkillsInput: UITextField!
+    @IBOutlet weak var MajorsInput: UITextField!
+    @IBOutlet weak var CompetenceInput: UITextField!
     
-    @IBOutlet weak var workExperienceYesButton: SSRadioButton!
-    @IBOutlet weak var workExperienceNoButton: SSRadioButton!
-    @IBOutlet weak var currentyEmployedYesButton: SSRadioButton!
-    @IBOutlet weak var currentyEmployedNoButton: SSRadioButton!
     
     @IBAction func goToTutorialPage(_ sender: UIButton) {
         let userDefaults = UserDefaults.standard
@@ -61,6 +75,15 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
             userDictionary?["city"] = CityInput.text
             userDictionary?["bio"] = DescribeYourselfInput.text
             userDictionary?["edu_level"] = EducationInput.text
+            if(EducationInput.text == "SD/SLTP" || EducationInput.text == "SMA"){
+                userDictionary?["skills"] = SkillsInput.text
+                userDictionary?.removeValue(forKey: "jurusan")
+                userDictionary?.removeValue(forKey: "kompetensi")
+            }else{
+                userDictionary?["jurusan"] = MajorsInput.text
+                userDictionary?["kompetensi"] = CompetenceInput.text
+                userDictionary?.removeValue(forKey: "skills")
+            }
             userDictionary?["experience"]  = WorkExperienceInput.text
             
             userDefaults.set(userDictionary, forKey: "userDictionary")
@@ -78,7 +101,6 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.window?.rootViewController = nextViewController
             }else{
-                
             //go to tutorial page
             let storyBoard : UIStoryboard = UIStoryboard(name: "Core", bundle: nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "profileSetting") as UIViewController
@@ -146,9 +168,43 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
                 passedEducationValue = educationView.educationToPass
                 EducationInput.text = passedEducationValue
             }
+            
+            setInputToHide()
         }
         
-        //if segue from educationpicker
+        //if segue from skills picker
+        if(segue.source.isKind(of: SkillsPickerTableViewController.self)){
+            let sourceView:SkillsPickerTableViewController = segue.source as! SkillsPickerTableViewController
+            
+            if(sourceView.skillToPass.count>0){
+                passedSkillValue = sourceView.skillToPass
+                let concatedString: String = passedSkillValue.joined(separator: ", ")
+                SkillsInput.text = concatedString
+            }
+        }
+        
+        //if segue from majors
+        if(segue.source.isKind(of: MajorsTableViewController.self)){
+            let sourceView:MajorsTableViewController = segue.source as! MajorsTableViewController
+
+            if(sourceView.majorsToPass != ""){
+                passedMajorsValue = sourceView.majorsToPass
+                MajorsInput.text = passedMajorsValue
+            }
+        }
+        
+        //if segue from competence picker
+        if(segue.source.isKind(of: CompetenceTableViewController.self)){
+            let sourceView:CompetenceTableViewController = segue.source as! CompetenceTableViewController
+            
+            if(sourceView.CompetencesToPass.count>0){
+                passedCompetenceValue = sourceView.CompetencesToPass
+                let concatedString: String = passedCompetenceValue.joined(separator: ", ")
+                CompetenceInput.text = concatedString
+            }
+        }
+        
+        //if segue from WorkExperience
         if(segue.source.isKind(of: WorkExperiencePickerTableViewController.self)){
             let workExperienceView:WorkExperiencePickerTableViewController = segue.source as! WorkExperiencePickerTableViewController
             
@@ -199,6 +255,9 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
         EducationInput.delegate = self
         WorkExperienceInput.delegate = self
         DescribeYourselfInput.delegate = self
+        SkillsInput.delegate = self
+        MajorsInput.delegate = self
+        CompetenceInput.delegate = self
         
         //set keyboard
         NameInput.setLeftPaddingPoints(20)
@@ -208,9 +267,37 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
         EducationInput.setLeftPaddingPoints(20)
         WorkExperienceInput.setLeftPaddingPoints(20)
         DescribeYourselfInput.setLeftPaddingPoints(20)
+        SkillsInput.setLeftPaddingPoints(20)
+        MajorsInput.setLeftPaddingPoints(20)
+        CompetenceInput.setLeftPaddingPoints(20)
+        
+        //set constraint
+        setHeightTopConstraint()
+        setInputToHide()
+
         NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillShow(notification:)),name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)),name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func setInputToHide(){
+        //hide competence and majors
+        if(EducationInput.text == "SD/SLTP" || EducationInput.text == "SMA" || EducationInput.text == ""){
+            //hide majors and competence input
+            hideTextfield(itemToConstraint: MajorsInput, heightConstraintIdentifier: "majors height", topConstraintIdentifier: "majors top", toItem: SkillsInput, heightConstraintVar: majorsHeightConstraint, topConstraintVar: majorsTopConstraint)
+            hideTextfield(itemToConstraint: CompetenceInput, heightConstraintIdentifier: "competence height", topConstraintIdentifier: "competence top", toItem: MajorsInput, heightConstraintVar: competenceHeightConstraint, topConstraintVar: competenceTopConstraint)
+            
+            //show skills input
+            showTextfield(itemToConstraint: SkillsInput, heightConstraintShow: skillHeightConstraintShow, topConstraintShow: skillTopConstraintShow, heightConstraintVar: skillHeightConstraint, topConstraintVar: skillTopConstraint)
+            
+        }else{
+            //hide skills input
+            hideTextfield(itemToConstraint: SkillsInput, heightConstraintIdentifier: "skills height", topConstraintIdentifier: "skills top", toItem: EducationInput, heightConstraintVar: skillHeightConstraint, topConstraintVar: skillTopConstraint)
+            
+            //show majors and competence input
+            showTextfield(itemToConstraint: MajorsInput, heightConstraintShow: majorsHeightConstraintShow, topConstraintShow: majorsTopConstraintShow, heightConstraintVar: majorsHeightConstraint, topConstraintVar: majorsTopConstraint)
+            showTextfield(itemToConstraint: CompetenceInput, heightConstraintShow: competenceHeightConstraintShow, topConstraintShow: competenceTopConstraintShow, heightConstraintVar: competenceHeightConstraint, topConstraintVar: competenceTopConstraint)
+        }
     }
     
     func setInputText(){
@@ -244,6 +331,20 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
         if let workExperience = userDictionary?["experience"]{
             WorkExperienceInput.text = workExperience as? String
         }
+        
+        if let skills = userDictionary?["skills"]{
+            SkillsInput.text = skills as? String
+        }
+        
+        if let jurusan = userDictionary?["jurusan"]{
+            MajorsInput.text = jurusan as? String
+        }
+        
+        if let kompetensi = userDictionary?["kompetensi"]{
+            CompetenceInput.text = kompetensi as? String
+        }
+        
+        
     }
     
     func keyboardWillShow(notification: Notification) {
@@ -274,30 +375,25 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
             performSegue(withIdentifier: "showWorkExperiencePicker", sender: self)
             return false
         }
+        
 //        if(textField == self.CharacterInput){
 //            performSegue(withIdentifier: "showCharactersPicker", sender: self)
 //            return false
 //        }
 //        
-//        if(textField == self.SkillsInput){
-//            performSegue(withIdentifier: "showSkillsPicker", sender: self)
-//            return false
-//        }
-//        
-//        if(textField == self.EmploymentInput){
-//            performSegue(withIdentifier: "showEmploymentPicker", sender: self)
-//            return false
-//        }
-//        
-//        if(textField == self.DesiredSectorInput){
-//            performSegue(withIdentifier: "showDesiredSector", sender: self)
-//            return false
-//        }
-//        
-//        if(textField == self.CurrentSectorInput){
-//            performSegue(withIdentifier: "showCurrentSector", sender: self)
-//            return false
-//        }
+        if(textField == self.SkillsInput){
+            performSegue(withIdentifier: "showSkillsPicker", sender: self)
+            return false
+        }
+        
+        if(textField == self.MajorsInput){
+            performSegue(withIdentifier: "showMajorsPicker", sender: self)
+            return false
+        }
+        if(textField == self.CompetenceInput){
+            performSegue(withIdentifier: "showCompetencePicker", sender: self)
+            return false
+        }
     return true
     }
 
@@ -305,7 +401,6 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     func datePickerValueChanged(sender:UIDatePicker) {
         
@@ -330,7 +425,6 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
         ]
         
         numberToolbar.sizeToFit()
-        
         textField.inputAccessoryView = numberToolbar //do it for every relevant textfield if there are more than one
     }
     
@@ -347,13 +441,137 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
         Scrollview.contentInset.bottom = adjustmentHeight
         Scrollview.scrollIndicatorInsets.bottom = adjustmentHeight
     }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
+    func setHeightTopConstraint(){
+        // SKILLS CONSTRAINT
+        skillHeightConstraint = NSLayoutConstraint(item: SkillsInput,
+                                                 attribute: .height,
+                                                 relatedBy: .equal,
+                                                 toItem: nil,
+                                                 attribute: .notAnAttribute,
+                                                 multiplier: 1.0,
+                                                 constant: 0.0)
+        
+        skillTopConstraint = NSLayoutConstraint(item: SkillsInput,
+                                              attribute: .top,
+                                              relatedBy: .equal,
+                                              toItem: EducationInput,
+                                              attribute: .bottom,
+                                              multiplier: 1.0,
+                                              constant: 0.0)
+        
+        skillHeightConstraintShow = NSLayoutConstraint(item: SkillsInput,
+                                                   attribute: .height,
+                                                   relatedBy: .equal,
+                                                   toItem: nil,
+                                                   attribute: .notAnAttribute,
+                                                   multiplier: 1.0,
+                                                   constant: 40.0)
+        
+        skillTopConstraintShow = NSLayoutConstraint(item: SkillsInput,
+                                                attribute: .top,
+                                                relatedBy: .equal,
+                                                toItem: EducationInput,
+                                                attribute: .bottom,
+                                                multiplier: 1.0,
+                                                constant: 20.0)
+        
+        // MAJORS CONSTRAINT
+        majorsHeightConstraint = NSLayoutConstraint(item: MajorsInput,
+                                                   attribute: .height,
+                                                   relatedBy: .equal,
+                                                   toItem: nil,
+                                                   attribute: .notAnAttribute,
+                                                   multiplier: 1.0,
+                                                   constant: 0.0)
+        
+        majorsTopConstraint = NSLayoutConstraint(item: MajorsInput,
+                                                attribute: .top,
+                                                relatedBy: .equal,
+                                                toItem: SkillsInput,
+                                                attribute: .bottom,
+                                                multiplier: 1.0,
+                                                constant: 0.0)
+        majorsHeightConstraintShow = NSLayoutConstraint(item: MajorsInput,
+                                                    attribute: .height,
+                                                    relatedBy: .equal,
+                                                    toItem: nil,
+                                                    attribute: .notAnAttribute,
+                                                    multiplier: 1.0,
+                                                    constant: 40.0)
+        
+        majorsTopConstraintShow = NSLayoutConstraint(item: MajorsInput,
+                                                 attribute: .top,
+                                                 relatedBy: .equal,
+                                                 toItem: SkillsInput,
+                                                 attribute: .bottom,
+                                                 multiplier: 1.0,
+                                                 constant: 20.0)
+        // COMPETENCE CONSTRAINT
+        competenceHeightConstraint = NSLayoutConstraint(item: CompetenceInput,
+                                                   attribute: .height,
+                                                   relatedBy: .equal,
+                                                   toItem: nil,
+                                                   attribute: .notAnAttribute,
+                                                   multiplier: 1.0,
+                                                   constant: 0.0)
+        
+        competenceTopConstraint = NSLayoutConstraint(item: CompetenceInput,
+                                                attribute: .top,
+                                                relatedBy: .equal,
+                                                toItem: MajorsInput,
+                                                attribute: .bottom,
+                                                multiplier: 1.0,
+                                                constant: 0.0)
+        
+        competenceHeightConstraintShow = NSLayoutConstraint(item: CompetenceInput,
+                                                        attribute: .height,
+                                                        relatedBy: .equal,
+                                                        toItem: nil,
+                                                        attribute: .notAnAttribute,
+                                                        multiplier: 1.0,
+                                                        constant: 40.0)
+        
+        competenceTopConstraintShow = NSLayoutConstraint(item: CompetenceInput,
+                                                     attribute: .top,
+                                                     relatedBy: .equal,
+                                                     toItem: MajorsInput,
+                                                     attribute: .bottom,
+                                                     multiplier: 1.0,
+                                                     constant: 20.0)
+    }
+    
+    func hideTextfield(itemToConstraint: UITextField, heightConstraintIdentifier: String, topConstraintIdentifier: String, toItem: UITextField, heightConstraintVar: NSLayoutConstraint, topConstraintVar: NSLayoutConstraint){
+        
+        let heightConstraintTemp = itemToConstraint.constraint(withIdentifier: heightConstraintIdentifier)
+        let topConstraintTemp = itemToConstraint.constraint(withIdentifier: topConstraintIdentifier)
+        
+        topConstraintTemp?.isActive = false
+        heightConstraintTemp?.isActive = false
+        
+        heightConstraintVar.isActive = true
+        topConstraintVar.isActive = true
+        
+//        itemToConstraint.isHidden = true
+    }
+    
+    func showTextfield(itemToConstraint: UITextField, heightConstraintShow: NSLayoutConstraint, topConstraintShow: NSLayoutConstraint, heightConstraintVar: NSLayoutConstraint, topConstraintVar: NSLayoutConstraint){
+        
+        heightConstraintVar.isActive = false
+        topConstraintVar.isActive = false
+        
+        heightConstraintShow.isActive = true
+        heightConstraintShow.isActive = true
+        
+//        itemToConstraint.isHidden = false
+        itemToConstraint.layer.addBorder(edge: UIRectEdge.all, color: UIColor.black, thickness: 1)
+    }
+    
+    
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showCityPicker" {

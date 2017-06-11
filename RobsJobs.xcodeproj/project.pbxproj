@@ -10,6 +10,8 @@
 		11565C90C661A47432ED8F6C /* Pods_RobsJobsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E59E7A3D18C2E9D7CF837EF3 /* Pods_RobsJobsUITests.framework */; };
 		4FC601822457CE4A2C33335F /* Pods_RobsJobs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A067393BFB652F69F9BB4DA /* Pods_RobsJobs.framework */; };
 		D60DC0F3CB6D79151FD7789D /* Pods_RobsJobsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0918C541B07E15C2613053C2 /* Pods_RobsJobsTests.framework */; };
+		FA28975D1EEA745B00BC577C /* MajorsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28975C1EEA745B00BC577C /* MajorsTableViewController.swift */; };
+		FA28975F1EEA95DA00BC577C /* CompetenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28975E1EEA95DA00BC577C /* CompetenceTableViewController.swift */; };
 		FA2F4B1B1EE6498D002ABDB2 /* FacebookCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2F4B1A1EE6498D002ABDB2 /* FacebookCore.framework */; };
 		FA2F4B1D1EE64994002ABDB2 /* FacebookLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2F4B1C1EE64994002ABDB2 /* FacebookLogin.framework */; };
 		FA2F4B1F1EE6499D002ABDB2 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2F4B1E1EE6499D002ABDB2 /* Alamofire.framework */; };
@@ -18,6 +20,7 @@
 		FA2F4B251EE64DB3002ABDB2 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F4B241EE64DB3002ABDB2 /* LoginData.swift */; };
 		FA2F4B271EE93FBF002ABDB2 /* FontSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F4B261EE93FBF002ABDB2 /* FontSetExtension.swift */; };
 		FA2F4B291EE97EA9002ABDB2 /* UserRegisterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F4B281EE97EA9002ABDB2 /* UserRegisterData.swift */; };
+		FA2F4B2B1EEA5853002ABDB2 /* ConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F4B2A1EEA5853002ABDB2 /* ConstraintExtension.swift */; };
 		FA4C063A1EE12D5D009CD648 /* RobsJobs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA4C06381EE12D5D009CD648 /* RobsJobs.xcdatamodeld */; };
 		FA4C064A1EE12D5D009CD648 /* RobsJobsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C06491EE12D5D009CD648 /* RobsJobsTests.swift */; };
 		FA4C06551EE12D5D009CD648 /* RobsJobsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C06541EE12D5D009CD648 /* RobsJobsUITests.swift */; };
@@ -126,6 +129,8 @@
 		B1892ABA69DB170E763AD108 /* Pods-RobsJobsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RobsJobsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RobsJobsTests/Pods-RobsJobsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC2B9249C1FD8175469B4B82 /* Pods-RobsJobs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RobsJobs.release.xcconfig"; path = "Pods/Target Support Files/Pods-RobsJobs/Pods-RobsJobs.release.xcconfig"; sourceTree = "<group>"; };
 		E59E7A3D18C2E9D7CF837EF3 /* Pods_RobsJobsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RobsJobsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA28975C1EEA745B00BC577C /* MajorsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorsTableViewController.swift; sourceTree = "<group>"; };
+		FA28975E1EEA95DA00BC577C /* CompetenceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompetenceTableViewController.swift; sourceTree = "<group>"; };
 		FA2F4B1A1EE6498D002ABDB2 /* FacebookCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookCore.framework; path = "../../../Library/Developer/Xcode/DerivedData/RobsJobs-cnjrdueokhanyqayqseqwvjtjeex/Build/Products/Debug-iphonesimulator/FacebookCore/FacebookCore.framework"; sourceTree = "<group>"; };
 		FA2F4B1C1EE64994002ABDB2 /* FacebookLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookLogin.framework; path = "../../../Library/Developer/Xcode/DerivedData/RobsJobs-cnjrdueokhanyqayqseqwvjtjeex/Build/Products/Debug-iphonesimulator/FacebookLogin/FacebookLogin.framework"; sourceTree = "<group>"; };
 		FA2F4B1E1EE6499D002ABDB2 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/RobsJobs-cnjrdueokhanyqayqseqwvjtjeex/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
@@ -134,6 +139,7 @@
 		FA2F4B241EE64DB3002ABDB2 /* LoginData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		FA2F4B261EE93FBF002ABDB2 /* FontSetExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontSetExtension.swift; sourceTree = "<group>"; };
 		FA2F4B281EE97EA9002ABDB2 /* UserRegisterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRegisterData.swift; sourceTree = "<group>"; };
+		FA2F4B2A1EEA5853002ABDB2 /* ConstraintExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintExtension.swift; sourceTree = "<group>"; };
 		FA4C062E1EE12D5D009CD648 /* RobsJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RobsJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA4C06391EE12D5D009CD648 /* RobsJobs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RobsJobs.xcdatamodel; sourceTree = "<group>"; };
 		FA4C06401EE12D5D009CD648 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -373,6 +379,7 @@
 				FA4C08B51EE12F76009CD648 /* ImageViewRounding.swift */,
 				FA2F4B261EE93FBF002ABDB2 /* FontSetExtension.swift */,
 				FA4C08B61EE12F76009CD648 /* UIViewExtension.swift */,
+				FA2F4B2A1EEA5853002ABDB2 /* ConstraintExtension.swift */,
 				FA4C08B71EE12F76009CD648 /* BoldTextExtension.swift */,
 				FA4C08B81EE12F76009CD648 /* CALayerBorder.swift */,
 			);
@@ -406,7 +413,9 @@
 				FA4C08FA1EE1381B009CD648 /* CityPickerTableViewController.swift */,
 				FA4C08FB1EE1381B009CD648 /* ProvincePickerTableViewController.swift */,
 				FA4C08FC1EE1381B009CD648 /* SkillsPickerTableViewController.swift */,
+				FA28975E1EEA95DA00BC577C /* CompetenceTableViewController.swift */,
 				FA4C08FD1EE1381B009CD648 /* CharactersTableViewController.swift */,
+				FA28975C1EEA745B00BC577C /* MajorsTableViewController.swift */,
 				FA4C08FE1EE1381B009CD648 /* SetupProfileViewController.swift */,
 			);
 			name = "Setup Data";
@@ -800,6 +809,7 @@
 				FA4C09281EE13851009CD648 /* GotMatchedViewController.swift in Sources */,
 				FA4C09471EE138B7009CD648 /* UIDetailInformationRow.swift in Sources */,
 				FA4C08DE1EE13132009CD648 /* UIUtility.swift in Sources */,
+				FA28975F1EEA95DA00BC577C /* CompetenceTableViewController.swift in Sources */,
 				FA4C09071EE1381B009CD648 /* CharactersTableViewController.swift in Sources */,
 				FA4C09381EE1388C009CD648 /* SalaryPickerTableViewController.swift in Sources */,
 				FA4C09441EE138B7009CD648 /* temp.swift in Sources */,
@@ -850,6 +860,7 @@
 				FA4C09431EE138B7009CD648 /* DraggableView.swift in Sources */,
 				FA2F4B251EE64DB3002ABDB2 /* LoginData.swift in Sources */,
 				FA2F4B291EE97EA9002ABDB2 /* UserRegisterData.swift in Sources */,
+				FA2F4B2B1EEA5853002ABDB2 /* ConstraintExtension.swift in Sources */,
 				FA4C08C91EE1309C009CD648 /* ResetPasswordViewController.swift in Sources */,
 				FA4C08E21EE13132009CD648 /* SSRadioButtonsController.swift in Sources */,
 				FA4C09151EE13839009CD648 /* Page4ViewController.swift in Sources */,
@@ -861,6 +872,7 @@
 				FA4C08DD1EE13132009CD648 /* ButtonCustom.swift in Sources */,
 				FA4C092E1EE13851009CD648 /* CoreTabBarControler.swift in Sources */,
 				FA4C09121EE13839009CD648 /* Page1ViewController.swift in Sources */,
+				FA28975D1EEA745B00BC577C /* MajorsTableViewController.swift in Sources */,
 				FA4C09591EE4FD11009CD648 /* DocumentData.swift in Sources */,
 				FA4C09291EE13851009CD648 /* CustomTabbarViewController.swift in Sources */,
 				FA4C094F1EE138CD009CD648 /* JsonRequest.swift in Sources */,

@@ -90,8 +90,26 @@ class SendJsonSetupProfile{
         } else{
             postString += "&distance=50"
         }
+        
+        if let skills = userDictionary["skills"] as? String{
+            postString += "&skills=\(skills)"
+        } else{
+            postString += "&skills="
+        }
+        
+        if let jurusan = userDictionary["jurusan"] as? String{
+            postString += "&jurusan=\(jurusan)"
+        } else{
+            postString += "&jurusan="
+        }
+        
+        if let kompetensi = userDictionary["kompetensi"] as? String{
+            postString += "&kompetensi=\(kompetensi)"
+        } else{
+            postString += "&kompetensi="
+        }
+        
         print("distance string = \(userDictionary["distance"] as? String)")
-
         
         if let bio = userDictionary["bio"] as? String{
             postString += "&bio=\(bio)"
@@ -105,7 +123,6 @@ class SendJsonSetupProfile{
             postString += "&experience="
         }
         
-        postString += "&skill=" //deprecated
         postString += "&isemployed=" //deprecated
         postString += "&currentsector=" //deprecated
         postString += "&hasexperience=" //deprecated
