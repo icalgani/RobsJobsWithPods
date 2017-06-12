@@ -14,9 +14,11 @@ import CoreData
 extension UIFont {
     
     struct AppFontName {
-        static let regular = "roboto"
-        static let bold = "roboto-BoldMT"
-        static let italic = "roboto-ItalicMT"
+        static let regular = "Roboto-Regular"
+        static let bold = "Roboto-Bold"
+        static let italic = "roboto-Italic"
+        static let heavy = "Roboto-Black"
+        static let demiBold = "roboto-DemiBoldMT"
     }
     
     convenience init(myCoder aDecoder: NSCoder) {
@@ -26,10 +28,14 @@ extension UIFont {
                 switch fontAttribute {
                 case "CTFontRegularUsage":
                     fontName = AppFontName.regular
-                case "CTFontEmphasizedUsage", "CTFontBoldUsage", "CTFontHeavyUsage", "CTFontDemiUsage":
+                case "CTFontEmphasizedUsage", "CTFontBoldUsage":
                     fontName = AppFontName.bold
                 case "CTFontObliqueUsage":
                     fontName = AppFontName.italic
+                case "CTFontHeavyUsage":
+                    fontName = AppFontName.heavy
+                case "CTFontDemiUsage":
+                    fontName = AppFontName.demiBold
                 default:
                     print(fontAttribute)
                     fontName = AppFontName.regular

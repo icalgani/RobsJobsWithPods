@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 class JobSwipingViewController: UIViewController,CLLocationManagerDelegate, UITabBarControllerDelegate {
-
+    
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation!
     
@@ -54,6 +54,7 @@ class JobSwipingViewController: UIViewController,CLLocationManagerDelegate, UITa
         //
         self.tabBarController?.delegate = self
         checkLocationIsOn()
+        
     }
 
     override func didReceiveMemoryWarning() {

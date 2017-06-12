@@ -22,7 +22,7 @@ public class StraightLine: UIView
     public override func draw(_ frame: CGRect) {
         let h = frame.height
         let w = frame.width
-        let color:UIColor = UIColor.black
+        let color:UIColor = UIColor(red:0.87, green:0.87, blue:0.87, alpha:1.0)
         
         let drect = CGRect(x: 1, y: 10, width: w, height: h)
         let bpath:UIBezierPath = UIBezierPath(rect: drect)

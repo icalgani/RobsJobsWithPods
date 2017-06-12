@@ -24,7 +24,7 @@ class SwipeCardData{
     var jobsScoreToSend: [String] = []
     var companyNameToSend: [String] = []
     
-    let API_URL = "http://api.robsjobs.co/api/v1"
+    let API_URL = "http://apidev.robsjobs.co/api/v1"
 //===================================== REMOVE ALL SWIPE CARD DATA ===============================================
     func resetAllData(){
         idToSend.removeAll()
@@ -47,7 +47,8 @@ class SwipeCardData{
         resetAllData()
         var request = URLRequest(url: URL(string: "\(API_URL)/match/\(dataToGet)")!)
         //create the session object
-        print("data to get = \(dataToGet)")
+
+
         request.httpMethod = "GET"
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -72,7 +73,6 @@ class SwipeCardData{
                         
                         let jsonData = json["data"] as! [[String:Any]]
                         
-                        print(jsonData)
                         if(jsonData.count != 0){
                             for index in 0...(jsonData.count)-1 {
                                 
@@ -86,7 +86,9 @@ class SwipeCardData{
                                 self.salaryToSend.append(aObject["salary"] as! String)
     //                            self.endDateToSend.append(aObject["end_date"] as! String)
                                 let endDate = aObject["end_date"] as! String
-                                self.endDateToSend.append(self.calculateEndDate(endDate: endDate))
+                                print("end date = \(endDate)")
+                                self.endDateToSend.append("5")
+//                                self.endDateToSend.append(self.calculateEndDate(endDate: endDate))
                                 
                                 if aObject["company_logo"] != nil{
                                     print("aObject dalam if != nil \(aObject["company_logo"] as? String ?? "No Data")")

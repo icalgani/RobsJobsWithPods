@@ -14,13 +14,13 @@ import CoreLocation
 class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
-
-    let swipeCardData = SwipeCardData()
-    let employerData = EmployerData()
     
+    //  swipe card data
+    let swipeCardData = SwipeCardData()
     var exampleCardLabels: [String]!
     var allCards: [DraggableView]!
     
+    //  profile data
     var idArray: [String] = []
     var employerIDArray: [String] = []
     var companyNameArray: [String] = []
@@ -35,9 +35,10 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
     var descriptionArray: [String] = []
     var companyImageArray: [UIImage] = []
     var jobsScoreArray: [String] = []
-
+    
+    //  swipe card size
     let MAX_BUFFER_SIZE = 2
-    let CARD_HEIGHT: CGFloat = 300
+    let CARD_HEIGHT: CGFloat = 400
     let CARD_WIDTH: CGFloat = 290
 
     var cardsLoadedIndex: Int!
@@ -65,6 +66,9 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         self.setupView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.loadList), name:NSNotification.Name(rawValue: "load"), object: nil)
+        let jobTapped = UITapGestureRecognizer(target: self, action: #selector(self.jobCardIsPressed(sender:)))
+        self.addGestureRecognizer(jobTapped)
+        self.isUserInteractionEnabled = true
         
         let userDefaults = UserDefaults.standard
         let userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
@@ -77,6 +81,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         
         if let locValue:CLLocationCoordinate2D = locationManager.location?.coordinate {
+            print("userID = \(userDictionary?["userID"]!)")
             if let userid = userDictionary?["userID"]{
                 print("jobswiping view, getting data from server")
                 swipeCardData.getDataFromServer(dataToGet: "\(String(describing: (userDictionary?["userID"])!))/1/\(cardsSum)/\(locValue.latitude)/\(locValue.longitude)")
@@ -90,29 +95,29 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
 //        self.backgroundColor = UIColor(red: 0.92, green: 0.93, blue: 0.95, alpha: 1)
 
         //create pass button
-        xButtonView = UIView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 35,y: (self.frame.size.height/2) + CARD_HEIGHT/2 + 10,width: 50,height: 50))
+        xButtonView = UIView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 35,y: self.frame.size.height - 65 ,width: 50,height: 50))
         xButtonView.backgroundColor = UIColor.white
         xButtonView.layer.cornerRadius = xButtonView.frame.size.width / 2
         xButtonView.layer.shadowRadius = 3
-        xButtonView.layer.shadowOpacity = 0.6
+        xButtonView.layer.shadowOpacity = 0.3
         xButtonView.layer.shadowOffset = CGSize(width: 1,height: 1)
         
         xButton = UIButton(frame: CGRect(x:0 , y: 0,width: 50,height: 50))
-        xButton.setImage(UIImage(named: "RJ_pass_icon_col"), for: UIControlState.normal)
+        xButton.setImage(UIImage(named: "rj_pass_icon_col-1"), for: UIControlState.normal)
         xButton.addTarget(self, action: #selector(self.swipeLeft), for: UIControlEvents.touchUpInside)
         self.addSubview(xButtonView)
         
         //create ok button
-        checkButtonView = UIView(frame: CGRect(x: self.frame.size.width/2 + CARD_WIDTH/2 - 85,y: (self.frame.size.height/2) + CARD_HEIGHT/2 + 10,width: 50,height: 50))
+        checkButtonView = UIView(frame: CGRect(x: self.frame.size.width/2 + CARD_WIDTH/2 - 85,y: self.frame.size.height - 65 ,width: 50,height: 50))
         checkButtonView.backgroundColor = UIColor.white
         checkButtonView.layer.cornerRadius = checkButtonView.frame.size.width / 2
         checkButtonView.layer.shadowRadius = 3
-        checkButtonView.layer.shadowOpacity = 0.6
+        checkButtonView.layer.shadowOpacity = 0.3
         checkButtonView.layer.shadowOffset = CGSize(width: 1,height: 1)
         self.addSubview(checkButtonView)
         
         checkButton = UIButton(frame: CGRect(x:0 , y: 0,width: 50,height: 50))
-        checkButton.setImage(UIImage(named: "RJ_apply_icon_col"), for: UIControlState.normal)
+        checkButton.setImage(UIImage(named: "rj_apply_icon_col-1"), for: UIControlState.normal)
         checkButton.addTarget(self, action: #selector(self.swipeRight), for: UIControlEvents.touchUpInside)
 
         xButtonView.addSubview(xButton)
@@ -153,7 +158,10 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
     }
 
     func createDraggableViewWithDataAtIndex(index: NSInteger) -> DraggableView {
-        let draggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2,y: (self.frame.size.height - CARD_HEIGHT - 50)/2,width: CARD_WIDTH,height: CARD_HEIGHT))
+        let NEW_CARD_WIDTH = self.frame.size.width - 20
+        let NEW_CARD_HEIGHT = self.frame.size.height - 185
+        
+        let draggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - NEW_CARD_WIDTH)/2,y: (self.frame.size.height - NEW_CARD_HEIGHT + 20)/2,width: NEW_CARD_WIDTH,height: NEW_CARD_HEIGHT))
         
         //set new data
         //set Job Title
@@ -164,9 +172,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
 //        draggableView.requiredSkillLabel.text = interestArray[index]
         draggableView.typeLabel.text = employmentTypeArray[index]
         draggableView.typeLabel.font = UIFont.boldSystemFont(ofSize: 10)
-        draggableView.appliedNumberLabel.text = "\(distanceArray[index]) Km"
-        draggableView.salaryLabel.text = "IDR. \(salaryArray[index])"
-        draggableView.experienceLabel.text = experienceArray[index]
+        draggableView.appliedNumberLabel.text = "\(distanceArray[index]) Km away"
+        draggableView.salaryLabel.text = "\(salaryArray[index])"
         draggableView.offerTimeLabel.text = "end in \(endDateArray[index]) days"
         draggableView.jobDescriptionLabel.text = descriptionArray[index]
         draggableView.companyNameLabel.text = companyNameArray[index]
@@ -381,9 +388,16 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
     }
     
     func tapForMorePressed(button:UIButton) -> Void {
-        print("button is pressed")
+        print("job card is pressed")
         let viewController = JobSwipingViewController()
         let indexToSend = 10 - cardsSum
         viewController.doTapForMore(jobTitle: jobTitleArray[indexToSend], interest: interestArray[indexToSend], employmentType: employmentTypeArray[indexToSend], distance: distanceArray[indexToSend], salary: salaryArray[indexToSend], endDate: endDateArray[indexToSend], companyLogo: companyImageArray[indexToSend], experience: experienceArray[indexToSend], descriptionJob: descriptionArray[indexToSend], idJob: idArray[indexToSend], employerID: employerIDArray[indexToSend], companyName: companyNameArray[indexToSend])
     }
+    
+    func jobCardIsPressed(sender: UITapGestureRecognizer? = nil){
+        let viewController = JobSwipingViewController()
+        let indexToSend = 10 - cardsSum
+        viewController.doTapForMore(jobTitle: jobTitleArray[indexToSend], interest: interestArray[indexToSend], employmentType: employmentTypeArray[indexToSend], distance: distanceArray[indexToSend], salary: salaryArray[indexToSend], endDate: endDateArray[indexToSend], companyLogo: companyImageArray[indexToSend], experience: experienceArray[indexToSend], descriptionJob: descriptionArray[indexToSend], idJob: idArray[indexToSend], employerID: employerIDArray[indexToSend], companyName: companyNameArray[indexToSend])
+    }
+    
 }

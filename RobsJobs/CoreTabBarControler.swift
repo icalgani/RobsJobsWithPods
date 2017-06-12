@@ -10,10 +10,12 @@ import UIKit
 
 class CoreTabBarControler: UITabBarController {
 
+    @IBOutlet weak var CoreTabBar: UITabBar!
+    @IBInspectable var defaultIndex: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        selectedIndex = defaultIndex
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,13 +24,14 @@ class CoreTabBarControler: UITabBarController {
     }
     
     override func viewWillLayoutSubviews() {
-//        var tabFrame = self.tabBar.frame
-//        // - 40 is editable , the default value is 49 px, below lowers the tabbar and above increases the tab bar size
-//        tabFrame.size.height = 30
-//        tabFrame.origin.y = self.view.frame.size.height - 30
-//        self.tabBar.frame = tabFrame
-//        
-        self.tabBar.backgroundColor = UIColor.white
+        let yNavBar = self.navigationController?.navigationBar.frame.size.height
+        // yStatusBar indicates the height of the status bar
+        let yStatusBar = UIApplication.shared.statusBarFrame.size.height
+        // Set the size and the position in the screen of the tab bar
+        CoreTabBar.frame = CGRect(x: 0,y: yStatusBar,width: CoreTabBar.frame.size.width,height: CoreTabBar.frame.size.height)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
     }
     /*
     // MARK: - Navigation

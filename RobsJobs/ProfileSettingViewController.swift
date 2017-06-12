@@ -156,7 +156,7 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
         }
         if (userDictionary?["distance"]) != nil{
             DistanceSlider.value = (userDictionary?["distance"] as! Float)
-            DistanceLabel.text = "\(String(describing: userDictionary?["distance"]!))Km."
+            DistanceLabel.text = "\(String(describing: userDictionary?["distance"] as! Int))Km."
         }
         
         if (userDictionary?["employmentStatus"]) != nil{

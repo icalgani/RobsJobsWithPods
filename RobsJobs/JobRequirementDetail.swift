@@ -11,34 +11,12 @@ import UIKit
 
 class JobRequirementDetail{
     
-    func createJobRequirementDetail(view: UIView, container: UIView, typeLabel: UILabel, salaryLabel: UILabel, experienceLabel: UILabel){
-        
-        let typeLogo = UIImageView(frame: CGRect(x:0 ,y:0 ,width: 15, height: 15))
-        typeLogo.image = UIImage(named: "RJ_work_icon")
-        container.addSubview(typeLogo)
-        
-        typeLogo.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint(item: typeLogo,
-                           attribute: .leading,
-                           relatedBy: .equal,
-                           toItem: container,
-                           attribute: .leading,
-                           multiplier: 1.0,
-                           constant: 0.0).isActive = true
-        
-        NSLayoutConstraint(item: typeLogo,
-                           attribute: .top,
-                           relatedBy: .equal,
-                           toItem: container,
-                           attribute: .top,
-                           multiplier: 1.0,
-                           constant: 5.0).isActive = true
+    func createJobRequirementDetail(view: UIView, container: UIView, typeLabel: UILabel, salaryLabel: UILabel){
         
         //information label
         typeLabel.text = "No Info Given"
-        typeLabel.font = UIFont.boldSystemFont(ofSize: 10)
-        typeLabel.textColor = UIColor(red:0.00, green:0.59, blue:0.53, alpha:1.0)
+        typeLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        typeLabel.textColor = UIColor.black
         container.addSubview(typeLabel)
         typeLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -46,8 +24,8 @@ class JobRequirementDetail{
         NSLayoutConstraint(item: typeLabel,
                            attribute: .leading,
                            relatedBy: .equal,
-                           toItem: typeLogo,
-                           attribute: .trailing,
+                           toItem: container,
+                           attribute: .leading,
                            multiplier: 1.0,
                            constant: 5.0).isActive = true
         
@@ -67,37 +45,14 @@ class JobRequirementDetail{
                            multiplier: 1.0,
                            constant: 12.0).isActive = true
         
-        createEachDetail(logoName: "RJ_sallary_icon", requirementDetailLabel: salaryLabel, container: container, topConstraintTo: typeLabel)
+        createSalary(requirementDetailLabel: salaryLabel, container: container, topConstraintTo: typeLabel)
         
-        createEachDetail(logoName: "RJ_experience_icon", requirementDetailLabel: experienceLabel, container: container, topConstraintTo: salaryLabel)
     }
     
-    func createEachDetail(logoName: String, requirementDetailLabel: UILabel, container: UIView, topConstraintTo: UILabel){
-        let logoImage = UIImageView(frame: CGRect(x:0 ,y:0 ,width: 15, height: 15))
-        logoImage.image = UIImage(named: logoName)
-        container.addSubview(logoImage)
-        
-        logoImage.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint(item: logoImage,
-                           attribute: .leading,
-                           relatedBy: .equal,
-                           toItem: container,
-                           attribute: .leading,
-                           multiplier: 1.0,
-                           constant: 0.0).isActive = true
-        
-        NSLayoutConstraint(item: logoImage,
-                           attribute: .top,
-                           relatedBy: .equal,
-                           toItem: topConstraintTo,
-                           attribute: .bottom,
-                           multiplier: 1.0,
-                           constant: 7.0).isActive = true
-        
+    func createSalary(requirementDetailLabel: UILabel, container: UIView, topConstraintTo: UILabel){
         //information label
         requirementDetailLabel.text = "No Info Given"
-        requirementDetailLabel.font = UIFont.boldSystemFont(ofSize: 10)
+        requirementDetailLabel.font = UIFont.boldSystemFont(ofSize: 18)
         requirementDetailLabel.textColor = UIColor(red:0.00, green:0.59, blue:0.53, alpha:1.0)
         container.addSubview(requirementDetailLabel)
         requirementDetailLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -106,8 +61,8 @@ class JobRequirementDetail{
         NSLayoutConstraint(item: requirementDetailLabel,
                            attribute: .leading,
                            relatedBy: .equal,
-                           toItem: logoImage,
-                           attribute: .trailing,
+                           toItem: container,
+                           attribute: .leading,
                            multiplier: 1.0,
                            constant: 5.0).isActive = true
         
@@ -125,7 +80,7 @@ class JobRequirementDetail{
                            toItem: nil,
                            attribute: .notAnAttribute,
                            multiplier: 1.0,
-                           constant: 12.0).isActive = true
+                           constant: 20.0).isActive = true
 
     }
     
@@ -155,14 +110,14 @@ class JobRequirementDetail{
                            multiplier: 1.0,
                            constant: -10.0).isActive = true
         
-        NSLayoutConstraint(item: jobDescriptionLabel,
-                           attribute: .height,
-                           relatedBy: .equal,
-                           toItem: nil,
-                           attribute: .notAnAttribute,
-                           multiplier: 1.0,
-                           constant: 60.0).isActive = true
-        
+//        NSLayoutConstraint(item: jobDescriptionLabel,
+//                           attribute: .height,
+//                           relatedBy: .equal,
+//                           toItem: nil,
+//                           attribute: .notAnAttribute,
+//                           multiplier: 1.0,
+//                           constant: 60.0).isActive = true
+//        
         NSLayoutConstraint(item: jobDescriptionLabel,
                            attribute: .top,
                            relatedBy: .equal,
@@ -173,7 +128,7 @@ class JobRequirementDetail{
     }
     
     //FOOTER
-    func createCardFooter(view: UIView, appliedNumberLabel: UILabel, offerRemainingLabel: UILabel, topConstraint: UIButton){
+    func createCardFooter(view: UIView, appliedNumberLabel: UILabel, offerRemainingLabel: UILabel, topConstraint: UIView){
         //Stack View
         let stackView   = UIStackView()
         stackView.axis  = UILayoutConstraintAxis.horizontal
@@ -232,12 +187,12 @@ class JobRequirementDetail{
                            constant: 0.0).isActive = true
         
         NSLayoutConstraint(item: stackView,
-                           attribute: .top,
+                           attribute: .bottom,
                            relatedBy: .equal,
-                           toItem: topConstraint,
+                           toItem: view,
                            attribute: .bottom,
                            multiplier: 1.0,
-                           constant: 15.0).isActive = true
+                           constant: -8.0).isActive = true
         
         NSLayoutConstraint(item: stackView,
                            attribute: .height,
@@ -245,7 +200,7 @@ class JobRequirementDetail{
                            toItem: nil,
                            attribute: .notAnAttribute,
                            multiplier: 1.0,
-                           constant:20.0).isActive = true
+                           constant:22.0).isActive = true
         
         appliedView.translatesAutoresizingMaskIntoConstraints = false
         appliedNumberLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -263,7 +218,7 @@ class JobRequirementDetail{
         
         //information label
         informationLabel.text = "No Info Given"
-        informationLabel.font = UIFont(name: "Arial", size: 10)
+        informationLabel.font = UIFont(name: "Arial", size: 12)
         
         container.translatesAutoresizingMaskIntoConstraints = false
         informationLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -309,6 +264,6 @@ class JobRequirementDetail{
                            toItem: nil,
                            attribute: .notAnAttribute,
                            multiplier: 1.0,
-                           constant: 10.0).isActive = true
+                           constant: 14.0).isActive = true
     }
 }
