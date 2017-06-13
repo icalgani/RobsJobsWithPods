@@ -179,6 +179,16 @@ class LoginData{
                             print("employment status = \(employmentStatus)")
                         }
                         
+                        if let kompetensi = jsonData["kompetensi"]{
+                            userDictionary["kompetensi"] = kompetensi
+                            print("employment status = \(kompetensi)")
+                        }
+                        
+                        if let jurusan = jsonData["jurusan"]{
+                            userDictionary["jurusan"] = jurusan
+                            print("employment status = \(jurusan)")
+                        }
+                        
                         self.userDefaults.set(userDictionary, forKey: "userDictionary")
 //                        }
                         DispatchQueue.main.async {

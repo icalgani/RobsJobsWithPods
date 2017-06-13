@@ -19,9 +19,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var UserNameLabel: UILabel!
     @IBOutlet weak var BirthdateLabel: UILabel!
     @IBOutlet weak var EmailLabel: UILabel!
-    @IBOutlet weak var LocationLabel: UILabel!
     @IBOutlet weak var EducationLabel: UILabel!
-    @IBOutlet weak var CharactersLabel: UILabel!
     @IBOutlet weak var SkillsLabel: UILabel!
     @IBOutlet weak var UserImage: UIImageView!
     @IBOutlet weak var ProfessionLabel: UILabel!
@@ -31,7 +29,33 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var ProfessionView: UIView!
     @IBOutlet weak var UserAgeView: UIView!
     
-    @IBAction func doLogOut(_ sender: UIButton) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // set setting tap recognizer
+        let settingIsTapped = UITapGestureRecognizer(target: self, action: #selector(self.goToSettings(sender:)))
+        CityView.addGestureRecognizer(settingIsTapped)
+        CityView.isUserInteractionEnabled = true
+        
+        // set logout tap recognizer
+        let logoutIsTapped = UITapGestureRecognizer(target: self, action: #selector(self.doLogOut(sender:)))
+        ProfessionView.addGestureRecognizer(logoutIsTapped)
+        ProfessionView.isUserInteractionEnabled = true
+        
+        // notification when user update image
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshUserImage), name:NSNotification.Name(rawValue: "refreshUserImage"), object: nil)
+    }
+    
+    func goToSettings(sender: UITapGestureRecognizer){
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Core", bundle: nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SettingProfile") as UIViewController
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = nextViewController
+    }
+    
+    func doLogOut(sender: UITapGestureRecognizer) {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: "userDictionary")
         
@@ -40,11 +64,6 @@ class ProfileViewController: UIViewController {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = nextViewController
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshUserImage), name:NSNotification.Name(rawValue: "refreshUserImage"), object: nil)
     }
     
     func refreshUserImage(){
@@ -90,16 +109,32 @@ class ProfileViewController: UIViewController {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = nextViewController
         } else{
+            
             UserNameLabel.text = userDictionary?["userName"] as? String
-
             BirthdateLabel.text = (userDictionary?["birthdate"] as? String)
             EmailLabel.text = userDictionary?["email"] as? String
-            LocationLabel.text = userDictionary?["city"] as? String
-            EducationLabel.text = userDictionary?["edu_level"] as? String
             UserDescriptionLabel.text = userDictionary?["bio"] as? String
             ProfessionLabel.text = userDictionary?["sectors"] as? String
-            CityLabel.text = userDictionary?["city"] as? String
+
+            // set education label
+            var educationString = userDictionary?["edu_level"] as? String
+            if(userDictionary?["jurusan"] != nil){
+                let jurusanString = userDictionary?["jurusan"] as? String
+                educationString = "\(educationString!) - \(jurusanString!)"
+            }
+            EducationLabel.text = educationString
             
+            // set city label
+            let cityString = userDictionary?["city"] as? String
+            let provinceString = userDictionary?["province"] as? String
+            CityLabel.text = "\(cityString!) - \(provinceString!)"
+            
+            // set skills label
+            if(userDictionary?["kompetensi"] != nil){
+                SkillsLabel.text = userDictionary?["kompetensi"] as? String
+            } else {
+                SkillsLabel.text = userDictionary?["skills"] as? String
+            }
             
             //download image from url
             if let imageData = userDictionary?["image"] {

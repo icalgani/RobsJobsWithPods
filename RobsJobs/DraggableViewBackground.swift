@@ -66,6 +66,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         self.setupView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.loadList), name:NSNotification.Name(rawValue: "load"), object: nil)
+        
         let jobTapped = UITapGestureRecognizer(target: self, action: #selector(self.jobCardIsPressed(sender:)))
         self.addGestureRecognizer(jobTapped)
         self.isUserInteractionEnabled = true
