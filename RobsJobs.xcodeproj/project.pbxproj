@@ -88,7 +88,6 @@
 		FA4C09391EE1388C009CD648 /* CurrentSectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C09361EE1388C009CD648 /* CurrentSectorTableViewController.swift */; };
 		FA4C093A1EE1388C009CD648 /* EmploymentPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C09371EE1388C009CD648 /* EmploymentPickerTableViewController.swift */; };
 		FA4C09431EE138B7009CD648 /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C093D1EE138B7009CD648 /* DraggableView.swift */; };
-		FA4C09441EE138B7009CD648 /* temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C093E1EE138B7009CD648 /* temp.swift */; };
 		FA4C09451EE138B7009CD648 /* DraggableViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C093F1EE138B7009CD648 /* DraggableViewBackground.swift */; };
 		FA4C09461EE138B7009CD648 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C09401EE138B7009CD648 /* OverlayView.swift */; };
 		FA4C09471EE138B7009CD648 /* UIDetailInformationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C09411EE138B7009CD648 /* UIDetailInformationRow.swift */; };
@@ -108,6 +107,7 @@
 		FAFF25981EEE564E0051E6D6 /* TwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF25971EEE564E0051E6D6 /* TwoVC.swift */; };
 		FAFF259A1EEE56640051E6D6 /* ThreeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF25991EEE56640051E6D6 /* ThreeVC.swift */; };
 		FAFF259C1EEE5A150051E6D6 /* testSLPaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF259B1EEE5A150051E6D6 /* testSLPaging.swift */; };
+		FAFF259F1EEFE3680051E6D6 /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF259E1EEFE3670051E6D6 /* enum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,7 +223,6 @@
 		FA4C09361EE1388C009CD648 /* CurrentSectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentSectorTableViewController.swift; sourceTree = "<group>"; };
 		FA4C09371EE1388C009CD648 /* EmploymentPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmploymentPickerTableViewController.swift; sourceTree = "<group>"; };
 		FA4C093D1EE138B7009CD648 /* DraggableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
-		FA4C093E1EE138B7009CD648 /* temp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = temp.swift; sourceTree = "<group>"; };
 		FA4C093F1EE138B7009CD648 /* DraggableViewBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableViewBackground.swift; sourceTree = "<group>"; };
 		FA4C09401EE138B7009CD648 /* OverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		FA4C09411EE138B7009CD648 /* UIDetailInformationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDetailInformationRow.swift; sourceTree = "<group>"; };
@@ -243,6 +242,7 @@
 		FAFF25971EEE564E0051E6D6 /* TwoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoVC.swift; sourceTree = "<group>"; };
 		FAFF25991EEE56640051E6D6 /* ThreeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeVC.swift; sourceTree = "<group>"; };
 		FAFF259B1EEE5A150051E6D6 /* testSLPaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testSLPaging.swift; sourceTree = "<group>"; };
+		FAFF259E1EEFE3670051E6D6 /* enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +341,7 @@
 		FA4C06301EE12D5D009CD648 /* RobsJobs */ = {
 			isa = PBXGroup;
 			children = (
+				FAFF259D1EEFE3350051E6D6 /* Enum */,
 				FA2897601EED949F00BC577C /* Utility */,
 				FA4C09491EE138C1009CD648 /* Data Source */,
 				FA4C093C1EE138A8009CD648 /* Swipe Library */,
@@ -520,7 +521,6 @@
 			isa = PBXGroup;
 			children = (
 				FA4C093D1EE138B7009CD648 /* DraggableView.swift */,
-				FA4C093E1EE138B7009CD648 /* temp.swift */,
 				FA4C093F1EE138B7009CD648 /* DraggableViewBackground.swift */,
 				FA4C09401EE138B7009CD648 /* OverlayView.swift */,
 				FA4C09411EE138B7009CD648 /* UIDetailInformationRow.swift */,
@@ -543,6 +543,14 @@
 				FA4C08F71EE1381B009CD648 /* SendJsonSetupProfile.swift */,
 			);
 			name = "Data Source";
+			sourceTree = "<group>";
+		};
+		FAFF259D1EEFE3350051E6D6 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				FAFF259E1EEFE3670051E6D6 /* enum.swift */,
+			);
+			name = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -854,7 +862,6 @@
 				FAFF25961EEE563D0051E6D6 /* OneVC.swift in Sources */,
 				FA4C09071EE1381B009CD648 /* CharactersTableViewController.swift in Sources */,
 				FA4C09381EE1388C009CD648 /* SalaryPickerTableViewController.swift in Sources */,
-				FA4C09441EE138B7009CD648 /* temp.swift in Sources */,
 				FA4C08DB1EE13132009CD648 /* FloatLabelTextViewWithGreyUnderline.swift in Sources */,
 				FA4C092C1EE13851009CD648 /* SendJobToFriendViewController.swift in Sources */,
 				FA4C09531EE138CD009CD648 /* ChatData.swift in Sources */,
@@ -901,6 +908,7 @@
 				FA4C063A1EE12D5D009CD648 /* RobsJobs.xcdatamodeld in Sources */,
 				FA4C09031EE1381B009CD648 /* DesiredSectorTableViewController.swift in Sources */,
 				FA4C09081EE1381B009CD648 /* SetupProfileViewController.swift in Sources */,
+				FAFF259F1EEFE3680051E6D6 /* enum.swift in Sources */,
 				FA4C09061EE1381B009CD648 /* SkillsPickerTableViewController.swift in Sources */,
 				FA4C08E41EE13132009CD648 /* LabelUtility.swift in Sources */,
 				FA4C09431EE138B7009CD648 /* DraggableView.swift in Sources */,

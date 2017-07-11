@@ -61,6 +61,7 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
     @IBOutlet weak var SkillsInput: UITextField!
     @IBOutlet weak var MajorsInput: UITextField!
     @IBOutlet weak var CompetenceInput: UITextField!
+    @IBOutlet weak var CharacterCountLabel: UILabel!
     
     
     @IBAction func goToTutorialPage(_ sender: UIButton) {
@@ -243,6 +244,10 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
             setInputText()
         }
         
+        let newLength = (self.DescribeYourselfInput.text?.characters.count)!
+        self.CharacterCountLabel.text = "\(140 - newLength)/140"
+            
+            
         //add done to birthdate datepicker
         addUIBarPad(textField: BirthdateInput)
         
@@ -258,6 +263,7 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
         SkillsInput.delegate = self
         MajorsInput.delegate = self
         CompetenceInput.delegate = self
+        DescribeYourselfInput.delegate = self
         
         //set keyboard
         NameInput.setLeftPaddingPoints(20)
@@ -399,6 +405,21 @@ class SetupProfileViewController: UIViewController, UITextFieldDelegate, SSRadio
             return false
         }
     return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if(textField == self.DescribeYourselfInput){
+            let newLength = (self.DescribeYourselfInput.text?.characters.count)! + string.characters.count - range.length
+            print(newLength)
+            if(newLength <= 141){
+                self.CharacterCountLabel.text = "\(140 - newLength)/140"
+                return true
+            }else{
+                return false
+            }
+        }
+        return false
     }
 
     override func didReceiveMemoryWarning() {

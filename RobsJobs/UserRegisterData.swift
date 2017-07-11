@@ -11,7 +11,8 @@ import UIKit
 
 class UserRegisterData{
     
-    let API_URL = "http://api.robsjobs.co/api/v1"
+    
+    let API_URL = API_ROBSJOBS.api.rawValue
     
 //===================================== SEND USER REGISTER TO SERVER ===============================================
     func doRegisterUserToServer(targetViewController: UIViewController, userEmail: String, userPassword: String, userName: String, userMobileNo: String){

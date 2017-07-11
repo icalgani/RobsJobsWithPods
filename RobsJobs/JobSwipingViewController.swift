@@ -54,7 +54,6 @@ class JobSwipingViewController: UIViewController,CLLocationManagerDelegate, UITa
         //
         self.tabBarController?.delegate = self
         checkLocationIsOn()
-        
     }
 
     override func didReceiveMemoryWarning() {

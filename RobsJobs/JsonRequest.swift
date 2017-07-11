@@ -23,7 +23,7 @@ class JsonRequest{
     var majorsToSend: [String] = []
     var competenceToSend: [String] = []
 
-    let API_URL = "http://apidev.robsjobs.co/api/v1"
+    let API_URL = API_ROBSJOBS.api.rawValue
     
     //==================================== GET DATA FROM SERVER =======================================================
     func getDataFromServer(dataToGet: String){

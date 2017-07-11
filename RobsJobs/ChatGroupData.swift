@@ -15,7 +15,8 @@ class ChatGroupData{
     var companyUserNameToPass: [String] = []
     var chatGroupIDToPass: [String] = []
     
-    let API_URL = "http://apidev.robsjobs.co/api/v1"
+    
+    let API_URL = API_ROBSJOBS.api.rawValue
     
 //===================================== GET CHAT GROUP DATA FROM SERVER ===============================================
     func getDataFromServer(dataToGet: String){

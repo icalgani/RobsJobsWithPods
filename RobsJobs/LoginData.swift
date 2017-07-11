@@ -12,18 +12,21 @@ import Alamofire
 
 class LoginData{
 
-    let API_URL = "http://apidev.robsjobs.co/api/v1"
+    
+    let API_URL = API_ROBSJOBS.api.rawValue
     var userDefaults = UserDefaults.standard
 
 //========================================== SEND LOGIN REQUEST =======================================================
     func userLoginRequest(username: String, password: String){
         var request = URLRequest(url: URL(string: "\(API_URL)/user/login")!)
-        
+        print(API_ROBSJOBS.api)
+        print(API_ROBSJOBS.api.rawValue)
         //check login
         request.httpMethod = "POST"
         let postString = "email=\(username)&password=\(password)"
         request.httpBody = postString.data(using: .utf8)
         print("login post string: \(postString)")
+        print("request url: \(request)")
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
                 print("error=\(String(describing: error))")
@@ -162,12 +165,12 @@ class LoginData{
                             userDictionary["salary"] = String(describing: salary)
                         }
                         
-                        if let salarymin = jsonData["salarymin"] {
-                            userDictionary["salarymin"] = String(describing: salarymin)
+                        if let salarymin = jsonData["salary_min"] {
+                            userDictionary["salary_min"] = String(describing: salarymin)
                         }
                         
-                        if let salarymax = jsonData["salarymax"]{
-                            userDictionary["salarymax"] = String(describing: salarymax)
+                        if let salarymax = jsonData["salary_max"]{
+                            userDictionary["salary_max"] = String(describing: salarymax)
                         }
                         
                         if let distance = jsonData["distance"]{
@@ -181,16 +184,20 @@ class LoginData{
                         
                         if let kompetensi = jsonData["kompetensi"]{
                             userDictionary["kompetensi"] = kompetensi
-                            print("employment status = \(kompetensi)")
+                            print("kompetensi = \(kompetensi)")
                         }
                         
                         if let jurusan = jsonData["jurusan"]{
                             userDictionary["jurusan"] = jurusan
-                            print("employment status = \(jurusan)")
+                            print("jurusan = \(jurusan)")
+                        }
+                        
+                        if let experience = jsonData[JsonData.experience.rawValue]{
+                            userDictionary[JsonData.experience.rawValue] = experience
+                            print("experience = \(experience)")
                         }
                         
                         self.userDefaults.set(userDictionary, forKey: "userDictionary")
-//                        }
                         DispatchQueue.main.async {
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "pickNextView"), object: nil)
                         }

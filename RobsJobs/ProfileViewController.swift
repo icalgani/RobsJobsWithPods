@@ -29,6 +29,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var ProfessionView: UIView!
     @IBOutlet weak var UserAgeView: UIView!
     
+    @IBOutlet weak var CompanyCodeInput: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +38,9 @@ class ProfileViewController: UIViewController {
         let settingIsTapped = UITapGestureRecognizer(target: self, action: #selector(self.goToSettings(sender:)))
         CityView.addGestureRecognizer(settingIsTapped)
         CityView.isUserInteractionEnabled = true
+        
+        UserImage.addGestureRecognizer(settingIsTapped)
+        UserImage.isUserInteractionEnabled = true
         
         // set logout tap recognizer
         let logoutIsTapped = UITapGestureRecognizer(target: self, action: #selector(self.doLogOut(sender:)))

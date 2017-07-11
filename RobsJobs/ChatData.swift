@@ -13,7 +13,8 @@ class ChatData{
     var userTypeToSend: [String] = []
     var tsToSend: [String] = []
     
-    let API_URL = "http://apidev.robsjobs.co/api/v1"
+    
+    let API_URL = API_ROBSJOBS.api.rawValue
     
     //===================================== GET MESSAGE DATA =======================================================
     func getDataFromServer(dataToGet: String){

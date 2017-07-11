@@ -106,7 +106,7 @@ class DraggableView: UIView {
         //company Logo
         let LOGO_HEIGHT = (self.frame.height / 3) 
         
-        companyLogoView = UIImageView(frame: CGRect(x: 10,y: 5,width: self.frame.width - 10,height: LOGO_HEIGHT))
+        companyLogoView = UIImageView(frame: CGRect(x: 10,y: 5,width: self.frame.width - 10, height: LOGO_HEIGHT))
         companyLogoView.image = UIImage(named:"logocard")
         companyLogoView.contentMode = UIViewContentMode.scaleAspectFit
         self.addSubview(companyLogoView)

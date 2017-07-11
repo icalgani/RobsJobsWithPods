@@ -137,6 +137,7 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
         WorkTypeView.setSettingBoxView()
         SalaryView.setSettingBoxView()
         SearchDistanceView.setSettingBoxView()
+        
     }
     
     func setField(){
@@ -146,11 +147,12 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
         if (userDictionary?["sectors"]) != nil{
             SectorTextfield.text = (userDictionary?["sectors"] as? String)
         }
-        print(userDictionary?["salary"])
         
-        if (userDictionary?["salary"]) != nil{
-            SalaryTextfield.text = (userDictionary?["salary"] as? String)
+        if (userDictionary?[JsonData.salary_min.rawValue]) != nil{
+            let salarymin = (userDictionary?[JsonData.salary_min.rawValue] as? String)
+            setSalaryTextfield(salarymin: salarymin!)
         }
+        
         if (userDictionary?["employment_type"]) != nil{
             WorkTimeTextfield.text = (userDictionary?["employment_type"] as! String)
         }
@@ -161,6 +163,33 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
         
         if (userDictionary?["employmentStatus"]) != nil{
             WorkTypeTextfield.text = userDictionary?["employmentStatus"] as? String
+        }
+    }
+    
+    func setSalaryTextfield(salarymin: String){
+        switch salarymin{
+            case "0":
+                SalaryTextfield.text = "< Rp 3.000.000"
+                passedSalaryMinValue = "0"
+                passedSalaryMaxValue = "3000000"
+            case "3100000":
+                SalaryTextfield.text = "Rp 3.100.000 - 5.000.000"
+                passedSalaryMinValue = "3100000"
+                passedSalaryMaxValue = "5000000"
+            case "5100000":
+                SalaryTextfield.text = "Rp 5.100.000 - 7.500.000"
+                passedSalaryMinValue = "5100000"
+                passedSalaryMaxValue = "7500000"
+            case "7600000":
+                SalaryTextfield.text = "Rp 7.600.000 - 10.000.000"
+                passedSalaryMinValue = "7600000"
+                passedSalaryMaxValue = "10000000"
+            case "10000000":
+                SalaryTextfield.text = "> Rp 10.000.000"
+                passedSalaryMinValue = "10100000"
+                passedSalaryMaxValue = "1000000000"
+        default:
+            return
         }
     }
     
@@ -197,17 +226,11 @@ class ProfileSettingViewController: UIViewController, UITextFieldDelegate {
             print("sectors = \(String(describing: userDictionary?["sectors"]!))")
             
             userDictionary?["salary"] = SalaryTextfield.text
-            print("salary = \(String(describing: userDictionary?["salary"]!))")
-            
+            userDictionary?[JsonData.salary_min.rawValue] = passedSalaryMinValue
+            userDictionary?[JsonData.salary_max.rawValue] = passedSalaryMaxValue
             userDictionary?["employment_type"] = WorkTimeTextfield.text
-            print("employment_type = \(userDictionary?["employment_type"]! as! String)")
-            
             userDictionary?["distance"] = DistanceSlider.value
-            print("distance = \(String(describing: userDictionary?["distance"]!))")
-            
             userDictionary?["employmentStatus"] = WorkTypeTextfield.text!
-            print("employmentstatus = \(userDictionary?["employmentStatus"]! as! String)")
-            
             userDefaults.set(userDictionary, forKey: "userDictionary")
             
             let sendJson = SendJsonSetupProfile()

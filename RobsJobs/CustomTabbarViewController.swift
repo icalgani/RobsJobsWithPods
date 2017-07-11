@@ -29,7 +29,6 @@ class CustomTabbarViewController: UITabBarController {
         tabFrame.origin.y = self.view.frame.origin.y
         self.tabBar.frame = tabFrame
         self.title = nil
-
     }
     
 

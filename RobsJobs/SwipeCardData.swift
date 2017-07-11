@@ -24,8 +24,9 @@ class SwipeCardData{
     var jobsScoreToSend: [String] = []
     var companyNameToSend: [String] = []
     
-    let API_URL = "http://apidev.robsjobs.co/api/v1"
-//===================================== REMOVE ALL SWIPE CARD DATA ===============================================
+    
+    let API_URL = API_ROBSJOBS.api.rawValue
+    //===================================== REMOVE ALL SWIPE CARD DATA ===============================================
     func resetAllData(){
         idToSend.removeAll()
         employerIDToSend.removeAll()
