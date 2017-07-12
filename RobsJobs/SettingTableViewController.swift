@@ -17,9 +17,11 @@ class SettingTableViewController: UITableViewController {
     }
     
     func backAction(){
-        print("Back Button Clicked")
+        let storyboard = UIStoryboard(name: "Core", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! ProfileViewController
+        // Add your destination view controller name and Identifier
         
-        dismiss(animated: true, completion: nil)
+        self.present(controller, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

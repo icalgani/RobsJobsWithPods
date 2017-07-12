@@ -25,20 +25,25 @@ class ChatGroupViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var TableViewOutlet: UITableView!
     
-    var companyNameArray: [String] = ["No Info"]
+    var companyNameArray: [String] = []
     var companyImageArray: [String] = []
-    var companyUserNameArray: [String] = ["No Info"]
+    var companyUserNameArray: [String] = []
     var chatGroupIDArray: [String] = []
     
     var selectedCompanyName: String = ""
-    var selectedCompanyImage: UIImage = UIImage(named: "RJ_login_logo")!
+    var selectedCompanyImage: UIImage!
     var selectedChatGroupID: String = ""
     
     let chatGroupData = ChatGroupData()
     
+    let userDefaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        chatGroupData.getDataFromServer(dataToGet: "313/0/5")
+        
+        let userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
+        print(String(describing: (userDictionary?["userID"])!))
+        chatGroupData.getDataFromServer(dataToGet: "\(String(describing: (userDictionary?["userID"])!))/0/5")
         
         TableViewOutlet.rowHeight = 60
 //        TableViewOutlet.estimatedRowHeight = 200
@@ -74,10 +79,8 @@ class ChatGroupViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! ChatGroupCell
         
-        print("value at didselectRowAt: chatGroupIDArray = \(chatGroupIDArray[indexPath.row]), companyNameArray = \(companyNameArray[indexPath.row])")
-        
-        selectedChatGroupID = chatGroupIDArray[indexPath.row]
-        selectedCompanyName = companyNameArray[indexPath.row]
+            self.selectedChatGroupID = self.chatGroupIDArray[indexPath.row]
+            self.selectedCompanyName = self.companyNameArray[indexPath.row]
         
         if let companyImage = cell.CompanyImageView?.image{
             selectedCompanyImage = companyImage

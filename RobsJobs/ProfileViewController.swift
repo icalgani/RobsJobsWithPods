@@ -31,21 +31,42 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var CompanyCodeInput: UITextField!
     
+    @IBAction func doSendCode(_ sender: UIButton) {
+        let companyCodeData = CompanyCodeData()
+        let userDefaults = UserDefaults.standard
+        let userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
+        
+        print("do send code function")
+        
+        if(CompanyCodeInput.text != ""){
+            print("company code = \(CompanyCodeInput.text!)")
+            companyCodeData.sendCompanyCode(token: CompanyCodeInput.text!, userid: (userDictionary?["userID"] as? String)!)
+        } else {
+            let alertController = UIAlertController(title: "Alert", message:
+                "Code is empty", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default,handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // set setting tap recognizer
         let settingIsTapped = UITapGestureRecognizer(target: self, action: #selector(self.goToSettings(sender:)))
         CityView.addGestureRecognizer(settingIsTapped)
         CityView.isUserInteractionEnabled = true
-        
-        UserImage.addGestureRecognizer(settingIsTapped)
+
+        let imageIsTapped = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(sender:)))
+
+        UserImage.addGestureRecognizer(imageIsTapped)
         UserImage.isUserInteractionEnabled = true
         
         // set logout tap recognizer
         let logoutIsTapped = UITapGestureRecognizer(target: self, action: #selector(self.doLogOut(sender:)))
         ProfessionView.addGestureRecognizer(logoutIsTapped)
         ProfessionView.isUserInteractionEnabled = true
+        
+        CompanyCodeInput.layer.addBorderToSide(edge: .bottom, color: UIColor.black, thickness: 1.0)
         
         // notification when user update image
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshUserImage), name:NSNotification.Name(rawValue: "refreshUserImage"), object: nil)
@@ -54,7 +75,16 @@ class ProfileViewController: UIViewController {
     func goToSettings(sender: UITapGestureRecognizer){
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Core", bundle: nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SettingProfile") as UIViewController
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SettingNavigation") as UIViewController
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = nextViewController
+    }
+    
+    func imageTapped(sender: UITapGestureRecognizer){
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Core", bundle: nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SettingNavigation") as UIViewController
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = nextViewController

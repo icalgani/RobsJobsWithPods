@@ -88,30 +88,19 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-//        set email borderColor
+        
+//        set borderColor
         EmailTextfield.setGrayBorderWithpadding(20)
-        
-        //set email borderColor
         RetypeEmailTextfield.setGrayBorderWithpadding(20)
-        
-        //set Phone borderColor
         PhoneNumberTextfield.setGrayBorderWithpadding(20)
-        
-        //set password borderColor
         PasswordTextfield.setGrayBorderWithpadding(20)
-        
-        //set RetypePasswordTextfield borderColor
         RetypePasswordTextfield.setGrayBorderWithpadding(20)
-        
-        //set name view borderColor
-        
         NameTextfield.setLeftPaddingPoints(20)
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //adjust keyboard so you can see what you fill in

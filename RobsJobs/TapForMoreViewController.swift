@@ -24,9 +24,11 @@ class TapForMoreViewController: UIViewController {
     var experienceArray: String!
     var descriptionArray: String!
     var companyName: String!
+    var endDateOffer: String!
     
     let employerData = EmployerData()
     
+    @IBOutlet weak var InfoView: UIView!
     @IBOutlet weak var ContainerVIew: UIView!
     @IBOutlet weak var ScrollView: UIScrollView!
     @IBOutlet weak var ExitButton: UIButton!
@@ -41,6 +43,7 @@ class TapForMoreViewController: UIViewController {
     @IBOutlet weak var JobLabel: UILabel!
     @IBOutlet weak var InterestLabel: UILabel!
     @IBOutlet weak var DescriptionLabel: UILabel!
+    @IBOutlet weak var ExpiredDateLabel: UILabel!
     
     @IBOutlet weak var UserImage: UIImageView!
     
@@ -77,12 +80,15 @@ class TapForMoreViewController: UIViewController {
 //        DescriptionLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         
         JobLabel.text = jobTitleArray
-        DistanceLabel.text = distanceArray
+        DistanceLabel.text = "\(distanceArray!) Km away"
         TypeLabel.text = employmentTypeArray
         SalaryLabel.text = salaryArray
-        ExperienceLabel.text = experienceArray
+        ExperienceLabel.text = "\(experienceArray) years of experience"
         UserImage.image = companyLogoArray
         CompanyLabel.text = companyName
+        ExpiredDateLabel.text = "\(endDateArray!) days to go"
+        
+        InfoView.setSettingBoxView()
     }
     
     override func viewDidLayoutSubviews() {

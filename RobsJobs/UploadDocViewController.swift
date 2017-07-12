@@ -210,11 +210,11 @@ class UploadDocViewController: UIViewController, UIImagePickerControllerDelegate
             if (documentIsPicked[index]){
                 switch index {
                 case 0:
-                    self.Certificate1.image = UIImage(named: "rj_attach_icon")
+                    self.Certificate1.image = UIImage(named: "icons8-News Filled-50")
                 case 1:
-                    self.Certificate2.image = UIImage(named: "rj_attach_icon")
+                    self.Certificate2.image = UIImage(named: "icons8-News Filled-50")
                 case 2:
-                    self.Certificate3.image = UIImage(named: "rj_attach_icon")
+                    self.Certificate3.image = UIImage(named: "icons8-News Filled-50")
 
                 default:
                     return

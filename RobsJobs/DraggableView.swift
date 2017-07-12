@@ -104,7 +104,7 @@ class DraggableView: UIView {
         locationLabel = UILabel()
         
         //company Logo
-        let LOGO_HEIGHT = (self.frame.height / 3) 
+        let LOGO_HEIGHT = (self.frame.height / 4)
         
         companyLogoView = UIImageView(frame: CGRect(x: 10,y: 5,width: self.frame.width - 10, height: LOGO_HEIGHT))
         companyLogoView.image = UIImage(named:"logocard")
@@ -381,7 +381,7 @@ class DraggableView: UIView {
                            toItem: self,
                            attribute: .bottom,
                            multiplier: 1.0,
-                           constant: -28.0).isActive = true
+                           constant: -30.0).isActive = true
         
         NSLayoutConstraint(item: jobDescriptionLabel,
                            attribute: .bottom,

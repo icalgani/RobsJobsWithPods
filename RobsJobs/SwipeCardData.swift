@@ -98,16 +98,12 @@ class SwipeCardData{
                                     self.companyLogoToSend.append("No Data")
                                 }
                                 
-                                self.descriptionToSend.append(aObject["desc"] as! String)
+                                self.descriptionToSend.append(aObject["desc"] as? String ?? "No Data")
                                 self.jobsScoreToSend.append(String(describing: aObject["score"]!))
                                 let experience = String(describing: aObject["has_experience"]!)
-                                if(experience == "0"){
-                                    self.experienceToSend.append("No")
-                                }else {
-                                    self.experienceToSend.append("Yes")
-                                }
+                                self.experienceToSend.append(experience)
                                 
-                                self.companyNameToSend.append(aObject["company_name"] as! String)
+                                self.companyNameToSend.append(aObject["company_name"] as? String ?? "No Data")
                                 
                             }// end for
                             

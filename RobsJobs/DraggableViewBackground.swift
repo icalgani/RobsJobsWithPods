@@ -158,10 +158,10 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
     }
 
     func createDraggableViewWithDataAtIndex(index: NSInteger) -> DraggableView {
-        let NEW_CARD_WIDTH = self.frame.size.width - 20
-        let NEW_CARD_HEIGHT = self.frame.size.height - 185
+        let NEW_CARD_WIDTH = self.frame.size.width - 40
+        let NEW_CARD_HEIGHT = self.frame.size.height - 200
         
-        let draggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - NEW_CARD_WIDTH)/2,y: (self.frame.size.height - NEW_CARD_HEIGHT + 20)/2,width: NEW_CARD_WIDTH,height: NEW_CARD_HEIGHT))
+        let draggableView = DraggableView(frame: CGRect(x: (self.frame.size.width - NEW_CARD_WIDTH)/2,y: (self.frame.size.height - NEW_CARD_HEIGHT + 10)/2,width: NEW_CARD_WIDTH,height: NEW_CARD_HEIGHT))
         
         //set new data
         //set Job Title

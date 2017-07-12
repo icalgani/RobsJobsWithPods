@@ -192,7 +192,7 @@ class JobRequirementDetail{
                            toItem: view,
                            attribute: .bottom,
                            multiplier: 1.0,
-                           constant: -8.0).isActive = true
+                           constant: -10.0).isActive = true
         
         NSLayoutConstraint(item: stackView,
                            attribute: .height,
@@ -200,7 +200,7 @@ class JobRequirementDetail{
                            toItem: nil,
                            attribute: .notAnAttribute,
                            multiplier: 1.0,
-                           constant:22.0).isActive = true
+                           constant:30.0).isActive = true
         
         appliedView.translatesAutoresizingMaskIntoConstraints = false
         appliedNumberLabel.translatesAutoresizingMaskIntoConstraints = false

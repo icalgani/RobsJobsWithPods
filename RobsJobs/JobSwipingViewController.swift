@@ -102,6 +102,7 @@ class JobSwipingViewController: UIViewController,CLLocationManagerDelegate, UITa
         nextViewController.idArray = idJob
         nextViewController.employerIDArray = employerID
         nextViewController.companyName = companyName
+        
         appDelegate.window?.rootViewController = nextViewController
     }
     /*
