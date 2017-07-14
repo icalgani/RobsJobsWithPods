@@ -31,16 +31,6 @@ class JobSwipingViewController: UIViewController,CLLocationManagerDelegate, UITa
     @IBAction func backToJobSwiping(segue: UIStoryboardSegue) {
     }
     
-    @IBOutlet weak var MoreButton: UIButton!
-    
-    @IBAction func MoreButtonPressed(_ sender: UIButton) {
-        print("setting button is pressed")
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Core", bundle: nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SettingProfile") as UIViewController
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = nextViewController
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +44,7 @@ class JobSwipingViewController: UIViewController,CLLocationManagerDelegate, UITa
         //
         self.tabBarController?.delegate = self
         checkLocationIsOn()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,7 +75,7 @@ class JobSwipingViewController: UIViewController,CLLocationManagerDelegate, UITa
         }
     }
     
-    func doTapForMore(jobTitle: String, interest: String, employmentType: String, distance: String, salary: String, endDate: String, companyLogo: UIImage, experience: String, descriptionJob: String, idJob: String, employerID: String, companyName: String){
+    func doTapForMore(jobTitle: String, interest: String, employmentType: String, distance: String, salary: String, endDate: String, companyLogo: UIImage, experience: String, descriptionJob: String, idJob: String, employerID: String, companyName: String, jobScore: String){
         print("inside doTapForMore ")
         let storyBoard : UIStoryboard = UIStoryboard(name: "Core", bundle: nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "TapForMore") as! TapForMoreViewController
@@ -102,6 +93,7 @@ class JobSwipingViewController: UIViewController,CLLocationManagerDelegate, UITa
         nextViewController.idArray = idJob
         nextViewController.employerIDArray = employerID
         nextViewController.companyName = companyName
+        nextViewController.jobScore = jobScore
         
         appDelegate.window?.rootViewController = nextViewController
     }

@@ -68,7 +68,7 @@ class DocumentData{
     func uploadDocumentRequest(documentURL: URL, documentType: String){
         var userDictionary = self.userDefaults.value(forKey: "userDictionary") as? [String: Any]
         
-        print("The Url is : \(documentURL)")
+        print("The document request url is : \(documentURL)")
         var file_data = Data()
         
         do{

@@ -29,7 +29,7 @@ class ResetPasswordViewController: UIViewController {
         }else{
         
         //check login
-        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/user/forgot")!)
+        var request = URLRequest(url: URL(string: "http://api.robsjobs.co/api/v1/user/forgot")!)
         request.httpMethod = "POST"
         let postString = "email=\((RegisteredEmailTextfield.text)!)"
         request.httpBody = postString.data(using: .utf8)

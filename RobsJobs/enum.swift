@@ -37,5 +37,5 @@ enum JsonData: String{
 
 enum API_ROBSJOBS: String{
     case api = "http://api.robsjobs.co/api/v1"
-    case api_dev = "http://apidev.robsjobs.co/api/v1"
+//    case api_dev = "http://apidev.robsjobs.co/api/v1"
 }

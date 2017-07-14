@@ -135,6 +135,9 @@ class LoginData{
                         
                         if let image = jsonData["image"]{
                             userDictionary["image"] = String(describing: image)
+                        }else{
+                            userDictionary["image"] = "No Data"
+                            
                         }
                         
                         if let skills = jsonData["skills"]{
@@ -193,7 +196,7 @@ class LoginData{
                         }
                         
                         if let experience = jsonData[JsonData.experience.rawValue]{
-                            userDictionary[JsonData.experience.rawValue] = experience
+                            userDictionary[JsonData.experience.rawValue] = experience as? String
                             print("experience = \(experience)")
                         }
                         

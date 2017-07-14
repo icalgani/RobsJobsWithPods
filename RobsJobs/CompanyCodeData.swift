@@ -10,14 +10,14 @@ import UIKit
 import Alamofire
 
 class CompanyCodeData{
-    let API_URL = API_ROBSJOBS.api_dev.rawValue
+    let API_URL = API_ROBSJOBS.api.rawValue
     var userDefaults = UserDefaults.standard
     
 //========================================== SEND COMPANY CODE =======================================================
     func sendCompanyCode(token: String, userid: String){
         var request = URLRequest(url: URL(string: "\(API_URL)/devjob/applytoken")!)
         print("\(API_URL)/devjob/applytoken")
-        //check login
+
         request.httpMethod = "POST"
         let postString = "token=\(token)&userid=\(userid)"
         request.httpBody = postString.data(using: .utf8)

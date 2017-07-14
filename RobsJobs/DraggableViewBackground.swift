@@ -14,6 +14,8 @@ import CoreLocation
 class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
+
+    let apiURL = API_ROBSJOBS.api.rawValue
     
     //  swipe card data
     let swipeCardData = SwipeCardData()
@@ -92,7 +94,6 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
     }
 
     func setupView() -> Void {
-//        self.backgroundColor = UIColor(red: 0.92, green: 0.93, blue: 0.95, alpha: 1)
 
         //create pass button
         xButtonView = UIView(frame: CGRect(x: (self.frame.size.width - CARD_WIDTH)/2 + 35,y: self.frame.size.height - 65 ,width: 50,height: 50))
@@ -119,7 +120,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         checkButton = UIButton(frame: CGRect(x:0 , y: 0,width: 50,height: 50))
         checkButton.setImage(UIImage(named: "rj_apply_icon_col-1"), for: UIControlState.normal)
         checkButton.addTarget(self, action: #selector(self.swipeRight), for: UIControlEvents.touchUpInside)
-
+        
+    //  add pass button constraint
         xButtonView.addSubview(xButton)
         xButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(item: xButton,
@@ -137,7 +139,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
                            attribute: .centerY,
                            multiplier: 1.0,
                            constant:0.0).isActive = true
-        
+    
+    //  add ok button constraint
         checkButtonView.addSubview(checkButton)
         NSLayoutConstraint(item: checkButton,
                            attribute: .centerX,
@@ -154,7 +157,12 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
                            attribute: .centerY,
                            multiplier: 1.0,
                            constant:0.0).isActive = true
-        
+    
+    // notification when user press ok button
+        NotificationCenter.default.addObserver(self, selector: #selector(self.swipeRight), name:NSNotification.Name(rawValue: "swipeRight"), object: nil)
+    
+    // notification when user press pass button
+        NotificationCenter.default.addObserver(self, selector: #selector(self.swipeLeft), name:NSNotification.Name(rawValue: "swipeLeft"), object: nil)
     }
 
     func createDraggableViewWithDataAtIndex(index: NSInteger) -> DraggableView {
@@ -184,6 +192,8 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
                 if let checkedUrl = URL(string: companyLogoArray[index]) {
                     downloadImage(url: checkedUrl,imageIndex: index)
                 }
+            } else{
+                self.companyImageArray.append(UIImage(named: "logocard")!)
             }
         }
         
@@ -351,7 +361,7 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
     }
     
     func cardIsSwiped(requestType: String, indexToSend: Int, jobScoreToSend: String){
-        var request = URLRequest(url: URL(string: "http://apidev.robsjobs.co/api/v1/job/\(requestType)")!)
+        var request = URLRequest(url: URL(string: "\(apiURL)/job/\(requestType)")!)
         let userDefaults = UserDefaults.standard
         let userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
         
@@ -391,13 +401,15 @@ class DraggableViewBackground: UIView, DraggableViewDelegate, CLLocationManagerD
         print("job card is pressed")
         let viewController = JobSwipingViewController()
         let indexToSend = 10 - cardsSum
-        viewController.doTapForMore(jobTitle: jobTitleArray[indexToSend], interest: interestArray[indexToSend], employmentType: employmentTypeArray[indexToSend], distance: distanceArray[indexToSend], salary: salaryArray[indexToSend], endDate: endDateArray[indexToSend], companyLogo: companyImageArray[indexToSend], experience: experienceArray[indexToSend], descriptionJob: descriptionArray[indexToSend], idJob: idArray[indexToSend], employerID: employerIDArray[indexToSend], companyName: companyNameArray[indexToSend])
+        viewController.doTapForMore(jobTitle: jobTitleArray[indexToSend], interest: interestArray[indexToSend], employmentType: employmentTypeArray[indexToSend], distance: distanceArray[indexToSend], salary: salaryArray[indexToSend], endDate: endDateArray[indexToSend], companyLogo: companyImageArray[indexToSend], experience: experienceArray[indexToSend], descriptionJob: descriptionArray[indexToSend], idJob: idArray[indexToSend], employerID: employerIDArray[indexToSend], companyName: companyNameArray[indexToSend], jobScore: jobsScoreArray[indexToSend])
     }
     
     func jobCardIsPressed(sender: UITapGestureRecognizer? = nil){
         let viewController = JobSwipingViewController()
         let indexToSend = 10 - cardsSum
-        viewController.doTapForMore(jobTitle: jobTitleArray[indexToSend], interest: interestArray[indexToSend], employmentType: employmentTypeArray[indexToSend], distance: distanceArray[indexToSend], salary: salaryArray[indexToSend], endDate: endDateArray[indexToSend], companyLogo: companyImageArray[indexToSend], experience: experienceArray[indexToSend], descriptionJob: descriptionArray[indexToSend], idJob: idArray[indexToSend], employerID: employerIDArray[indexToSend], companyName: companyNameArray[indexToSend])
+        print(companyLogoArray)
+        print("jobTitle: \(jobTitleArray[indexToSend]), interest: \(interestArray[indexToSend]), employmentType: \(employmentTypeArray[indexToSend]), distance: \(distanceArray[indexToSend]), salary: \(salaryArray[indexToSend]), endDate: \(endDateArray[indexToSend]), companyLogo: companyImageArray[indexToSend], experience: \(experienceArray[indexToSend]), descriptionJob: \(descriptionArray[indexToSend]), idJob: \(idArray[indexToSend]), employerID: \(employerIDArray[indexToSend]), companyName: companyNameArray[indexToSend], jobScore: jobsScoreArray[indexToSend])")
+        viewController.doTapForMore(jobTitle: jobTitleArray[indexToSend], interest: interestArray[indexToSend], employmentType: employmentTypeArray[indexToSend], distance: distanceArray[indexToSend], salary: salaryArray[indexToSend], endDate: endDateArray[indexToSend], companyLogo: companyImageArray[indexToSend], experience: experienceArray[indexToSend], descriptionJob: descriptionArray[indexToSend], idJob: idArray[indexToSend], employerID: employerIDArray[indexToSend], companyName: companyNameArray[indexToSend], jobScore: jobsScoreArray[indexToSend])
     }
     
 }

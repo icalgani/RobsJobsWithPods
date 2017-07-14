@@ -18,7 +18,7 @@ class SettingTableViewController: UITableViewController {
     
     func backAction(){
         let storyboard = UIStoryboard(name: "Core", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "UserProfile") as! ProfileViewController
+        let controller = storyboard.instantiateViewController(withIdentifier: "SwipingScene") as! CoreTabBarControler
         // Add your destination view controller name and Identifier
         
         self.present(controller, animated: true, completion: nil)

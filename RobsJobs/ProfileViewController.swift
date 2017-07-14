@@ -51,24 +51,25 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // set setting tap recognizer
+        
+// set setting tap recognizer
         let settingIsTapped = UITapGestureRecognizer(target: self, action: #selector(self.goToSettings(sender:)))
         CityView.addGestureRecognizer(settingIsTapped)
         CityView.isUserInteractionEnabled = true
-
+        
+//image is tap recognizer
         let imageIsTapped = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(sender:)))
-
         UserImage.addGestureRecognizer(imageIsTapped)
         UserImage.isUserInteractionEnabled = true
         
-        // set logout tap recognizer
+//set logout tap recognizer
         let logoutIsTapped = UITapGestureRecognizer(target: self, action: #selector(self.doLogOut(sender:)))
         ProfessionView.addGestureRecognizer(logoutIsTapped)
         ProfessionView.isUserInteractionEnabled = true
         
         CompanyCodeInput.layer.addBorderToSide(edge: .bottom, color: UIColor.black, thickness: 1.0)
         
-        // notification when user update image
+// notification when user update image
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshUserImage), name:NSNotification.Name(rawValue: "refreshUserImage"), object: nil)
     }
     
@@ -173,6 +174,7 @@ class ProfileViewController: UIViewController {
             
             //download image from url
             if let imageData = userDictionary?["image"] {
+                print("image data = \(imageData)")
                 let checkedUrl = URL(string: imageData as! String)
                 if(checkedUrl != nil){
                     downloadImage(url: checkedUrl!)

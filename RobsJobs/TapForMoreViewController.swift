@@ -24,7 +24,10 @@ class TapForMoreViewController: UIViewController {
     var experienceArray: String!
     var descriptionArray: String!
     var companyName: String!
-    var endDateOffer: String!
+    var jobScore: String!
+    
+    let apiURL = API_ROBSJOBS.api.rawValue
+
     
     let employerData = EmployerData()
     
@@ -48,16 +51,28 @@ class TapForMoreViewController: UIViewController {
     @IBOutlet weak var UserImage: UIImageView!
     
     @IBAction func backToTapForMore(segue: UIStoryboardSegue) {
-        
     }
     
+    @IBAction func ApplyButtonPressed(_ sender: UIButton) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Core", bundle: nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SwipingScene") as! UITabBarController
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        self.cardIsSwiped(requestType: "apply", jobScoreToSend: jobScore)
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "swipeLeft"), object: nil)
+        appDelegate.window?.rootViewController = nextViewController
+    }
     
     @IBAction func CloseButtonPressed(_ sender: UIButton) {
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Core", bundle: nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SwipingScene") as! UITabBarController
-        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        self.cardIsSwiped(requestType: "reject", jobScoreToSend: jobScore)
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "swipeLeft"), object: nil)        
         appDelegate.window?.rootViewController = nextViewController
     }
     
@@ -109,9 +124,45 @@ class TapForMoreViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-//        let dvc = segue.destination as! UINavigationController
-//        let view = dvc.topViewController as! SendJobToFriendViewController
-//        view.passedJobId = idArray
+    }
+    
+    func cardIsSwiped(requestType: String, jobScoreToSend: String){
+        var request = URLRequest(url: URL(string: "\(apiURL)/job/\(requestType)")!)
+        let userDefaults = UserDefaults.standard
+        let userDictionary = userDefaults.value(forKey: "userDictionary") as? [String: Any]
+        
+        request.httpMethod = "POST"
+        
+        let postString = "userid=\(String(describing: (userDictionary?["userID"])!))&jobid=\((idArray))&jobscore=\(jobScoreToSend)"
+        
+        print("post string card is swiped = \(postString)")
+        
+        request.httpBody = postString.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error=\(String(describing: error))")
+                return
+            }
+            
+            //handling json
+            do {
+                //create json object from data
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                        //if status code is not 200
+                        let errorMessage = json["error"] as! [String:Any]
+                        let currentErrorMessage = errorMessage["message"] as! String
+                        print("status code: \(httpStatus.statusCode)")
+                    }else{
+                        let jsonData = json["data"] as! [String:Any]
+                    } // if else
+                } //if json
+            } catch let error {
+                print(error.localizedDescription)
+            } // end do
+            
+        } //end task
+        task.resume()
     }
 
 }

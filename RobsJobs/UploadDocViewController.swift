@@ -35,7 +35,7 @@ class UploadDocViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBAction func DoneButtonPressed(_ sender: UIButton) {
         
-        var userDictionary = self.userDefaults.value(forKey: "userDictionary") as? [String: Any]
+        var userDictionary: Dictionary? = self.userDefaults.value(forKey: "userDictionary") as? [String: Any]
         documentData.uploadPictureRequest(userImage: self.UserPhotoIcon.image!)
         
         for index in 0...(self.documentIsPicked.count - 1){
@@ -46,11 +46,11 @@ class UploadDocViewController: UIViewController, UIImagePickerControllerDelegate
         
         if(PortfolioTextfield.text != "" || PortfolioTextfield.text != nil){
             userDictionary?["portofolio"] = PortfolioTextfield.text!
+            let sendJson = SendJsonSetupProfile()
+            
             print("portfolio = \(userDictionary?["portofolio"]! as! String)")
             
             userDefaults.set(userDictionary, forKey: "userDictionary")
-            
-            let sendJson = SendJsonSetupProfile()
             sendJson.sendDataToAPI(userDictionary: userDictionary!)
         }
         // go to core scene
@@ -87,10 +87,10 @@ class UploadDocViewController: UIViewController, UIImagePickerControllerDelegate
             PortfolioTextfield.text = userDictionary?["portofolio"] as? String
         }
         
-        if let imageData = userDictionary?["image"] {
+        if (userDictionary?["image"] != nil){
             print("user dictionary image = \(userDictionary?["image"] as! String)")
-            let checkedUrl = URL(string: imageData as! String)
-            downloadImage(url: checkedUrl!)
+            let checkedUrl = URL(string: userDictionary?["image"] as! String)
+            self.downloadImage(url: checkedUrl!)
         }
         
         documentData.getDocumentDataFromServer()
